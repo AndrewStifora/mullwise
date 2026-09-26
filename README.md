@@ -52,7 +52,11 @@ The architecture, roadmap, threat model and testing strategy land next.
 
 ## License
 
-Not yet chosen. Until a license is added, all rights are reserved.
+[MIT](LICENSE) © 2026 Andrew Stifora.
+
+The license covers this repository's code and original docs. It grants no rights
+to the Mullwise name. Third-party product names and quoted excerpts in
+`docs/research/` belong to their owners.
 
 ---
 
