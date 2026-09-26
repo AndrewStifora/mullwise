@@ -68,20 +68,32 @@ the gate: CI re-runs every check.
 gh pr create --fill --base main
 ```
 
-Fill in the PR template and put `Closes #<issue>` in the body. Required checks
-must be green before merge:
+Fill in the PR template and put `Closes #<issue>` in the body. The `main protection`
+ruleset blocks the merge until **both** of these pass:
 
-| Check | Level |
+| Required | What it covers |
 |---|---|
-| `lint` / `typecheck` / `format` | static |
-| `test (ubuntu, windows)` | unit + property-based + integration + contract |
-| `e2e-mcp` | stdio MCP server driven by a real MCP client |
-| `security / gitleaks`, `security / semgrep`, `security / osv-scanner`, `security / zizmor` | security |
-| `CodeQL` | security (SAST) |
-| `dependency-review` | supply chain |
+| **`ci-ok`** | Rolls up every job in `.github/workflows/ci.yml`. It fails if any of them failed, was cancelled or was skipped. |
+| **CodeQL results** | The ruleset's code-scanning rule. CodeQL must have analysed the commit, and the PR may not add alerts of *high* or *critical* security severity, or *error* level. |
 
-Scheduled (not blocking): mutation testing (Stryker), skill evals with
-Claude, OpenSSF Scorecard.
+The jobs rolled up by `ci-ok`:
+- `static`: typecheck, Biome, actionlint, zizmor
+- `test (ubuntu-latest)` and `test (windows-latest)`
+- `gitleaks`
+- `osv-scanner`
+
+New jobs added to `ci.yml` later join `ci-ok` automatically, with no ruleset change. For
+example, `e2e-mcp` arrives with the MCP server (#14).
+
+Advisory, not required:
+- `pr-title` checks the title is a Conventional Commit. The squash commit takes the PR title.
+- `labeler` applies `security-review`.
+
+Scheduled, not blocking, and added in later phases:
+- nightly property, fuzz and performance runs
+- mutation testing (Stryker)
+- skill evals with Claude
+- OpenSSF Scorecard
 
 Merge with **squash**. The branch is deleted automatically.
 
@@ -109,11 +121,16 @@ security. A bug fix lands with a test that failed before the fix.
 
 ## 7. Releases
 
-Releases are automated from Conventional Commits:
+**No releases yet** (ADR-0007). Nothing is published until install docs for other
+people exist: no tags, no GitHub Releases, no plugin bundle and no `.mcpb`. Until
+then the plugin's version is bumped by hand with `pnpm bump`. That script arrives
+with the plugin in #16.
+
+When releases start (P3), they are automated from Conventional Commits:
 
 1. A release PR accumulates the changelog.
-2. Merging it tags `vX.Y.Z` and publishes release artifacts (plugin bundle,
-   `.mcpb` Desktop Extension).
+2. Merging it tags `vX.Y.Z` and publishes the release artifacts. The
+   `release tags` ruleset stops `v*` tags being moved or deleted.
 
 Pre-1.0, breaking changes bump the minor version.
 
