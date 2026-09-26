@@ -44,6 +44,32 @@ The architecture, roadmap, threat model and testing strategy land next.
   proposal, never a silent rewrite. Everything can be undone.
 - **No lock-in.** Full Markdown/JSON export at any time.
 
+## Development
+
+Prerequisites:
+
+- **Node 24.15 or later.** CI pins the version in `.node-version`. `node:sqlite` is a release candidate from 24.15.
+- **pnpm.** The exact version comes from `packageManager` and pnpm switches to it automatically.
+
+```sh
+pnpm install     # also installs the git hooks
+pnpm verify      # typecheck + lint + tests
+```
+
+The toolchain:
+- **TypeScript 7** (strict), **Biome** (lint and format), **Vitest** + **fast-check**
+  (unit and property tests)
+- **lefthook** + **commitlint** (git hooks)
+
+Supply-chain settings are in `pnpm-workspace.yaml`:
+- new releases have to be 3 days old before they install
+- install scripts run only for allow-listed packages
+- trust-downgrade detection
+
+Shipped code under `packages/` and `plugin/` may not import network or subprocess
+APIs. Biome enforces this, and `tests/toolchain/network-ban.test.ts` proves the
+rule fires.
+
 ## Contributing & security
 
 - [CONTRIBUTING.md](CONTRIBUTING.md): every change starts from an issue, gets its own

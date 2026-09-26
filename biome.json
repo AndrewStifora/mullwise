@@ -1,0 +1,87 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!docs/research/raw", "!docs/architecture/design-plan.json"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        "useLiteralKeys": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["packages/**", "plugin/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "node:http": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "http": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:https": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "https": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:http2": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "http2": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:net": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "net": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:tls": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "tls": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:dgram": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "dgram": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:dns": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "dns": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:dns/promises": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "dns/promises": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "node:inspector": "Opens a debugger port; not allowed in shipped code.",
+                  "inspector": "Opens a debugger port; not allowed in shipped code.",
+                  "node:child_process": "No subprocesses in shipped code: they bypass the offline and data boundaries.",
+                  "child_process": "No subprocesses in shipped code: they bypass the offline and data boundaries.",
+                  "undici": "Phase 1 is offline: no HTTP clients in shipped code (SECURITY.md).",
+                  "axios": "Phase 1 is offline: no HTTP clients in shipped code (SECURITY.md).",
+                  "node-fetch": "Phase 1 is offline: no HTTP clients in shipped code (SECURITY.md).",
+                  "got": "Phase 1 is offline: no HTTP clients in shipped code (SECURITY.md).",
+                  "ws": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md)."
+                }
+              }
+            },
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "fetch": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "WebSocket": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "EventSource": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md).",
+                  "XMLHttpRequest": "Phase 1 is offline: no network APIs in shipped code (SECURITY.md)."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

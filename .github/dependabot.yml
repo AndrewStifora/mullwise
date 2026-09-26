@@ -1,0 +1,20 @@
+# Version updates for GitHub Actions only (ADR-0007): Dependabot doesn't support
+# pnpm 11 lockfiles, so npm dependencies are refreshed by hand under pnpm's
+# minimumReleaseAge. Security alerts still cover npm.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ['*']
+    commit-message:
+      prefix: ci
+    labels:
+      - type:chore
+      - security-review
