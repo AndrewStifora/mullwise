@@ -60,3 +60,6 @@ desktop.ini
 
 # Local knowledge-graph output
 graphify-out/
+
+# Phase-0 re-identification denylist: real names, never committed
+phase0/evals/*.local.txt

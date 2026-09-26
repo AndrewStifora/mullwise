@@ -20,5 +20,7 @@ security-review:
           - biome.json
           - lefthook.yml
           - scripts/hooks/**
+          - phase0/workspace/**
+          - phase0/*.ps1
           - SECURITY.md
           - docs/security/**
