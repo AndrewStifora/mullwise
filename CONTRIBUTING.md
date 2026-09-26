@@ -47,16 +47,20 @@ Closes #12
 ```
 
 Types: `feat`, `fix`, `test`, `docs`, `chore`, `refactor`, `perf`, `ci`,
-`build`, `sec`. A `!` or a `BREAKING CHANGE:` footer marks breaking changes.
+`build`, `sec`, `revert`. A `!` or a `BREAKING CHANGE:` footer marks breaking changes.
 Commit messages drive versioning and the changelog (§7).
 
-Local hooks (installed automatically by `pnpm install` via lefthook):
+Local hooks are installed automatically by `pnpm install` through lefthook (`lefthook.yml`):
 
 | Hook | Runs |
 |---|---|
-| `pre-commit` | secret scan (gitleaks) on staged files, format, lint staged files |
-| `commit-msg` | Conventional Commit check |
-| `pre-push` | branch-name check, no push to `main`, typecheck, unit tests |
+| `pre-commit` | secret scan of staged changes (gitleaks, if installed), then Biome format and lint on staged files |
+| `commit-msg` | Conventional Commit check (commitlint) |
+| `pre-push` | branch-name check, no push to `main`, typecheck, tests |
+
+gitleaks is optional locally (`winget install Gitleaks.Gitleaks`). Without it the
+hook warns and continues, because CI always runs it. Hooks are a convenience, not
+the gate: CI re-runs every check.
 
 ## 4. Open a pull request
 

@@ -1,0 +1,24 @@
+# Auto-applies the security-review gate label (CONTRIBUTING §5) to PRs that touch
+# user data handling, crypto, LLM-facing tools, the offline boundary, CI/CD, or
+# dependencies.
+security-review:
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/crypto/**
+          - packages/store/**
+          - packages/mcp-server/**
+          - packages/cli/**
+          - plugin/**
+          - apps/**
+          - .github/workflows/**
+          - .github/dependabot.yml
+          - .github/labeler.yml
+          - package.json
+          - packages/*/package.json
+          - pnpm-lock.yaml
+          - pnpm-workspace.yaml
+          - biome.json
+          - lefthook.yml
+          - scripts/hooks/**
+          - SECURITY.md
+          - docs/security/**

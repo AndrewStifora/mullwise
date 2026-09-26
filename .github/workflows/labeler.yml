@@ -1,0 +1,26 @@
+name: Labeler
+
+# Applies the security-review gate label (CONTRIBUTING §5) from .github/labeler.yml.
+# Uses pull_request, not pull_request_target: fork PRs get a read-only token and this
+# job fails harmlessly for them; the maintainer labels those by hand.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  label:
+    name: labeler
+    # Dependabot PRs get a read-only token; its PRs are labelled via dependabot.yml.
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0

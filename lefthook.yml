@@ -1,0 +1,28 @@
+# Git hooks, installed automatically by `pnpm install` (lefthook's postinstall).
+# They are a fast local safety net; CI re-runs every check and is the real gate.
+# Skip all hooks for one command with LEFTHOOK=0 (CI sets this).
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: secrets
+      run: node scripts/hooks/gitleaks-staged.mjs
+    - name: biome
+      glob: '*.{js,mjs,cjs,ts,mts,cts,json,jsonc}'
+      run: pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: pnpm exec commitlint --edit {1}
+
+pre-push:
+  jobs:
+    - name: branch-policy
+      run: node scripts/hooks/check-push.mjs
+      use_stdin: true
+    - name: typecheck
+      run: pnpm run typecheck
+    - name: test
+      run: pnpm run test

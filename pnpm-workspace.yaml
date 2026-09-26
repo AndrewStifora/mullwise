@@ -1,0 +1,23 @@
+packages:
+  - packages/*
+
+# --- Supply-chain hardening (docs/research/platform-and-engineering-facts.md §E) ---
+
+# Refuse versions published less than 3 days ago: most malicious releases are
+# caught and yanked within that window. The MCP SDK is exempt so security fixes
+# to the protocol layer land immediately.
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@modelcontextprotocol/*'
+
+# Fail if a package's trust evidence (e.g. provenance) drops compared with its
+# earlier releases, a common sign of a hijacked maintainer account.
+trustPolicy: no-downgrade
+
+# Install scripts run only for packages reviewed and listed here.
+strictDepBuilds: true
+allowBuilds:
+  lefthook: true
+
+# Only direct dependencies may come from git repositories or tarball URLs.
+blockExoticSubdeps: true
