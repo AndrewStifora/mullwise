@@ -1,0 +1,62 @@
+# --- User data: NEVER commit real thoughts, vaults, or keys -------------
+# RTO stores personal notes about real people. Real data lives outside the
+# repo (default: the user's app-data directory). These patterns are a second
+# line of defence in case a data dir is ever pointed inside the checkout.
+.rto/
+rto-data/
+*.rto.db
+*.rto.db-*
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.key
+*.pem
+*.age
+vault/
+!**/fixtures/**/vault/
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Dependencies & build output
+node_modules/
+dist/
+build/
+out/
+coverage/
+.turbo/
+*.tsbuildinfo
+*.mcpb
+reports/
+stryker-tmp/
+.stryker-tmp/
+
+# Test / eval artifacts
+playwright-report/
+test-results/
+evals/results/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Local Claude Code state (keep shared settings, ignore personal)
+.claude/settings.local.json
+
+# Local knowledge-graph output
+graphify-out/

@@ -1,0 +1,42 @@
+name: Bug report
+description: Something Mullwise does wrong
+labels: ["type:fix"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Security issue?** Don't file it here. Use *Security → Report a vulnerability*.
+        **Never paste real thoughts or real people's names.** Reproduce with made-up data.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce (synthetic data only)
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where
+      options:
+        - Claude Code (plugin)
+        - Claude Desktop (Desktop Extension)
+        - MCP server directly
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Mullwise version / commit
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (redacted)
+      render: text

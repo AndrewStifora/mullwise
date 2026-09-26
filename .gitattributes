@@ -1,0 +1,20 @@
+# Normalize line endings: LF in the repo and working tree on every OS,
+# so CI (Linux) and Windows dev machines see identical bytes.
+* text=auto eol=lf
+
+# Windows-only scripts keep CRLF.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.db binary
+*.sqlite binary
+*.woff binary
+*.woff2 binary

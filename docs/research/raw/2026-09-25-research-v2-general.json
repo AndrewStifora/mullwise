@@ -1,0 +1,1477 @@
+{
+  "generated": "2026-09-25",
+  "note": "Raw output of the rto-research-v2 workflow (general-organizer framing): names + competitors, each adversarially fact-checked. Verification verdicts supersede research claims.",
+  "tracks": [
+    {
+      "key": "names",
+      "research": {
+        "currentNameReassessment": "\"Random Thought Organizer\" now describes the general product accurately: capture stray thoughts, then organize, connect and clarify them. It also carries the lowest legal and namespace risk of anything screened, but it works better as a descriptor than as the brand.\n\nLegal and namespace position, checked 2026-09-25:\n- **USPTO:** no live mark in any class. RANDOM THOUGHTS has 4 filings, all dead (classes 3, 16, 41 and 16). THOUGHT ORGANIZER and randomthought* return 0 filings (tmsearch backend).\n- **Domains:** randomthoughtorganizer.app and .com are both unregistered (RDAP 404).\n- **npm:** random-thought-organizer is free.\n- **MCP registry:** no thought or notes \"organizer\" server.\n\nWhy it is weak as a brand:\n1. **Merely descriptive.** A US application would likely be refused on the Principal Register or need a disclaimer, and it cannot stop others using the phrase. The phrase is already in use: iOS \"Mindscope - Thought Organizer\" and \"Idea Think: Thought Organizer\" (Productivity), Google Play \"Quick Notes: Thought Organizer\" and \"Brain Dump - Organize Thoughts\", and a Notion template called \"Brain Dump: A Thought Organizer\".\n2. **It names the input, not the payoff.** The AI connecting, clarifying and briefing is invisible.\n3. **Hard to find.** It competes on generic keywords, the Organizer/Organiser spelling splits search, and at 24 characters it is too long for a slash command or package name.\n\nNo good short handle comes from the phrase itself. RTO is blocked (Return to Office, Recovery Time Objective, India's RTO apps, live RTO marks). Other abbreviations such as RTOrg or RandO are ugly. \"/thoughts\" is generic and likely to collide with other skills.\n\nVerdict: keep the phrase as the lowercase product descriptor (store subtitle, plugin description, SEO line) under a coined brand, for example \"Mullwise, the random thought organizer\", with the brand as the handle (/mull or /mullwise).\n\nMethod limits:\n- The automated batch screen, which used the gh CLI, was denied by the permission system, and one later detailed USPTO query was also denied.\n- GitHub evidence below comes from web search only, not the GitHub API. No per-name GitHub user or org handle check was done.\n- Where live-mark details beyond classes 9/42 are missing, they are marked unverified.\n\nThis is not legal clearance.",
+        "candidates": [
+          {
+            "name": "Random Thought Organizer",
+            "style": "descriptive",
+            "rationale": "Exactly describes the general product: catch random thoughts, organize them. Best used as the descriptor under a coined brand.",
+            "appStoreConflicts": "No app of this exact name. iOS, same category: 'Mindscope - Thought Organizer' and 'Idea Think: Thought Organizer' (Productivity). Google Play: 'Quick Notes: Thought Organizer' (SITARD TOV), 'Brain Dump - Organize Thoughts', 'ThoughtsLeft: Brain Dump'.",
+            "trademarkFindings": "USPTO tmsearch: 'random thoughts' has 4 filings, all dead: 85216046 (cl.16, cancelled), 75652782 (cl.41, cancelled), 87896438 (cl.3, abandoned), 85788036 (cl.16, abandoned). 'thought organizer' and randomthought* have 0 filings. No live mark in 9/42. The phrase is merely descriptive and would be weak or unregistrable as a mark.",
+            "domains": "randomthoughtorganizer.app is unregistered (RDAP 404). randomthoughtorganizer.com is unregistered (RDAP 404).",
+            "aiToolRegistryConflicts": "npm 'random-thought-organizer' is free (404). The MCP registry has no thought or notes 'organizer' server; 'organizer' matches only file, photo and Claude Code config organizers. A Notion template is named 'Brain Dump: A Thought Organizer'. The in-session Anthropic Directory plugin search found no match.",
+            "conflictSeverity": "low",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=random+thought+organizer&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=random%20thought%20organizer&c=apps&hl=en_US&gl=US",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch",
+              "https://pubapi.registry.google/rdap/domain/randomthoughtorganizer.app",
+              "https://rdap.verisign.com/com/v1/domain/randomthoughtorganizer.com",
+              "https://registry.npmjs.org/random-thought-organizer",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=organizer&limit=50",
+              "https://www.notion.com/templates/brain-dump-a-thought-organizer-for-the-distracted-mind"
+            ]
+          },
+          {
+            "name": "Stray Thoughts",
+            "style": "descriptive / evocative",
+            "rationale": "A warm, familiar phrase for exactly what gets captured. It pairs naturally with 'find where they belong'.",
+            "appStoreConflicts": "None of that name. The iOS US search returns Shower Thoughts, Bramble Notes and others. The Google Play US search returns no 'Stray Thoughts' app.",
+            "trademarkFindings": "USPTO: 'stray thoughts' and straythought* have 0 filings in any class.",
+            "domains": "straythoughts.app is unregistered (RDAP 404). straythoughts.com was registered 2014-08-19 (easyDNS, transfer and update locked, expires 2027-08-19).",
+            "aiToolRegistryConflicts": "npm 'stray-thoughts' is free. The MCP registry 'stray' search returns only substring noise (Connapse, Gonka). No GitHub repo surfaced in web search. The phrase is widely used as a blog, podcast and Substack title (straythoughts.substack.com, an Apple Podcasts show, straythoughts.blog), which makes it a weak mark with poor search ownership. 'Stray' is also a well-known video game.",
+            "conflictSeverity": "low",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=stray+thoughts&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=stray%20thoughts&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/straythoughts.app",
+              "https://rdap.verisign.com/com/v1/domain/straythoughts.com",
+              "https://registry.npmjs.org/stray-thoughts",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=stray&limit=30",
+              "https://straythoughts.substack.com/",
+              "https://podcasts.apple.com/us/podcast/stray-thoughts/id1611263163"
+            ]
+          },
+          {
+            "name": "Thought Threads",
+            "style": "descriptive metaphor (threads)",
+            "rationale": "Says both capture (thoughts) and connection (threads between them).",
+            "appStoreConflicts": "iOS: 'Threaded: Idea Threads', 'Idea Capture - ThreadPad' and 'DoThread - Mind journaling', all Productivity. Meta's Threads dominates results. Google Play: 'Thread: AI Journal & Memory' (nexgenstudio.dev). Product Hunt lists 'Thread: AI journal that connects your thoughts into something bigger', which is near-identical positioning.",
+            "trademarkFindings": "USPTO: 'thought threads' matches only T4T (Threads for Thought, LLC), serial 85257834, live, class 25 apparel. 'thought thread' has 0 filings. Nothing in 9/42.",
+            "domains": "thoughtthreads.app is unregistered (RDAP 404). thoughtthreads.com was registered 2015-11-09 (expires 2028).",
+            "aiToolRegistryConflicts": "npm 'thought-threads' is free. The MCP 'thread' namespace is crowded with memory and context tools: Threadminder ('Persistent context for Claude'), thread-keeper ('Multi-agent shared brain'), threadctx, basethread.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=thought+threads&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=thought%20threads&c=apps&hl=en_US&gl=US",
+              "https://www.producthunt.com/products/thread-ai-journal-memory",
+              "https://pubapi.registry.google/rdap/domain/thoughtthreads.app",
+              "https://rdap.verisign.com/com/v1/domain/thoughtthreads.com",
+              "https://registry.npmjs.org/thought-threads",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=thread&limit=50",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "See Also",
+            "style": "playful / descriptive (the classic index cross-reference)",
+            "rationale": "Names the AI cross-referencing feature with a librarian's wink.",
+            "appStoreConflicts": "iOS: 'See Also: Wikipedia Reader' (Reference). Google Play: no exact match; results are generic ('The See App', 'ALSO.'). The common phrase makes store search ownership near-impossible.",
+            "trademarkFindings": "USPTO: SEE ALSO, serial 99774640, live, class 25 clothing (Shaohua Lin). Nothing in 9/42.",
+            "domains": "seealso.app was registered 2026-07-20. seealso.com was registered 1997-03-13 (expires 2029).",
+            "aiToolRegistryConflicts": "npm 'seealso' is free. MCP registry: none.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=see+also&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=see%20also&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/seealso.app",
+              "https://rdap.verisign.com/com/v1/domain/seealso.com",
+              "https://registry.npmjs.org/seealso",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=seealso&limit=30",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Commonplace",
+            "style": "descriptive heritage (commonplace book = notes filed under subject headings)",
+            "rationale": "A commonplace book is historically exactly 'subject: detail' capture.",
+            "appStoreConflicts": "iOS: 'Commonplace: Save Quotes' (Productivity), 'Commonplace: Notebook', 'Quill - Commonplace Book', 'Commonplace: A Reading Tracker', 'Commonplace Quote'. Google Play: 'CommonPlace PMC' (Livly).",
+            "trademarkFindings": "USPTO: COMMONPLACE, serial 97510090, reg. 7149662, live, classes 41/42 (Olive Press Media). COMMONPLACE TECHNOLOGIES, serial 50004592, live, class 42 SaaS.",
+            "domains": "commonplace.app was registered 2018-05-08. commonplace.com was registered 1999-03-04.",
+            "aiToolRegistryConflicts": "npm 'commonplace' is taken (deprecated Firefox Marketplace components). GitHub has bramses/commonplace-bot, an LLM-augmented commonplace book. MCP registry: none.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=commonplace&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=commonplace&c=apps&hl=en_US&gl=US",
+              "https://apps.apple.com/us/app/commonplace-notebook/id6756133219",
+              "https://github.com/bramses/commonplace-bot",
+              "https://pubapi.registry.google/rdap/domain/commonplace.app",
+              "https://rdap.verisign.com/com/v1/domain/commonplace.com",
+              "https://registry.npmjs.org/commonplace",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Skein",
+            "style": "brandable single word (a length of loosely coiled yarn)",
+            "rationale": "Loose strands wound into order.",
+            "appStoreConflicts": "iOS: 'Skein Notes' (Productivity), a native Mac Markdown knowledge manager with wikilinks and a local graph (skeinnotes.app). Also 'Skein: Knitting Pattern Design' (Productivity). Google Play: at least 4 apps titled 'Skein'.",
+            "trademarkFindings": "USPTO: SKEIN, serial 99469384 (Skein Labs Inc.), live, classes 5/9/10/42, including downloadable mobile software. Full goods list not re-read.",
+            "domains": "skein.app was registered 2022-03-02. skein.com was registered 1998-06-22.",
+            "aiToolRegistryConflicts": "npm 'skein' is taken (hash library). MCP registry: none. 'Skein' is also a well-known hash function.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=skein&country=us&entity=software&limit=25",
+              "https://www.skeinnotes.app/",
+              "https://play.google.com/store/search?q=skein&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/skein.app",
+              "https://rdap.verisign.com/com/v1/domain/skein.com",
+              "https://registry.npmjs.org/skein",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Weft",
+            "style": "brandable single word (the crosswise threads in weaving)",
+            "rationale": "The threads that tie everything together.",
+            "appStoreConflicts": "iOS: 'Weft: Stay in Touch' (Productivity), a private personal notebook about people, which directly overlaps the 'person' subject kind. Also 'Weft: AI Scrumban Board', 'Weft: Planning App' and 'Weft: Personal CRM Journal'. Google Play: 'Weft: AI Scrumban Board' and 'Weft: Thread the Gaps'.",
+            "trademarkFindings": "USPTO: WEFT, serial 87523144, reg. 5446584, live, class 42 SaaS (Computational Textiles). WEFTWELL (50016059, class 42 AI SaaS, live). WEFT LEARNING (99671549, class 42 AI SaaS, live). WEFT & WHETSTONE (classes 35/41/42, live).",
+            "domains": "weft.app was registered 2026-07-27. weft.com was registered 1999-02-20.",
+            "aiToolRegistryConflicts": "npm 'weft' is taken (Google Fonts wrapper). MCP registry: 'Weftly' (ai.weftly/weftly). GitHub has amuwal/weft, the people-notebook app.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=weft&country=us&entity=software&limit=25",
+              "https://github.com/amuwal/weft",
+              "https://play.google.com/store/search?q=weft&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/weft.app",
+              "https://rdap.verisign.com/com/v1/domain/weft.com",
+              "https://registry.npmjs.org/weft",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=weft&limit=30",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Asterism",
+            "style": "brandable metaphor (a small pattern of stars within a constellation)",
+            "rationale": "Scattered points of light that AI joins into a recognizable shape.",
+            "appStoreConflicts": "iOS: 'Asterism: Life in Weeks' (Lifestyle), 'Asterism-wisdom of divination', 'Asterism: Daily Star Puzzle'. Google Play: 'Asterism Invoice' (Asterism, LLC).",
+            "trademarkFindings": "USPTO: ASTERISM, serial 99813422, live, class 16 (paintings). ASTERISM CO., class 42, abandoned. A class 16 ASTERISM magazine mark was cancelled. Nothing live in 9/42.",
+            "domains": "asterism.app was registered 2025-08-28. asterism.com was registered 1999-01-27.",
+            "aiToolRegistryConflicts": "GitHub wsjz/asterism is described as 'Turn scattered notes into publishable content' and works with Claude Code, so it overlaps in both function and AI namespace. npm 'asterism' is taken (dashboard). MCP registry: none.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=asterism&country=us&entity=software&limit=25",
+              "https://github.com/wsjz/asterism",
+              "https://play.google.com/store/search?q=asterism&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/asterism.app",
+              "https://rdap.verisign.com/com/v1/domain/asterism.com",
+              "https://registry.npmjs.org/asterism",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Threadle",
+            "style": "brandable / playful (to threadle = to thread a needle)",
+            "rationale": "Threading loose thoughts together; a friendly coined verb.",
+            "appStoreConflicts": "No exact app on iOS US or Google Play US; results are sewing apps and thread puzzles.",
+            "trademarkFindings": "USPTO: THREADLE, serial 98958530, reg. 8056343, live, class 21 housewares. Nothing in 9/42.",
+            "domains": "threadle.app was registered 2026-04-27. threadle.com was registered 2006-08-16.",
+            "aiToolRegistryConflicts": "This is a direct collision in the Claude tooling space. npm 'threadle' is 'Local-first node-graph patchbay for Claude Code, opencode, Cursor Agent...', last modified 2026-09-23. It lives at GitHub org threadle-sh/threadle. MCP registry: none.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://registry.npmjs.org/threadle",
+              "https://github.com/threadle-sh/threadle",
+              "https://itunes.apple.com/search?term=threadle&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=threadle&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/threadle.app",
+              "https://rdap.verisign.com/com/v1/domain/threadle.com",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Decant",
+            "style": "brandable single word (clarify by pouring off the clear part)",
+            "rationale": "A metaphor for AI clarification: sediment settles, and clear thought is poured off.",
+            "appStoreConflicts": "iOS: 'Audio Extractor - Decant' (Utilities), 'Decant: AI Sommelier', 'Decant - Wine Journal', 'Decant Index' (Finance). Google Play: 'Decant Index', 'Decant: Video Audio Extractor', 'Decant: Water Sort Puzzle'. None in notes or productivity.",
+            "trademarkFindings": "USPTO: 13 filings, none live in 9/42. Live marks: DECANT INDEX (99155093, classes 38/35), HOUSE OF DECANT (35), DECANTU (41), DECANT AN EXPERIENCE (41).",
+            "domains": "decant.app was registered 2021-02-19. decant.com was registered 2003-11-29.",
+            "aiToolRegistryConflicts": "npm 'decant' is free. The MCP registry has Decantr (io.github.decantr-ai/mcp-server, AI frontend governance), a near-name. Wine and perfume associations dominate the word.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=decant&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=decant&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/decant.app",
+              "https://rdap.verisign.com/com/v1/domain/decant.com",
+              "https://registry.npmjs.org/decant",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=decant&limit=30",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Scholia",
+            "style": "brandable (scholia = explanatory notes in the margins)",
+            "rationale": "Margin notes that explain and connect; a scholarly clarifying metaphor.",
+            "appStoreConflicts": "No iOS US app named Scholia; results are unrelated Bible apps. Google Play: no exact match (Schoology, Scholio).",
+            "trademarkFindings": "USPTO: SCHOLIA, serial 50100540 (Phrontis Holdings LLC), live, classes 9/41, covering downloadable electronic publications. DIGITAL SCHOLIA, class 9, abandoned.",
+            "domains": "scholia.app was registered 2022-08-13. scholia.com was registered 1999-09-30.",
+            "aiToolRegistryConflicts": "npm 'scholia' is taken (markdown preview CLI, modified 2026-07-28). Wikidata's well-known open-source 'Scholia' tool (GitHub WDscholia/scholia, scholia.toolforge.org) owns the developer search space. MCP registry: none.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=scholia&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=scholia&c=apps&hl=en_US&gl=US",
+              "https://registry.npmjs.org/scholia",
+              "https://github.com/WDscholia/scholia",
+              "https://scholia.toolforge.org/",
+              "https://pubapi.registry.google/rdap/domain/scholia.app",
+              "https://rdap.verisign.com/com/v1/domain/scholia.com",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Bowerbird",
+            "style": "brandable metaphor (a bird that collects scattered objects and arranges them into a display)",
+            "rationale": "Catches stray bits and arranges them into something meaningful. Covers both capture and organize.",
+            "appStoreConflicts": "iOS: 'Bowerbird AI Real Estate Agent' (Lifestyle), 'Bowerbird - Flashcards' (Education), 'BowerBird - TV & DVR'. None in notes. Google Play: no exact 'Bowerbird' app; results are 'Bower' recycling apps. The web also has BowerBird (bowerbird.io), an AI publicity app for architects.",
+            "trademarkFindings": "USPTO: BOWERBIRD, serial 75445627, reg. 2333742, class 9 database software, cancelled (dead). Live: BOWERBIRD PHOTOGRAPHY (98815320, class 41) and GREAT BOWERBIRDLING DESIGN (90227370, classes 40/42, metal design).",
+            "domains": "bowerbird.app was registered 2018-05-08. bowerbird.com was registered 1998-09-25.",
+            "aiToolRegistryConflicts": "npm 'bowerbird' is free. MCP registry: none. The in-session Anthropic Directory search found no match.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=bowerbird&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=bowerbird&c=apps&hl=en_US&gl=US",
+              "https://bowerbird.io/",
+              "https://pubapi.registry.google/rdap/domain/bowerbird.app",
+              "https://rdap.verisign.com/com/v1/domain/bowerbird.com",
+              "https://registry.npmjs.org/bowerbird",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=bowerbird&limit=30",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Red String",
+            "style": "playful metaphor (the detective evidence board where red string connects clues)",
+            "rationale": "An instantly legible image of AI connecting the dots.",
+            "appStoreConflicts": "iOS: 'Red String' (Lifestyle), 'Redstring: Ancient Mystery Map', 'Cold Case Tracer: Redstring', 'Cluero: Visual Clue Board'. Google Play: 'Red String of Fate', 'String Theory: Detective Board'. The web has RedString HQ ('Visual Boards for Ideas and Projects') and redstring.pics.",
+            "trademarkFindings": "USPTO: 18 filings for 'red string' and 2 for 'redstring', none live in 9/42. REDSTRING, serial 87422589, multi-class, abandoned.",
+            "domains": "redstring.app was registered 2025-03-01. redstring.com was registered 1999-05-28.",
+            "aiToolRegistryConflicts": "The MCP registry has 'Red String' (xyz.redstringapp/red-string, agency revenue research). npm 'redstring' is free.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=red+string&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=red%20string&c=apps&hl=en_US&gl=US",
+              "https://www.redstringhq.com/",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=redstring&limit=30",
+              "https://pubapi.registry.google/rdap/domain/redstring.app",
+              "https://rdap.verisign.com/com/v1/domain/redstring.com",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Knotebook",
+            "style": "playful (knot + notebook)",
+            "rationale": "A notebook where thoughts get tied together.",
+            "appStoreConflicts": "No exact app on iOS US or Google Play US; results are generic notebook and knot apps.",
+            "trademarkFindings": "USPTO: KNOTEBOOK, 'knote book' and 'knotes' all return 0 filings.",
+            "domains": "knotebook.app was registered 2018-05-17. knotebook.com was registered 2007-11-08.",
+            "aiToolRegistryConflicts": "GitHub has two note apps with this name. sw-willie-wu/knotebook is an AI notes app with wikilinks, backlinks and a bring-your-own Anthropic endpoint, released v0.2.0 on 2026-08-25. gitgory/knotebook is a graph note-taking app. npm 'knotebook' is free. The MCP 'knot' search shows no conflict.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://github.com/sw-willie-wu/knotebook",
+              "https://github.com/gitgory/knotebook",
+              "https://itunes.apple.com/search?term=knotebook&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=knotebook&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/knotebook.app",
+              "https://rdap.verisign.com/com/v1/domain/knotebook.com",
+              "https://registry.npmjs.org/knotebook",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Unmuddle",
+            "style": "playful verb",
+            "rationale": "Says the clarify job plainly: turn muddle into clarity.",
+            "appStoreConflicts": "No exact app on iOS US or Google Play US; the nearest results are 'Muddle - Daily Word Puzzle' and UnRiddle.",
+            "trademarkFindings": "USPTO: 'unmuddle' and 'un muddle' return 0 filings.",
+            "domains": "unmuddle.app was registered 2026-03-14 (GoDaddy, locked). unmuddle.com was registered 2011-05-19.",
+            "aiToolRegistryConflicts": "npm 'unmuddle' is free. MCP registry: none. Web: 'Unmuddle ADHD Mental Fitness Coaching' (unmuddle.me), which targets ADHD brains, a key audience for a thought organizer. Also 'Unmuddl', an AI conflict-resolution service, and 'Unmuddled', a Scottish app developer.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=unmuddle&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=unmuddle&c=apps&hl=en_US&gl=US",
+              "https://www.unmuddle.me/",
+              "https://www.unmuddl.com/",
+              "https://pubapi.registry.google/rdap/domain/unmuddle.app",
+              "https://rdap.verisign.com/com/v1/domain/unmuddle.com",
+              "https://registry.npmjs.org/unmuddle",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Thinkloom",
+            "style": "brandable compound (loom metaphor)",
+            "rationale": "Thoughts woven together on a loom.",
+            "appStoreConflicts": "No exact app on iOS US or Google Play US. The 'loom' space is noisy (Loom video, 'Loom - Your Daily Companion').",
+            "trademarkFindings": "USPTO: THINKLOOM has 0 filings. MINDLOOM has 3 filings, all abandoned, including 77089867 (classes 9/42, organization software).",
+            "domains": "thinkloom.app was registered 2026-09-05 (Porkbun). thinkloom.com was registered 2018-09-25.",
+            "aiToolRegistryConflicts": "GitHub jirayu3141/Thinkloom-b2b is an open-source LLM knowledge platform (RAG plus a self-maintaining wiki). Thinkloom Solutions is a social media agency. The MCP 'loom' namespace includes 'Loom' (KlossKarl), a local-first personal knowledge base. npm 'thinkloom' is free.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://github.com/jirayu3141/Thinkloom-b2b",
+              "https://thinkloomsolutions.com/",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=loom&limit=50",
+              "https://itunes.apple.com/search?term=thinkloom&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=thinkloom&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/thinkloom.app",
+              "https://rdap.verisign.com/com/v1/domain/thinkloom.com",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Orbweaver",
+            "style": "brandable metaphor (the spider that spins a web between points)",
+            "rationale": "Spins connections between scattered points.",
+            "appStoreConflicts": "No app on iOS US; results are unrelated browsers. Google Play: no exact match; the nearest is 'Silkweaver: Spider Web Hunt'.",
+            "trademarkFindings": "USPTO: ORB-WEAVER, serial 87814066, reg. 6263597, live, class 9 software (US Department of the Navy). ORBWEAVER filings in 9/42 by BAE Systems, Three Sixty Corp. and Minnesota Wire were all abandoned.",
+            "domains": "orbweaver.app was registered 2021-04-20 (locked). orbweaver.com was registered 1996-01-22.",
+            "aiToolRegistryConflicts": "npm 'orbweaver' is taken (web crawler, 2022). MCP registry: none. The spider connotation may put some users off.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=orbweaver&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=orbweaver&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/orbweaver.app",
+              "https://rdap.verisign.com/com/v1/domain/orbweaver.com",
+              "https://registry.npmjs.org/orbweaver",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Flotsam",
+            "style": "playful single word (drifting odds and ends)",
+            "rationale": "Stray thoughts drifting in, caught and sorted.",
+            "appStoreConflicts": "iOS US: 0 results. Google Play: 'Flotsam: AI Listing Generator' (Midknight Ltd.), an AI tool outside notes.",
+            "trademarkFindings": "USPTO: 1 filing, not live in 9/42. Details are unverified because a follow-up query was denied.",
+            "domains": "flotsam.app was registered 2025-11-25. flotsam.com was registered 1998-10-27.",
+            "aiToolRegistryConflicts": "npm 'flotsam' is taken (BaseWeb UI utilities). MCP registry: none. The word implies junk, which undersells the thoughts.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=flotsam&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=flotsam&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/flotsam.app",
+              "https://rdap.verisign.com/com/v1/domain/flotsam.com",
+              "https://registry.npmjs.org/flotsam",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Strandline",
+            "style": "brandable metaphor (the tide line where stray things wash up and gather)",
+            "rationale": "Where drifting thoughts collect in one line, plus 'strands' of connection.",
+            "appStoreConflicts": "iOS: 'Strandline' (Weather). Google Play: no exact match; results are Strands word games and Strand fitness.",
+            "trademarkFindings": "USPTO: STRANDLINE WEALTH (99212281, class 36) abandoned. No other filings.",
+            "domains": "strandline.app was registered 2026-05-18. strandline.com was registered 2004-02-20.",
+            "aiToolRegistryConflicts": "npm 'strandline' is free. MCP 'strand' search: none. GitHub adamgoode01-source/strandline is a PT app. NYT's 'Strands' game dominates the root word.",
+            "conflictSeverity": "medium",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=strandline&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=strandline&c=apps&hl=en_US&gl=US",
+              "https://github.com/adamgoode01-source/strandline",
+              "https://pubapi.registry.google/rdap/domain/strandline.app",
+              "https://rdap.verisign.com/com/v1/domain/strandline.com",
+              "https://registry.npmjs.org/strandline",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Mullwise",
+            "style": "brandable coined compound (mull + wise)",
+            "rationale": "'Mull' is what you do with a stray thought; '-wise' is the clarity the AI adds. It extends the earlier low-conflict 'Mulled' idea into an ownable word, and gives a natural handle: /mull.",
+            "appStoreConflicts": "None. The iOS US search for 'mullwise' returns one unrelated travel app. Google Play US shows 'No results for mullwise'. Adjacent only: Google Play has 'MULL - Save & Resurface' (mariosu, com.mario.recall), a save-and-resurface app that shares the 'Mull' root. Mullvad VPN also starts with 'Mull'.",
+            "trademarkFindings": "USPTO: 'mullwise' and 'mull wise' return 0 filings. MULLED has 12 filings, none live in 9/42 (food and drink). Standalone 'MULL' marks were not checked (unverified).",
+            "domains": "mullwise.app is unregistered (RDAP 404). mullwise.com is unregistered (RDAP 404).",
+            "aiToolRegistryConflicts": "npm 'mullwise' is free. npm 'mull' is taken by an empty 0.0.1 placeholder from 2017. The MCP registry 'mull' search returns only substring noise (Wasilah, Scherlok). No GitHub or web results. The in-session Anthropic Directory search found no match.",
+            "conflictSeverity": "low",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=mullwise&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=mullwise&c=apps&hl=en_US&gl=US",
+              "https://play.google.com/store/search?q=mulled&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/mullwise.app",
+              "https://rdap.verisign.com/com/v1/domain/mullwise.com",
+              "https://registry.npmjs.org/mullwise",
+              "https://registry.npmjs.org/mull",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=mull&limit=30",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Brainlint",
+            "style": "playful coined compound (brain + lint)",
+            "rationale": "Stray fluff picked off your mind, and a wink to developers: lint tidies things up. It fits a Claude-plugin-first launch.",
+            "appStoreConflicts": "None. iOS US returns only brain-training apps. Google Play US returns only 'Brilliant' apps. No Brainlint app on either store.",
+            "trademarkFindings": "USPTO: 'brainlint' and 'brain lint' return 0 filings.",
+            "domains": "brainlint.app is unregistered (RDAP 404). brainlint.com was registered 2007-03-31 (GoDaddy).",
+            "aiToolRegistryConflicts": "npm 'brainlint' and 'brain-lint' are both free. MCP registry: none. Web: Brain Lint Productions, a Canadian theatre and voice-over company (brainlint.ca), and a personal blog. 'Lint' could be misread as a code linter, or as worthless fluff.",
+            "conflictSeverity": "low",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=brainlint&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=brainlint&c=apps&hl=en_US&gl=US",
+              "https://pubapi.registry.google/rdap/domain/brainlint.app",
+              "https://rdap.verisign.com/com/v1/domain/brainlint.com",
+              "https://registry.npmjs.org/brainlint",
+              "https://registry.npmjs.org/brain-lint",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=brainlint&limit=30",
+              "https://www.facebook.com/brainlint/",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Marginalia",
+            "style": "brandable (notes in the margins)",
+            "rationale": "Margin notes as the home for stray thoughts and cross-references.",
+            "appStoreConflicts": "iOS: 'Marginalia: Book Quotes' (Productivity), '朱批 Marginalia' (Productivity), 'Marginalia E-Book Reader' and others. Google Play: 'Marginalia' (Developer Services) and 'The Marginalia: Reading Log'.",
+            "trademarkFindings": "USPTO: 3 filings, none live in 9/42. MARGINALIA, serial 86044961, class 41, cancelled. The other two are outside 9/42/35/16/41; details unverified.",
+            "domains": "marginalia.app was registered 2026-08-07. marginalia.com was registered 2000-09-27.",
+            "aiToolRegistryConflicts": "The MCP registry has 'Marginalia' (io.github.pipeworx-io/marginalia). The well-known Marginalia Search engine has a Wikipedia article. npm 'marginalia' is taken.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://itunes.apple.com/search?term=marginalia&country=us&entity=software&limit=25",
+              "https://play.google.com/store/search?q=marginalia&c=apps&hl=en_US&gl=US",
+              "https://registry.modelcontextprotocol.io/v0/servers?search=marginalia&limit=30",
+              "https://en.wikipedia.org/wiki/Marginalia_(search_engine)",
+              "https://pubapi.registry.google/rdap/domain/marginalia.app",
+              "https://rdap.verisign.com/com/v1/domain/marginalia.com",
+              "https://registry.npmjs.org/marginalia",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          },
+          {
+            "name": "Dotwise",
+            "style": "brandable compound (connect the dots, wisely)",
+            "rationale": "AI that connects the dots between thoughts.",
+            "appStoreConflicts": "iOS: no exact match; results are connect-the-dots games. Google Play: 'Dotwise' (Brijay Lakhani), a dot puzzle game.",
+            "trademarkFindings": "USPTO: DOTWISE, serial 98199752, reg. 7506437, live, class 9 (Shenzhen Kamra Technology, cameras and electronics).",
+            "domains": "dotwise.app was registered 2025-07-18 and is in use as 'Dotwise - A Personal Knowledge System for the Real World'. dotwise.com was registered 2004-01-22.",
+            "aiToolRegistryConflicts": "npm 'dotwise' is free. MCP registry: none. The dotwise.app personal-knowledge product (with an AI agent) is a direct functional conflict.",
+            "conflictSeverity": "high",
+            "evidenceUrls": [
+              "https://dotwise.app/",
+              "https://play.google.com/store/apps/details?id=com.echochain",
+              "https://itunes.apple.com/search?term=dotwise&country=us&entity=software&limit=25",
+              "https://pubapi.registry.google/rdap/domain/dotwise.app",
+              "https://rdap.verisign.com/com/v1/domain/dotwise.com",
+              "https://registry.npmjs.org/dotwise",
+              "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+            ]
+          }
+        ],
+        "shortlist": [
+          {
+            "name": "Mullwise",
+            "why": "It is the cleanest name found in every channel checked. There is no app on either US store (Play says 'No results'), zero USPTO filings, and npm and the MCP registry are clear. Both mullwise.app and mullwise.com were unregistered on 2026-09-25. It evokes mulling stray thoughts ('mull') and AI clarity ('-wise'), covers every subject kind (topic, person, talk, decision, project), and gives a short natural handle, /mull. It extends the earlier 'Mulled' pick, whose .app was taken, into a coined, ownable word.",
+            "risks": "- **Shared root:** 'Mull' is shared with a small Google Play app, 'MULL - Save & Resurface' (mariosu), which does adjacent save-and-resurface. Mullvad VPN also starts with 'Mull', and the discontinued Mull browser used the word.\n- **npm:** 'mull' is taken by an empty 2017 placeholder, so the package would be named 'mullwise'.\n- **Unchecked marks:** standalone 'MULL' USPTO marks in 9/42 were not checked.\n- **Discoverability:** the name does not say 'notes', so it needs the descriptor line.\n- **Suffix:** '-wise' is a common software suffix (Splitwise, Typewise), which weakens distinctiveness a little.\n- **Domains:** register them yourself; nothing was purchased.",
+            "tagline": "Mullwise: your random thought organizer. Drop a thought; it connects the dots."
+          },
+          {
+            "name": "Stray Thoughts",
+            "why": "The most immediately understood name for the general product. It is warm, human and accurate. USPTO has zero filings, no app uses the name on either US store, straythoughts.app is unregistered, and npm 'stray-thoughts' is free. It reads well in a Claude skill trigger ('save this stray thought').",
+            "risks": "- **Weak mark:** it is a common phrase already used by blogs, a podcast and a Substack, so it would be hard to own in search or enforce.\n- **Domain:** straythoughts.com is held and locked (registered 2014).\n- **Other uses:** 'Stray' is a popular video game.\n- **Undersells the AI:** it does not signal the connecting and clarifying.",
+            "tagline": "Every stray thought, caught, connected, and clarified."
+          },
+          {
+            "name": "Brainlint",
+            "why": "Distinctive and playful, with zero USPTO filings and no app on either store. brainlint.app is unregistered, npm 'brainlint' is free, and there are no MCP collisions. The 'lint' joke ('tidies up your thinking') lands with the developer audience that meets a Claude plugin first.",
+            "risks": "- **Domain:** brainlint.com is held (registered 2007).\n- **Name holder:** a small Canadian theatre company uses 'Brain Lint Productions'.\n- **Tone:** 'lint' can read as worthless fluff, or be mistaken for a code linter, and is less inviting for non-technical users later.",
+            "tagline": "Pick the fluff out of your head. Keep the good stuff, connected."
+          },
+          {
+            "name": "Bowerbird",
+            "why": "The best metaphor on the list. The bowerbird collects scattered objects and arranges them into a meaningful display, which covers capture plus AI organizing in one image. The only software mark (class 9 database software) is cancelled, npm is free, the MCP registry is clear, and no note-taking app uses the name.",
+            "risks": "- **Domains:** bowerbird.app (2018) and bowerbird.com (1998) are both taken, so you would need a variant such as getbowerbird.app (not checked).\n- **Existing apps:** iOS apps use the name (AI Real Estate Agent, Flashcards) and bowerbird.io is an AI publicity app for architects.\n- **Live marks:** BOWERBIRD PHOTOGRAPHY (cl.41) and GREAT BOWERBIRDLING DESIGN (cl.40/42).\n- **Length:** three syllables, and a less obvious handle (/bower).",
+            "tagline": "Collects your stray thoughts. Arranges them into something clear."
+          },
+          {
+            "name": "Random Thought Organizer (as descriptor)",
+            "why": "It now describes the product exactly and carries the least legal risk. There is no live mark for the phrase in any class, randomthoughtorganizer.app and .com are both unregistered, and npm is free. It is the right words for App Store subtitles, plugin descriptions and SEO, and it preserves the RTO codename's meaning.",
+            "risks": "- **Unprotectable:** it is merely descriptive, so others can't be stopped from using it.\n- **Crowded:** 'Thought Organizer' apps already exist (Mindscope, Idea Think, Quick Notes).\n- **Hides the AI:** it doesn't show the connect and clarify value.\n- **Unwieldy:** too long for a handle, and RTO is unusable publicly. Use it only as the descriptor under a brand.",
+            "tagline": "Capture any thought. AI connects, clarifies, and briefs you."
+          }
+        ],
+        "recommendation": "Recommendation: public brand **Mullwise**, with the descriptor \"random thought organizer\", for example \"Mullwise: your random thought organizer\". Use /mull (or /mullwise) as the Claude skill handle, 'mullwise' as the plugin, npm and MCP server name, and keep RTO as the internal codename only.\n\n**Why Mullwise:** it was the only brandable candidate clean on every surface checked.\n- No app of that name on the US App Store (iTunes Search API) or US Google Play ('No results for mullwise').\n- Zero USPTO filings for MULLWISE or MULL WISE. MULLED marks are food and drink only.\n- Both mullwise.app and mullwise.com were unregistered on 2026-09-25 (RDAP 404).\n- npm 'mullwise' is free, and there are no MCP registry or Anthropic Directory hits.\nIt also carries the owner's earlier 'Mulled' instinct into a coined, ownable word that fits every subject kind, not just conversation prep.\n\n**Runners-up:**\n- **Stray Thoughts:** the most self-explanatory. Weak as a mark because the phrase is common; .app free, .com taken.\n- **Brainlint:** playful and developer-friendly. .app free, .com taken.\n- **Bowerbird:** the best metaphor, but both domains are taken and it has medium store noise.\n\n**Avoid (high conflict):**\n- **Threadle:** npm and GitHub Claude Code tool, updated 2026-09-23.\n- **Asterism:** GitHub Claude Code tool for 'scattered notes'.\n- **Skein:** 'Skein Notes' Mac PKM app plus a live class 9/42 SKEIN mark.\n- **Weft:** 'Weft: Stay in Touch' people-notebook app plus live class 42 WEFT marks.\n- **Dotwise:** dotwise.app personal knowledge system plus a live class 9 mark.\n- **Knotebook:** two GitHub note apps, one AI-based.\n- **Thinkloom:** a GitHub LLM knowledge platform.\n- **Red String, Marginalia, Commonplace:** each has several apps or tools of the same name.\n\n**Medium conflict:** Thought Threads, See Also, Decant, Scholia, Unmuddle, Orbweaver, Flotsam, Strandline.\n\n**Next steps before any public listing:**\n1. Register mullwise.app and mullwise.com yourself. Nothing was purchased.\n2. Run a full USPTO search, including standalone MULL marks in classes 9, 42 and 35, and phonetic variants (Mulwise, Mullwize). Add EUIPO, UKIPO and WIPO.\n3. Check GitHub user and org availability for 'mullwise' and the community Claude plugin marketplaces by hand.\n4. If the product will be sold, consider a low-cost attorney knockout search.\n\n**Method limits, stated honestly:**\n- Stores were checked through the iTunes Search API (US) and Google Play search with the US storefront parameters.\n- Domains were checked through the Google Registry and Verisign RDAP. USPTO was checked through the tmsearch backend, on wordmarks only.\n- The automated batch screen, which used the user's authenticated gh CLI, was denied by the permission system. A later detailed USPTO query was also denied. So GitHub evidence comes from web search only (no API or handle checks), and some live-mark details for Flotsam, Marginalia, Red String and Skein are unverified. The user can allow those if a fuller re-run is wanted.\n- The Claude plugin check covered the in-session Anthropic Directory search only. Community directories (claudemarketplaces.com, claude-plugins.dev) could not be queried by name.\n\n**This is not legal trademark clearance.**"
+      },
+      "verification": {
+        "checkedClaims": [
+          {
+            "claim": "mullwise.app is unregistered (RDAP 404).",
+            "verdict": "confirmed",
+            "correction": "Re-checked on 2026-09-25 and it still returns 404. mullwise.ai and mullwise.io also return 404 through rdap.org.",
+            "sourceUrl": "https://pubapi.registry.google/rdap/domain/mullwise.app"
+          },
+          {
+            "claim": "mullwise.com is unregistered (RDAP 404).",
+            "verdict": "confirmed",
+            "correction": "Still 404 on 2026-09-25. getmullwise.com and trymullwise.com are also 404.",
+            "sourceUrl": "https://rdap.verisign.com/com/v1/domain/mullwise.com"
+          },
+          {
+            "claim": "USPTO: 'mullwise' and 'mull wise' have 0 filings.",
+            "verdict": "confirmed",
+            "correction": "A wordmark phrase query returns 0. The phonetic variants MULWISE and MULLWIZE and the prefix 'mullwis*' also return 0.",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "Standalone 'MULL' marks in classes 9/42 were not checked (a gap flagged as unverified).",
+            "verdict": "confirmed",
+            "correction": "Now checked, and nothing blocks Mullwise. The phrase 'mull' returns 21 filings. Live ones are MULL 88683945 (cl.12 trailer hitch covers), MULL 99487020 (cl.25 clothing), MULL GRAHAM 50009689 (cl.9 music recordings only), DUART MULL (cl.35/36) and MULL IT OVER (cl.6). A prefix query for 'mull*' finds no live mark covering software or SaaS for notes or organization. The nearest is MULLET 50012651 (cl.36/42 financial SaaS).",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "No app named Mullwise exists on the US App Store or US Google Play ('No results for mullwise').",
+            "verdict": "confirmed",
+            "correction": "The iTunes API returns 1 result, the unrelated 'The Serry'. Google Play shows 'No results for mullwise'.",
+            "sourceUrl": "https://play.google.com/store/search?q=mullwise&c=apps&hl=en_US&gl=US"
+          },
+          {
+            "claim": "The Google Play app 'MULL - Save & Resurface' (com.mario.recall) is only an adjacent save-and-resurface app sharing the root.",
+            "verdict": "confirmed",
+            "correction": "It exists, but the overlap is understated. Its listing says it 'runs entirely on your device and needs no account'. It offers notes, collections and favourites for free, sells a paid 'MULL Sync' subscription, and appears as 'Mull' in the share sheet. That is the same privacy-first, on-device, capture-and-resurface positioning as RTO, and it directly collides with the proposed /mull handle.",
+            "sourceUrl": "https://play.google.com/store/apps/details?id=com.mario.recall&hl=en_US&gl=US"
+          },
+          {
+            "claim": "npm 'mullwise' is free; npm 'mull' is an empty 0.0.1 placeholder from 2017.",
+            "verdict": "confirmed",
+            "correction": "mullwise returns 404. mull is at version 0.0.1, created 2017-08-14, with an empty description.",
+            "sourceUrl": "https://registry.npmjs.org/mull"
+          },
+          {
+            "claim": "The MCP registry 'mull' search returns only substring noise (Wasilah, Scherlok), and there is no thought or notes 'organizer' server.",
+            "verdict": "confirmed",
+            "correction": "'mull' returns only wasilah-mcp and scherlok, and 'mullwise' returns nothing. 'organizer' returns file, photo, PopUp-events and claude-code-organizer servers only.",
+            "sourceUrl": "https://registry.modelcontextprotocol.io/v0/servers?search=mull&limit=30"
+          },
+          {
+            "claim": "The Mull browser (which used the word) is discontinued.",
+            "verdict": "confirmed",
+            "correction": "AlternativeTo says DivestOS and its apps, including the Gecko-based Mull browser, will receive no further updates.",
+            "sourceUrl": "https://alternativeto.net/software/mull/about/"
+          },
+          {
+            "claim": "USPTO 'random thoughts' has 4 filings, all dead: 85216046 (cl.16), 75652782 (cl.41), 87896438 (cl.3), 85788036 (cl.16).",
+            "verdict": "refuted",
+            "correction": "Only 3 filings are exactly RANDOM THOUGHTS: 87896438 (cl.3, abandoned), 75652782 (cl.41, cancelled) and 85216046 (cl.16, cancelled). Serial 85788036 is actually 'RANDIM THOUGHTS AND EXPRESSIONS' (cl.16 greeting cards, abandoned). The conclusion that no live mark exists still holds.",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "USPTO 'thought organizer' and randomthought* return 0 filings.",
+            "verdict": "confirmed",
+            "correction": "Both the phrase and the prefix return 0. 'straythought*' also returns 0.",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "randomthoughtorganizer.app and randomthoughtorganizer.com are both unregistered.",
+            "verdict": "confirmed",
+            "correction": "Both return RDAP 404 on 2026-09-25.",
+            "sourceUrl": "https://rdap.verisign.com/com/v1/domain/randomthoughtorganizer.com"
+          },
+          {
+            "claim": "iOS apps 'Mindscope - Thought Organizer' and 'Idea Think: Thought Organizer' exist, and a Notion template 'Brain Dump: A Thought Organizer' exists.",
+            "verdict": "confirmed",
+            "correction": "Both apps appear in the iTunes search, and the Notion template page returns 200 ('Thought Organizer Template'). The same search also shows a 'Random Thoughts Journal' iOS app, which the research did not mention.",
+            "sourceUrl": "https://itunes.apple.com/search?term=random+thought+organizer&country=us&entity=software&limit=25"
+          },
+          {
+            "claim": "Stray Thoughts: 0 USPTO filings, straythoughts.app unregistered, straythoughts.com registered 2014-08-19 (expires 2027-08-19), npm 'stray-thoughts' free.",
+            "verdict": "confirmed",
+            "correction": "All confirmed. Two gaps the research did not mention: the GitHub user 'straythoughts' is taken, and GitHub repos use the phrase for second-brain tools (for example 'Sort Every Stray thoughts', and ryokan, 'where your stray thoughts stay').",
+            "sourceUrl": "https://rdap.verisign.com/com/v1/domain/straythoughts.com"
+          },
+          {
+            "claim": "Brainlint: 0 USPTO filings, no store apps, brainlint.app unregistered, brainlint.com registered 2007 (GoDaddy), npm brainlint and brain-lint free.",
+            "verdict": "confirmed",
+            "correction": "brainlint.com was registered 2007-03-31 and expires 2027-03-31. The GitHub user 'brainlint' is also free (404), and a GitHub repo search returns 0.",
+            "sourceUrl": "https://rdap.verisign.com/com/v1/domain/brainlint.com"
+          },
+          {
+            "claim": "Bowerbird: the only software mark (BOWERBIRD 75445627, cl.9 database software) is cancelled; the live marks are only BOWERBIRD PHOTOGRAPHY and GREAT BOWERBIRDLING DESIGN; bowerbird.app was registered 2018-05-08.",
+            "verdict": "refuted",
+            "correction": "The cl.9 cancellation and the .app date (2018-05-08, GoDaddy) are correct. However, the research missed 5 live standalone BOWERBIRD marks: 86945340 and 87949068 (cl.30/43 coffee, SRG IP Holdings), 88753850 (cl.18 bags), 87815649 (cl.27 bath mats) and 90690563 (cl.20 furniture). None is in 9/42, but they weaken the name's distinctiveness.",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "npm 'threadle' is a 'Local-first node-graph patchbay for Claude Code...', last modified 2026-09-23, at GitHub threadle-sh/threadle.",
+            "verdict": "confirmed",
+            "correction": "The npm entry was modified 2026-09-23T21:23Z, and the GitHub repo was pushed 2026-09-24.",
+            "sourceUrl": "https://registry.npmjs.org/threadle"
+          },
+          {
+            "claim": "dotwise.app is 'A Personal Knowledge System for the Real World' with an AI agent, a direct functional conflict.",
+            "verdict": "refuted",
+            "correction": "The tagline is right, but the product is AI-curated, bite-sized learning courses (personal finance, insurance and similar), not a personal notes or thought organizer, so the functional overlap is overstated. The name conflict still stands: a live DOTWISE cl.9 mark 98199752 (cameras and electronics) and dotwise.app registered 2025-07-18.",
+            "sourceUrl": "https://dotwise.app/"
+          },
+          {
+            "claim": "Skein: 'Skein Notes' is a native Mac Markdown PKM app with wikilinks and a local graph, and SKEIN 99469384 (Skein Labs) is live in classes 5/9/10/42.",
+            "verdict": "confirmed",
+            "correction": "Both confirmed. Skein Labs' class 9 goods are a health-tracking app. Skein Notes is free, works offline and has no AI.",
+            "sourceUrl": "https://www.skeinnotes.app/"
+          },
+          {
+            "claim": "GitHub wsjz/asterism is described as 'Turn scattered notes into publishable content' and works with Claude Code.",
+            "verdict": "confirmed",
+            "correction": "The actual description reads 'Turn scattered notes into published pieces.' It can be installed as a Claude Code skill.",
+            "sourceUrl": "https://github.com/wsjz/asterism"
+          },
+          {
+            "claim": "GitHub jirayu3141/Thinkloom-b2b is an open-source LLM knowledge platform.",
+            "verdict": "refuted",
+            "correction": "This repo returns 404 on both the GitHub API and the web, so the cited evidence cannot be verified. Other Thinkloom repos do exist, for example Labyricorn/thinkloom-openai-hackathon ('a native, local-first writing studio'), so a high conflict rating is still plausible on other grounds.",
+            "sourceUrl": "https://github.com/jirayu3141/Thinkloom-b2b"
+          },
+          {
+            "claim": "sw-willie-wu/knotebook is an AI notes app with wikilinks and bring-your-own Anthropic endpoint, released v0.2.0 on 2026-08-25.",
+            "verdict": "confirmed",
+            "correction": "The repo is active but the details are stale. The latest release is v0.4.1 (2026-09-16), and the description is 'self-hostable Notion/HackMD-style collaborative notes with real-time CRDT editing and bring-your-own-endpoint AI'. The wikilinks claim is unverified.",
+            "sourceUrl": "https://github.com/sw-willie-wu/knotebook"
+          },
+          {
+            "claim": "The MULLED marks are food and drink only (12 filings, none live in 9/42).",
+            "verdict": "refuted",
+            "correction": "The phrase query returns 11 filings, not 12. They include cl.3 (live MULLED CIDER 87022271, perfume oils), cl.4 candles and cl.5 air-freshener refills, so they are not only food and drink. None is in 9/42, so the conclusion is unaffected.",
+            "sourceUrl": "https://tmsearch.uspto.gov/prod-stage-v1-0-0/tmsearch"
+          },
+          {
+            "claim": "The GitHub user or org handle for 'mullwise' was not checked.",
+            "verdict": "confirmed",
+            "correction": "Now checked: api.github.com/users/mullwise returns 404, so the handle is available as a user or org. A GitHub repo search for 'mullwise' returns 0. A search for 'mull claude' finds no Claude skill or plugin named mull.",
+            "sourceUrl": "https://api.github.com/users/mullwise"
+          },
+          {
+            "claim": "Weft: 'Weft: Stay in Touch' is a private people-notebook app on iOS, and WEFT 87523144 is live in class 42 SaaS.",
+            "verdict": "confirmed",
+            "correction": "Both confirmed. The WEFT mark covers fabric-design SaaS (Computational Textiles). The amuwal/weft app stores data on the device by default and states that it is not an AI app.",
+            "sourceUrl": "https://github.com/amuwal/weft"
+          }
+        ],
+        "omissions": [
+          "The Google Play app 'MULL - Save & Resurface' overlaps more than the research says. It is privacy-first, on-device and needs no account; it has notes and collections and a paid sync plan; and it shows as 'Mull' in the Android share sheet. That weakens '/mull' as the handle and raises confusion risk if Mullwise later ships on Android. Consider '/mullwise' as the primary handle.",
+          "The short 'mull' domains are gone. mull.app was registered 2024-07-24 and shows no live site; mull.ai is listed for sale on Spaceship. Only the 'mullwise' variants (.app, .com, .ai, .io) are free.",
+          "A near-identical competitor was missed: Einfall (Product Hunt, 2026, solo developer, built with Claude Code). It captures 'fugitive thoughts' and routes them to Reminders, Calendar and Obsidian, and to AI agents through a local MCP server. It has no accounts or servers; capture is free and routing costs a one-time $29.99. It matches RTO's privacy-first, local-MCP delivery. Source: https://www.producthunt.com/products/einfall-a-place-for-fugitive-thoughts",
+          "Bowerbird has 5 live standalone BOWERBIRD marks the research left out (coffee cl.30/43, bags cl.18, bath mats cl.27, furniture cl.20). None is in software classes.",
+          "A 'Random Thoughts Journal' iOS app appears in the 'random thought organizer' App Store search. It is a closer match to the descriptor phrase than the apps listed.",
+          "For Stray Thoughts: the GitHub user 'straythoughts' is taken, and GitHub repos use 'stray thoughts' as a tagline for second-brain tools. This further weakens search ownership.",
+          "Non-US trademark registers (EUIPO, UKIPO, WIPO Global Brand Database) and a USPTO design or pseudo-mark search are still not done for Mullwise. Treat international clearance as unverified.",
+          "A few details were corrected rather than overturned: RANDOM THOUGHTS has 3 filings, not 4 (one is a 'RANDIM' typo mark). The Thinkloom GitHub evidence link is dead. Dotwise is an AI learning-course product, not a notes tool."
+        ],
+        "summary": "I re-checked 25 of the most decision-relevant claims using RDAP, the npm registry, the MCP registry, the iTunes Search API, Google Play pages, the GitHub API, web search and the USPTO tmsearch backend (phrase and prefix queries on wordmarks).\n\n**Mullwise holds up.** mullwise.app and mullwise.com are still unregistered. USPTO has 0 filings for MULLWISE, MULLWIZE, MULWISE or the prefix mullwis*. Neither US app store has an app of that name. npm and the MCP registry are clear. The GitHub handle 'mullwise' is free.\n\n**The standalone MULL mark gap is now closed.** No live MULL-formative mark covers software or SaaS. The live marks are cl.12 trailer hitch covers, cl.25 clothing, and cl.9 music recordings (MULL GRAHAM).\n\n**The main new risk is the Google Play app 'MULL - Save & Resurface'.** It is an on-device, no-account, privacy-first app for saving, notes and resurfacing, with a paid sync plan, and it appears as 'Mull' in the share sheet. That positioning is closer to RTO's than 'adjacent', so it argues for /mullwise over /mull as the handle. Also, mull.app is registered and mull.ai is for sale.\n\n**The runner-ups check out.** Stray Thoughts, Brainlint and the Random Thought Organizer descriptor all match on USPTO, domains and npm.\n\n**Corrections:**\n- **RANDOM THOUGHTS:** 3 exact filings, not 4. Serial 85788036 is 'RANDIM THOUGHTS AND EXPRESSIONS'.\n- **Bowerbird:** the research omitted 5 live standalone BOWERBIRD marks, none in software classes.\n- **Dotwise:** dotwise.app is an AI learning-course product, not a personal notes organizer, so 'direct functional conflict' is overstated. The live cl.9 mark still stands.\n- **Thinkloom:** the cited GitHub repo is 404. Other Thinkloom repos exist.\n- **MULLED:** marks are not food and drink only; they include cosmetics, candles and air fresheners. None is in 9/42.\n- **Knotebook:** the release details are outdated; the repo is now at v0.4.1.\n\n**Confirmed high-conflict avoids:** Threadle (npm/GitHub Claude Code tool updated 2026-09-23), Asterism, Skein and Weft.\n\n**Missed competitor:** Einfall, a 2026 privacy-first thought-capture app that routes thoughts to AI agents through a local MCP server.\n\n**Still unverified:** non-US trademark clearance for Mullwise.\n\nThis is not legal clearance."
+      }
+    },
+    {
+      "key": "competitors",
+      "research": {
+        "products": [
+          {
+            "name": "obsidian-second-brain (Claude Code skill)",
+            "url": "https://github.com/eugeniughelbur/obsidian-second-brain",
+            "category": "Claude-native skill: persistent memory in an Obsidian vault",
+            "captureModel": "Slash commands: /obsidian-capture (zero-friction idea capture), /obsidian-save (pulls decisions, tasks, people, ideas out of a conversation), /obsidian-ingest (URLs, PDFs, audio), plus a Telegram bot inbox handled by /obsidian-catchup",
+            "autoLinking": "Automatic. It spreads captures across entity pages, task boards and daily notes, and mandatory [[wikilinks]] are part of its 'AI-first vault' rules. A nightly agent resolves contradictions and fixes orphans",
+            "autoTitlingOrSubjectSuggestions": "/obsidian-health finds near-duplicate notes and /obsidian-merge consolidates them. Merges are dry-run by default and retired notes become redirects, not deletions. Typed notes: /obsidian-person, /obsidian-decide (--formal writes a full ADR), /obsidian-project",
+            "recallViews": "Scheduled agents: morning at 8 AM (daily note plus overdue tasks), nightly (synthesis), weekly (Friday review) and health (Sunday audit). /obsidian-projects shows live project status. Hybrid semantic search",
+            "privacyModel": "Local plain Markdown in the user's vault. The background agent may read, write and edit but never delete or merge, and only runs after an explicit hook opt-in. No encryption at rest mentioned",
+            "pricing": "Free, MIT license, about 4.6k GitHub stars. v0.15 released September 2026",
+            "platforms": "Claude Code plus six other CLI agents, with Obsidian (Windows support added in v0.15)",
+            "overlap": "high",
+            "gapRTOFills": "This is the closest functional analog: people, decisions, projects, digests and merge hygiene. But it has 45 commands, needs Obsidian and a CLI agent, stores unencrypted files and has no phone path. RTO can offer one capture grammar ('subject: detail'), an encrypted store, one approval inbox for every AI change, and talk-prep recall views",
+            "verified": true
+          },
+          {
+            "name": "claude-obsidian",
+            "url": "https://github.com/AgriciDaniel/claude-obsidian",
+            "category": "Claude Code plugin / Agent Skills: self-organizing 'LLM wiki' in Obsidian",
+            "captureModel": "Drop sources into a visible inbox. Immutable, content-addressed copies are kept, then Claude synthesizes pages from them",
+            "autoLinking": "Automatic linked pages, indexes, Maps of Content and Canvas views. Source and claim ledgers keep unsupported or contradictory claims visible. A lint skill finds dead links and orphans",
+            "autoTitlingOrSubjectSuggestions": "Claude writes and names pages. Every change is gated: the user reviews JSON operation plans and their SHA-256 hashes before anything is applied",
+            "recallViews": "wiki-retrieve search (BM25 plus optional cosine reranking), query skill, canvas views, 15 skills in total",
+            "privacyModel": "Local plain Markdown. No automatic transcript saving. No encryption mentioned",
+            "pricing": "Free, MIT license, about 15.2k GitHub stars",
+            "platforms": "Claude Code with Obsidian",
+            "overlap": "high",
+            "gapRTOFills": "It is built to ingest research sources, not to hold one-line personal thoughts. It has no subject kinds (person, talk, decision) and no open-items or decision-tree views, and its plan-and-hash approval is developer-grade. RTO can keep the approval idea and make it consumer-friendly and encrypted",
+            "verified": true
+          },
+          {
+            "name": "Basic Memory",
+            "url": "https://basicmemory.com/",
+            "category": "MCP-native local Markdown knowledge graph for AI agents",
+            "captureModel": "Claude and other agents write and update notes over MCP. Humans can edit the same Markdown in any editor",
+            "autoLinking": "Typed relations (wiki-style links such as 'pairs_well_with [[X]]') and categorized observations ([tip], [question]) inside Markdown. The docs do not say explicitly whether Claude creates relations on its own (https://github.com/basicmachines-co/basic-memory)",
+            "autoTitlingOrSubjectSuggestions": "Schemas define note types such as Task, Person and Client, with validation. No rename, merge or split suggestion workflow is documented",
+            "recallViews": "Semantic search over a local SQLite index. Agents build context from the graph",
+            "privacyModel": "Local files plus a local SQLite index with no server needed. Optional hosted Cloud with two-way sync. No encryption at rest described",
+            "pricing": "Open source, free (AGPL-3.0). Cloud from $15 per seat per month; the GitHub page says the price is locked during beta",
+            "platforms": "Claude, Codex, Cursor, Obsidian, VS Code, any MCP client",
+            "overlap": "high",
+            "gapRTOFills": "This is memory infrastructure for agents, not a thought organizer. It has no capture grammar, no approval queue for AI restructuring, no digest and no recall views (brief, checklist, decision tree). RTO sits one layer higher and adds an encrypted store",
+            "verified": true
+          },
+          {
+            "name": "Lightnote",
+            "url": "https://lightnote.ink/",
+            "category": "AI brain-dump app with auto-tags and daily insights",
+            "captureModel": "Free-form brain dump with no folders and no formatting decisions",
+            "autoLinking": "The AI 'identifies relationships with existing ideas in your archive'",
+            "autoTitlingOrSubjectSuggestions": "Tags are generated automatically. No user-approval step is described",
+            "recallViews": "Daily Insights: a swipeable morning briefing of emerging themes and resurfaced older notes. Weekly Reflection letters",
+            "privacyModel": "Cloud. Notes are never used for training or shared with third parties. End-to-end encryption is not claimed",
+            "pricing": "Free (all features)",
+            "platforms": "iPhone and web (app.lightnote.ink)",
+            "overlap": "high",
+            "gapRTOFills": "Closest consumer analog to RTO's capture-plus-digest loop, but tags are applied silently, there are no subject kinds, open items or decisions, no approval, no local encryption and no Claude integration. A fully free model raises a sustainability question",
+            "verified": true
+          },
+          {
+            "name": "Mem",
+            "url": "https://get.mem.ai/",
+            "category": "AI 'chief of staff' notes plus proactive agent",
+            "captureModel": "Voice Push-to-Remember shortcut, meeting transcription, web clipping, written notes",
+            "autoLinking": "Related Notes and a 'Heads Up' panel bring up related notes and collections as you work (https://get.mem.ai/blog/5-ways-mem-helps-you-find-notes-faster). It keeps people, projects and decisions linked automatically",
+            "autoTitlingOrSubjectSuggestions": "Auto-organize files a note into an existing collection or a new one, but only when the user clicks Organize (https://help.mem.ai/features/collections). Mem Chat can merge collections and fix duplicates when commanded; this is command-driven, with no staged review (https://get.mem.ai/blog/ai-knowledge-base-refactoring, Nov 19 2025)",
+            "recallViews": "Semantic search, agent chat, proactive nudges, custom routines",
+            "privacyModel": "Cloud. SOC 2 Type II badge. No end-to-end encryption stated",
+            "pricing": "Free: 25 notes and 25 messages. Plus $9/mo (50 notes). Pro $29/mo (100 notes). Pro tiers go up to $199/mo (https://get.mem.ai/pricing)",
+            "platforms": "Mac, Windows, web, mobile",
+            "overlap": "high",
+            "gapRTOFills": "Per-note monthly quotas punish frequent micro-capture. Restructuring runs by command rather than as reviewable proposals. No local or encrypted store, no decision trees, no open-items view. RTO offers unlimited local capture and approval-first cleanup",
+            "verified": true
+          },
+          {
+            "name": "Capacities",
+            "url": "https://capacities.io/",
+            "category": "Object-based notes (Person, Meeting, Project, custom types)",
+            "captureModel": "Daily-note inbox. The user later turns thoughts into typed objects",
+            "autoLinking": "'Related Content' brings up connections the user never linked. Backlinks panel",
+            "autoTitlingOrSubjectSuggestions": "'AI autofill' on the Pro plan (https://capacities.io/pricing). No AI suggestions for types, renames or merges are documented",
+            "recallViews": "Object pages, backlinks, AI assistant chat",
+            "privacyModel": "Cloud: encrypted, EU data centers, GDPR, full export to standard formats",
+            "pricing": "Basic free. Pro $9.99/mo. Believer from $12.49/mo. Pro+ AI add-on $8.33/mo",
+            "platforms": "Mac, Windows, Linux, iOS, Android, web. Official hosted MCP server at api.capacities.io/mcp with 17 read and write tools (https://docs.capacities.io/developer/model-context-protocol)",
+            "overlap": "high",
+            "gapRTOFills": "Typed objects match RTO's subject kinds, but the user has to pick types by hand. RTO infers subject and kind from a single line, proposes merges, and adds talk-time checklists and decision trees. Local encryption versus Capacities' cloud",
+            "verified": true
+          },
+          {
+            "name": "Tana Outliner",
+            "url": "https://outliner.tana.inc/",
+            "category": "Outliner knowledge graph with supertags (the original Tana, renamed)",
+            "captureModel": "Mobile voice memos transcribed straight into supertag fields, quick add, desktop global clipper, a meeting bot that joins calls",
+            "autoLinking": "Graph of references and supertag collections. AI auto-tagging is not detailed in the docs",
+            "autoTitlingOrSubjectSuggestions": "Voice memos fill in structured fields according to the supertag's configuration",
+            "recallViews": "Supertag queries, tables, meeting summaries with action items",
+            "privacyModel": "Cloud. The desktop app works offline and does voice and meeting transcription locally",
+            "pricing": "Free (500 AI credits). Plus $8/mo. Pro $14/mo (https://outliner.tana.inc/pricing). A search snippet quoted $5 and $9, so the live page's prices were used",
+            "platforms": "Web, Mac, Windows, Linux, iOS, Android. Local and hosted MCP servers",
+            "overlap": "high",
+            "gapRTOFills": "Setting up supertags takes power-user effort. RTO needs no schema and its AI proposes structure. The product itself was renamed when Tana pivoted, which is a caution about lock-in",
+            "verified": true
+          },
+          {
+            "name": "Tana (new meeting platform)",
+            "url": "https://tana.inc/",
+            "category": "AI meeting platform with a context graph",
+            "captureModel": "Native video calls with agents inside the call, plus a desktop app that captures external Zoom, Teams and Meet calls",
+            "autoLinking": "Meeting outcomes are compared with the existing context graph, and the user gets a 'merge proposal' to update existing information instead of piling on new entries",
+            "autoTitlingOrSubjectSuggestions": "Types (structured fields) are defined through AI chat. MCP writes 'create proposals for approval before execution'",
+            "recallViews": "Context graph, generated artifacts (journey maps, storyboards)",
+            "privacyModel": "Cloud. SOC 2 Type 2 (completed March to June 2026), GDPR, no LLM training on customer data",
+            "pricing": "Free. Pro $20/mo early-bird (normally $30). Max $80/mo early-bird (normally $120). Business custom (https://tana.inc/pricing)",
+            "platforms": "Web, desktop (Mac, Windows, Linux). Native iOS and Android apps 'coming soon'",
+            "overlap": "medium",
+            "gapRTOFills": "Built for team meetings, not a solo thought store. It does prove out the merge-proposal and approve-before-write pattern RTO plans to use",
+            "verified": true
+          },
+          {
+            "name": "Obsidian + Smart Connections",
+            "url": "https://smartconnections.app/",
+            "category": "Local Markdown PKM plus a local-embedding related-notes plugin",
+            "captureModel": "Manual notes in a local vault",
+            "autoLinking": "Sidebar of semantically related notes and passages from local embeddings. 'Suggestions do not edit your notes.' Inline passage-level connections are Pro",
+            "autoTitlingOrSubjectSuggestions": "None built in. Smart Dedupe Pro shows exact and near-duplicate candidates, and the user picks keep separate, merge manually, archive or ignore; it never merges automatically (https://smartconnections.app/smart-dedupe/)",
+            "recallViews": "Connections list and graph, Smart Graph (Pro), Smart Context packs, chat",
+            "privacyModel": "Local files, and Obsidian collects no telemetry. Obsidian Sync is end-to-end encrypted with AES-256 (https://obsidian.md/pricing). Plugin uses local embeddings by default with no API key",
+            "pricing": "Obsidian free. Sync $4-5/mo. Smart Connections core is free; Pro prices were not shown on the pages opened (unverified)",
+            "platforms": "Windows, Mac, Linux, iOS, Android",
+            "overlap": "medium",
+            "gapRTOFills": "Do-it-yourself with no capture grammar, no subject kinds and no digest. Relevance complaints: GitHub issue #907 reports 'highly irrelevant results' and was closed as not planned (https://github.com/brianpetro/obsidian-smart-connections/issues/907). RTO is zero-setup with curated, explained links",
+            "verified": true
+          },
+          {
+            "name": "Saner.ai",
+            "url": "https://www.saner.ai/",
+            "category": "ADHD-oriented AI assistant across notes, tasks, email and calendar",
+            "captureModel": "Chrome-extension notes, voice notes, email import, document upload. Brain dumps are turned into tasks",
+            "autoLinking": "Links related information across topics and brings up relevant past notes",
+            "autoTitlingOrSubjectSuggestions": "'AI suggests tags based on a note's content and your previous tags'",
+            "recallViews": "Smart inbox, timeline calendar, daily planning using Calendar, Slack and Gmail. The Skai assistant recommends what to do next",
+            "privacyModel": "Cloud. 'We do not train, sell, or share your data.' Encryption, but not end-to-end",
+            "pricing": "Free (100 notes). Starter $8/mo. Standard $16/mo (https://www.saner.ai/pricing)",
+            "platforms": "Web, Chrome extension, mobile app. Integrations: Gmail, Slack, Google Calendar, Drive",
+            "overlap": "high",
+            "gapRTOFills": "Aimed at tasks and productivity, cloud-hosted, no approval-gated restructuring, no decision trees or talk prep. RTO is thought-first, local and encrypted",
+            "verified": true
+          },
+          {
+            "name": "Twos",
+            "url": "https://www.twosapp.com/",
+            "category": "Quick-capture daily lists",
+            "captureModel": "Capture from email, text, WhatsApp, browser, Apple Watch, Slack, Discord, Raycast and more. Entries are sorted automatically into Notes, To-dos, Reminders, Events and Lists",
+            "autoLinking": "Mentions, backlinks and a 'Universe' view (Plus)",
+            "autoTitlingOrSubjectSuggestions": "Suggests whether an entry should be a checkbox or a note. No subject suggestions",
+            "recallViews": "Search, 'ask Twos anything' AI chat, week view, daily lists",
+            "privacyModel": "Not stated on the site (unverified)",
+            "pricing": "Free (20 AI chats a month). Plus $4.99/mo, $39.99/yr or $199 lifetime (https://www.twosapp.com/pricing)",
+            "platforms": "iPhone, iPad, Mac, Windows, Linux, web, wearables. The homepage mentions ChatGPT and MCP integrations",
+            "overlap": "high",
+            "gapRTOFills": "Organized by day, not by subject. No AI cross-references or merge suggestions. RTO turns the same fast capture into subject-centered recall",
+            "verified": true
+          },
+          {
+            "name": "Recall",
+            "url": "https://www.recall.it/",
+            "category": "AI knowledge base built from summarized content",
+            "captureModel": "One-click summaries of podcasts, YouTube, PDFs and articles, plus a block editor for your own notes",
+            "autoLinking": "Automatic knowledge-graph connections that show up 'as you browse' (Plus)",
+            "autoTitlingOrSubjectSuggestions": "Automatic smart tagging (Plus)",
+            "recallViews": "Spaced repetition, quizzes, AI chat, graph",
+            "privacyModel": "Stored mainly on the device. Backups on Google Cloud in the EU. Markdown export",
+            "pricing": "Free (10 summaries a month, includes API/MCP access). Plus $10/mo and Max $38/mo, both billed yearly (https://www.recall.it/pricing)",
+            "platforms": "Chrome, Safari, Firefox and Edge extensions, iPhone, Android",
+            "overlap": "medium",
+            "gapRTOFills": "Built for consuming other people's content, not for your own thoughts, open items or decisions. RTO covers the owner's thinking",
+            "verified": true
+          },
+          {
+            "name": "mymind",
+            "url": "https://mymind.com/",
+            "category": "AI auto-tagging private memory and bookmark vault",
+            "captureModel": "One-click save of notes, links, images and articles from browser extensions and apps. 'Folders are dead'",
+            "autoLinking": "No explicit links. Smart Spaces fill themselves by tag, topic or query",
+            "autoTitlingOrSubjectSuggestions": "AI auto-tags and summaries. Summaries need the Mastermind tier (https://www.marqly.com/blog/mymind-review-2026). No user review of tags",
+            "recallViews": "Visual search, Smart Spaces",
+            "privacyModel": "Cloud on AWS, encrypted at rest and over HTTPS. End-to-end encryption not mentioned (https://mymind.com/data-security). No ads or tracking",
+            "pricing": "$4.99, $7.99 or $12.99 per month; $79 or $129 per year (https://access.mymind.com/pricing)",
+            "platforms": "iOS, Android, macOS, Chrome, Edge and Safari extensions",
+            "overlap": "medium",
+            "gapRTOFills": "A vault for things you save, with no subject model, open items or decisions and no approval of AI tags. A review found search misses things and Spaces too passive to steer. RTO is for the owner's own thoughts, with steerable structure",
+            "verified": true
+          },
+          {
+            "name": "Napkin",
+            "url": "https://www.napkin.one/",
+            "category": "Collect ideas and quotes, reflect on them with AI topic connections",
+            "captureModel": "Share text from other apps, scan from books, dictate or type. Text only",
+            "autoLinking": "A 'personal AI' connects similar ideas and organizes them by topic with no manual tagging",
+            "autoTitlingOrSubjectSuggestions": "Suggests topics you seem interested in. No title or rename workflow",
+            "recallViews": "Daily Flow and curated 'flows' (short playlists of ideas), widgets",
+            "privacyModel": "Swiss company, all servers and AI in Europe, 'We don't share any data with advertising or AI companies'. Not end-to-end encrypted",
+            "pricing": "App Store in-app purchases of $3-5/mo or $30-40/yr (https://apps.apple.com/us/app/napkin-ideas/id6470183297)",
+            "platforms": "iPhone only (Android not in development)",
+            "overlap": "medium",
+            "gapRTOFills": "Meant for reflection, not action: no open items, people or decisions. iPhone only, and an App Store review complains of long gaps between updates. RTO is action-oriented and cross-platform through Claude",
+            "verified": true
+          },
+          {
+            "name": "Reflect",
+            "url": "https://reflect.app/",
+            "category": "End-to-end encrypted networked notes with backlinks and an AI palette",
+            "captureModel": "Daily notes, voice transcription, web clipper, Kindle highlight sync",
+            "autoLinking": "Backlinks you create by hand. No automatic linking or tagging documented (https://reflect.academy/artificial-intelligence)",
+            "autoTitlingOrSubjectSuggestions": "None documented. Custom AI prompts on highlighted text",
+            "recallViews": "Backlink graph, chat with notes filtered by tag",
+            "privacyModel": "End-to-end encrypted and independently audited. AI sends only the text you highlight, or the filtered search results for chat, to OpenAI, Anthropic or Gemini, and no logs are kept",
+            "pricing": "$10/mo billed annually, single plan",
+            "platforms": "iOS, desktop and web, browser extensions",
+            "overlap": "medium",
+            "gapRTOFills": "Its privacy model (end-to-end encryption, send only a slice to the AI) is the one RTO should copy, but it does no automatic organizing. RTO adds AI cross-references and subject suggestions on an encrypted base",
+            "verified": true
+          },
+          {
+            "name": "Heptabase",
+            "url": "https://heptabase.com/",
+            "category": "Visual whiteboard and card knowledge base with an AI agent",
+            "captureModel": "Cards, daily journals, web clipper, PDF highlights",
+            "autoLinking": "Two-way links. Agent Mode can create and edit cards. A CLI lets Claude Code and other agents read and edit the base (https://wiki.heptabase.com/newsletters/2026-05-29)",
+            "autoTitlingOrSubjectSuggestions": "The agent adding tags and properties is announced as upcoming (unverified as shipped)",
+            "recallViews": "Whiteboards, AI tutor, journal",
+            "privacyModel": "Cloud on AWS, AES-256 at rest. Not end-to-end: content is indexed by Elastic Cloud and Turbopuffer and sent to model providers for AI (https://support.heptabase.com/en/articles/10448141-is-my-data-safe-in-heptabase)",
+            "pricing": "Pro $8.99, Premium $17.99, Premium+ $53.99 per month (https://heptabase.com/pricing)",
+            "platforms": "Mac, Windows, Linux, iOS, Android",
+            "overlap": "low",
+            "gapRTOFills": "A heavy visual research tool. RTO is one-line capture with structure built automatically",
+            "verified": true
+          },
+          {
+            "name": "Notion AI",
+            "url": "https://www.notion.com/pricing",
+            "category": "Workspace with AI agents and database autofill",
+            "captureModel": "Pages and databases, AI meeting notes",
+            "autoLinking": "Relations are set up by hand. Custom Agents fill in properties using workspace search",
+            "autoTitlingOrSubjectSuggestions": "Autofill tags, summarizes or extracts into properties and can re-run on every page edit (https://www.notion.com/help/autofill). It writes directly, with no proposal step",
+            "recallViews": "Enterprise search, Notion Agent, database views",
+            "privacyModel": "Cloud. Zero data retention with LLM providers only on Enterprise",
+            "pricing": "Free and Plus ($10) include only an AI trial. Business $20 per member per month includes full AI. Enterprise custom",
+            "platforms": "Web, desktop, mobile",
+            "overlap": "medium",
+            "gapRTOFills": "Takes a lot of setup and is team-oriented, and AI edits land without review. RTO needs no setup and every AI change needs approval",
+            "verified": true
+          },
+          {
+            "name": "Google Keep + Gemini (Keep Live)",
+            "url": "https://blog.google/products-and-platforms/products/workspace/voice-features-gmail-docs-keep/",
+            "category": "Bundled notes with AI voice structuring",
+            "captureModel": "Text and voice. Keep Live (announced Sept 3, 2026) 'understands your stream of consciousness' and turns it into structured lists in the background",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "Gemini can create named notes and lists, add items and retrieve content. It cannot share notes or add images (https://support.google.com/gemini/answer/15230597)",
+            "recallViews": "Natural-language retrieval through Gemini",
+            "privacyModel": "Google cloud",
+            "pricing": "Keep is free. Which Gemini tier each feature needs was not verified",
+            "platforms": "Android, web, iOS",
+            "overlap": "medium",
+            "gapRTOFills": "A platform giant moving into 'brain dump to structure'. It has no cross-references, no subject model, no approval and no private store. RTO is the private, structured alternative",
+            "verified": true
+          },
+          {
+            "name": "Apple Notes + Apple Intelligence",
+            "url": "https://support.apple.com/guide/iphone/use-apple-intelligence-in-notes-iph59143007d/ios",
+            "category": "Bundled notes with Writing Tools and audio summaries",
+            "captureModel": "Notes, plus audio recording with transcription",
+            "autoLinking": "None documented",
+            "autoTitlingOrSubjectSuggestions": "None documented. Writing Tools can summarize or list key points",
+            "recallViews": "Apple Intelligence summaries of recorded-audio transcripts (per Apple Support search snippet; the page body could not be fetched)",
+            "privacyModel": "Local plus iCloud. Details of Apple's on-device AI processing were not verified",
+            "pricing": "Free with the device",
+            "platforms": "iPhone, iPad, Mac",
+            "overlap": "low",
+            "gapRTOFills": "The default 'good enough' capture app, but it does no organizing. A possible import source for RTO",
+            "verified": true
+          },
+          {
+            "name": "Evernote",
+            "url": "https://evernote.com/learn/ai-powered-note-organization",
+            "category": "Long-standing notes app with AI titles and tagging",
+            "captureModel": "Notes, meeting transcription",
+            "autoLinking": "Automatically brings up relevant notes",
+            "autoTitlingOrSubjectSuggestions": "Generates titles from content and context, which the user can rename (https://evernote.com/user-stories/how-auto-generated-titles-mean-a-user-never-has-to-name-a). Smart tagging",
+            "recallViews": "AI search, notebooks",
+            "privacyModel": "Cloud (end-to-end encryption unverified)",
+            "pricing": "Third-party reports: Starter $14.99/mo, Advanced $24.99/mo (https://www.eesel.ai/blog/evernote-pricing). Unverified on evernote.com; the help-center FAQ returned 403",
+            "platforms": "All major platforms",
+            "overlap": "medium",
+            "gapRTOFills": "Title suggestions apply to single notes only. No subject merges, splits or recall views, and it is a costly cloud service. The accept, edit or dismiss pattern is worth borrowing",
+            "verified": true
+          },
+          {
+            "name": "Reor",
+            "url": "https://github.com/reorproject/reor",
+            "category": "Local-first AI desktop notes (archived)",
+            "captureModel": "Markdown notes in a desktop editor",
+            "autoLinking": "Automatic links from vector similarity (LanceDB embeddings)",
+            "autoTitlingOrSubjectSuggestions": "None",
+            "recallViews": "Semantic search, Q&A over notes (retrieval-augmented)",
+            "privacyModel": "Fully local, using Ollama and Transformers.js. OpenAI-compatible APIs are optional",
+            "pricing": "Free, AGPL-3.0",
+            "platforms": "Mac, Linux, Windows",
+            "overlap": "medium",
+            "gapRTOFills": "Archived and read-only since March 7, 2026, which leaves the 'local AI auto-link' niche without an active product. RTO can fill it with a maintained, Claude-native tool",
+            "verified": true
+          },
+          {
+            "name": "Khoj",
+            "url": "https://github.com/khoj-ai/khoj",
+            "category": "Self-hosted AI second brain (chat over your documents)",
+            "captureModel": "Indexes Obsidian, Notion and document files. Clients for browser, Obsidian, Emacs, desktop, phone, WhatsApp",
+            "autoLinking": "None (retrieval only)",
+            "autoTitlingOrSubjectSuggestions": "None",
+            "recallViews": "Chat, scheduled automations, deep research",
+            "privacyModel": "Self-host only: Khoj Cloud shut down on April 15, 2026 (https://app.khoj.dev/)",
+            "pricing": "Free, open source. Latest release 2.0.0-beta.28 on March 26, 2026, per a search snippet (unverified)",
+            "platforms": "Docker or pip self-host",
+            "overlap": "low",
+            "gapRTOFills": "The shutdown notice cites the long tail of data integrations and competition from the big AI labs. That argues for RTO being a structuring layer on top of Claude, not a rival retrieval engine",
+            "verified": true
+          },
+          {
+            "name": "Fabric",
+            "url": "https://fabric.so/",
+            "category": "Self-organizing AI workspace and file explorer",
+            "captureModel": "Files, PDFs, video, voice memos, emails, 50+ integrations",
+            "autoLinking": "The 'Fabric Memory Engine' maps relationships between saved items",
+            "autoTitlingOrSubjectSuggestions": "Content is extracted and enriched automatically, with no manual tagging",
+            "recallViews": "Semantic, color and visual search; transcript search; scheduled AI jobs",
+            "privacyModel": "Cloud, AES-256 in transit and at rest",
+            "pricing": "Plus $8, Pro $18, Max $54 per month, billed yearly (https://fabric.so/pricing-and-plans-for-individuals)",
+            "platforms": "Web, iOS, Android, Chrome, desktop, CLI",
+            "overlap": "low",
+            "gapRTOFills": "Organizes files, not thoughts. No subject kinds or action views",
+            "verified": true
+          },
+          {
+            "name": "Supernotes",
+            "url": "https://supernotes.app/",
+            "category": "Card-based atomic notes",
+            "captureModel": "Notecards of up to 1,200 characters",
+            "autoLinking": "Linking by hand. An AI 'Collection Creator' (https://supernotes.app/blog/posts/power-up-ai-superpowers/)",
+            "autoTitlingOrSubjectSuggestions": "'AI Superpowers': proofreading and organisation",
+            "recallViews": "Collections, flashcards (early access)",
+            "privacyModel": "Cloud. 'We don't snoop and we don't sell your data'. Encryption not specified",
+            "pricing": "Free (100 cards). Unlimited £6/mo or £72/yr (https://supernotes.app/pricing/)",
+            "platforms": "Web, desktop, mobile",
+            "overlap": "low",
+            "gapRTOFills": "Card discipline, but little automatic structure",
+            "verified": true
+          },
+          {
+            "name": "Drafts",
+            "url": "https://getdrafts.com/",
+            "category": "Capture-first text inbox with automation actions",
+            "captureModel": "Opens to a new page with the keyboard ready. Actions send text on to other apps",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "None (no AI on the homepage)",
+            "recallViews": "Tags, flags, workspaces, archive",
+            "privacyModel": "Not stated on the homepage (unverified)",
+            "pricing": "Free. Pro $19.99/yr (https://forums.getdrafts.com/t/drafts-pro-now-only-19-99-usd-per-year/10898)",
+            "platforms": "iPhone, iPad, Mac, Apple Watch",
+            "overlap": "medium",
+            "gapRTOFills": "The benchmark for fast capture, but it organizes nothing. A Drafts action that sends text to RTO could make a good intake path",
+            "verified": true
+          },
+          {
+            "name": "Bear",
+            "url": "https://bear.app/",
+            "category": "Markdown notes with nested tags",
+            "captureModel": "Text, photos, tables, to-dos, document scanning",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "None (no AI on the site)",
+            "recallViews": "Nested tags, OCR search",
+            "privacyModel": "iCloud end-to-end encryption with Advanced Data Protection. Extra per-note encryption on Pro",
+            "pricing": "Free. Pro $2.99/mo or $29.99/yr",
+            "platforms": "Mac, iPhone, iPad",
+            "overlap": "low",
+            "gapRTOFills": "Good privacy and no AI. Shows there is demand for private notes that stay manual",
+            "verified": true
+          },
+          {
+            "name": "AudioPen",
+            "url": "https://audiopen.ai/",
+            "category": "Voice rambles turned into polished text",
+            "captureModel": "Speak freely; choose a rewrite level of Low, Medium or High",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "Tags, folders and custom categories. Zapier webhooks",
+            "recallViews": "Note list. Read-only MCP access from ChatGPT and Claude",
+            "privacyModel": "Voice files deleted after processing. No training. Offline voice typing",
+            "pricing": "Free (2-minute recordings, 20 transcriptions). Prime $33 for 3 months up to $159 for 2 years",
+            "platforms": "iOS, Android, Mac, Windows, web, Chrome, Apple Watch",
+            "overlap": "low",
+            "gapRTOFills": "Captures without organizing. A good voice front end whose output RTO could organize",
+            "verified": true
+          },
+          {
+            "name": "Voicenotes",
+            "url": "https://voicenotes.com/",
+            "category": "Voice notes app, now marketed as a bot-free AI meeting notetaker",
+            "captureModel": "Recordings and meetings (Zoom, Teams, Meet) without a bot",
+            "autoLinking": "Not mentioned",
+            "autoTitlingOrSubjectSuggestions": "Not mentioned. Summaries and action items",
+            "recallViews": "'Just Ask' AI across the whole library",
+            "privacyModel": "Cloud. SOC 2 Type II, GDPR, encrypted, never used for training",
+            "pricing": "Basic free (100 transcription minutes a week, 30-day history). Pro $9/user/mo (includes MCP). Enterprise $24 (https://voicenotes.com/pricing)",
+            "platforms": "macOS, iOS, Windows, Android, web, watchOS, Wear OS, Chrome",
+            "overlap": "low",
+            "gapRTOFills": "Moved toward meetings. No subject structure",
+            "verified": true
+          },
+          {
+            "name": "Letterly",
+            "url": "https://letterly.app/",
+            "category": "Voice to structured text with rewrite styles",
+            "captureModel": "Speech in 90+ languages, then rewritten in a preset or custom style",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "Tags by topic, folders",
+            "recallViews": "Keyword search. MCP access from Claude, ChatGPT and Cursor",
+            "privacyModel": "Never used for training. Offline recording. Data Processing Agreement available",
+            "pricing": "Free to start. Third-party reports of $2.99 and $6.99/mo (https://daveswift.com/letterly/) are unverified on the official site",
+            "platforms": "iOS, Android, Mac, Windows, web",
+            "overlap": "low",
+            "gapRTOFills": "Captures and rewrites but does not organize",
+            "verified": true
+          },
+          {
+            "name": "Voicethoughts – AI Brain Dump",
+            "url": "https://apps.apple.com/us/app/voicethoughts-ai-brain-dump/id6745749081",
+            "category": "Voice brain dump auto-sorted into categories",
+            "captureModel": "Voice recordings, split into separate thoughts",
+            "autoLinking": "None stated",
+            "autoTitlingOrSubjectSuggestions": "Assigns fixed categories: Ideas, Todos, Rants, Journal",
+            "recallViews": "Review by category",
+            "privacyModel": "App Store label: 'The developer does not collect any data'",
+            "pricing": "Plus $7/mo or $49/yr",
+            "platforms": "iPhone",
+            "overlap": "medium",
+            "gapRTOFills": "Fixed categories only. 2 ratings, one review calling it a 'possible scam', last update v1.0.4 on July 31, 2025. RTO's open subjects and cross-references go far beyond this",
+            "verified": true
+          },
+          {
+            "name": "Brain Dump: AI Notes & Writing",
+            "url": "https://apps.apple.com/us/app/brain-dump-ai-notes-writing/id6448230631",
+            "category": "Freewriting capture plus AI transforms (closest match to the requested 'Brain Dump - AI Memory Vault', which does not exist as one app)",
+            "captureModel": "Instant writing, freewriting mode",
+            "autoLinking": "None. Note merging and folders are manual",
+            "autoTitlingOrSubjectSuggestions": "Not stated",
+            "recallViews": "'Ask' about notes. Turn notes into summaries, to-dos, emails, flashcards",
+            "privacyModel": "iCloud sync. App Store label 'Data Not Linked to You' (analytics only)",
+            "pricing": "$3.99/wk, $10.99/mo, $99.99/yr, $39.99 lifetime",
+            "platforms": "iOS, iPadOS, macOS, visionOS",
+            "overlap": "medium",
+            "gapRTOFills": "Last update was August 31, 2024. Transforms notes on request rather than organizing them",
+            "verified": true
+          },
+          {
+            "name": "AI Memory Vault: Smart Diary",
+            "url": "https://apps.apple.com/us/app/ai-memory-vault/id6758312943",
+            "category": "On-device AI journal",
+            "captureModel": "Rich-text entries, photos, voice memos, 2-tap mood logging",
+            "autoLinking": "None",
+            "autoTitlingOrSubjectSuggestions": "Tags and 10 templates",
+            "recallViews": "Map with emotion-colored pins, mood calendar, weekly mood reports",
+            "privacyModel": "'All AI runs on your device', AES-256 encryption, Face ID lock per memory",
+            "pricing": "$2.99/wk, $5.99/mo, $39.99/yr",
+            "platforms": "iOS",
+            "overlap": "low",
+            "gapRTOFills": "Journaling, not organizing. Shows 'on-device AI' is being used as a selling point",
+            "verified": true
+          },
+          {
+            "name": "AnyNotes+",
+            "url": "https://apps.apple.com/lb/app/anynotes/id6745427912",
+            "category": "Indie AI inbox with Topics",
+            "captureModel": "Notes land in an AI Inbox",
+            "autoLinking": "'Topics' group related notes, with a synthesis that updates and tracks recent changes",
+            "autoTitlingOrSubjectSuggestions": "The AI Inbox gives notes clearer titles, summaries and suggested next steps, and can regenerate them",
+            "recallViews": "Per-topic briefs and task lists",
+            "privacyModel": "Developer says no data is collected. AI needs the user's own OpenAI key or a Codex sign-in",
+            "pricing": "Pro $14.99 (in-app purchase)",
+            "platforms": "iPhone (iOS 17+)",
+            "overlap": "high",
+            "gapRTOFills": "A very close concept (topics, briefs, task lists) at tiny scale. It has no approval-gated merges, no subject kinds and no Claude-native delivery",
+            "verified": true
+          },
+          {
+            "name": "Anytype",
+            "url": "https://github.com/anyproto/anytype-ts",
+            "category": "Local-first, end-to-end encrypted typed-object workspace",
+            "captureModel": "Blocks and custom object types",
+            "autoLinking": "Relations are set by hand",
+            "autoTitlingOrSubjectSuggestions": "None documented. MCP integration and agent support are mentioned",
+            "recallViews": "Sets, collections, graph",
+            "privacyModel": "Local-first, end-to-end encrypted (any-sync), zero-knowledge, optional peer-to-peer sync",
+            "pricing": "Free tier. Paid tiers of about $5-20/mo per third-party sites (https://aiproductivity.ai/pricing/anytype/), unverified on anytype.io. License: Any Source Available License 1.0",
+            "platforms": "Desktop on macOS, Windows and Linux (mobile unverified)",
+            "overlap": "medium",
+            "gapRTOFills": "The privacy and typed-object benchmark, but no AI organization at all. RTO combines both",
+            "verified": true
+          },
+          {
+            "name": "Granola",
+            "url": "https://www.granola.ai/",
+            "category": "Bot-free AI meeting notepad",
+            "captureModel": "Records computer audio alongside the user's own jottings",
+            "autoLinking": "Chat across meetings",
+            "autoTitlingOrSubjectSuggestions": "Not applicable",
+            "recallViews": "Pre-meeting briefs from the calendar, action items, draft follow-ups",
+            "privacyModel": "Cloud. Notes private by default. Each user can opt out of model training",
+            "pricing": "Basic free (30-day history). Business $14/user/mo (includes MCP). Enterprise $35 (https://www.granola.ai/pricing)",
+            "platforms": "macOS, Windows, iOS, Android, Apple Watch",
+            "overlap": "medium",
+            "gapRTOFills": "Covers the meeting itself. RTO's 'talk' subject covers thoughts gathered before the talk, a checklist during it and outcomes afterwards, without recording anything",
+            "verified": true
+          },
+          {
+            "name": "Dex",
+            "url": "https://getdex.com/",
+            "category": "Personal CRM",
+            "captureModel": "Contacts pulled from 15+ sources, plus custom notes and tags",
+            "autoLinking": "Timeline of interactions per contact",
+            "autoTitlingOrSubjectSuggestions": "Merges duplicate contacts",
+            "recallViews": "Keep-in-touch reminders, pre-meeting briefings, 'Dex Research' contact briefings",
+            "privacyModel": "Cloud. SOC 2 on Enterprise",
+            "pricing": "Premium $12-20/mo. Professional $20-34/mo. Enterprise custom (https://getdex.com/pricing)",
+            "platforms": "Web, iOS, Android, macOS, Windows, Chrome. MCP server",
+            "overlap": "low",
+            "gapRTOFills": "The 'person' subject kind without the rest. RTO links people to topics, decisions and talks",
+            "verified": true
+          },
+          {
+            "name": "Claude built-in memory",
+            "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context",
+            "category": "Platform assistant memory (platform risk)",
+            "captureModel": "Picked up implicitly from chats and stored as 'Topics'. Since Aug 25, 2026 it is shared between chat and Cowork (https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/)",
+            "autoLinking": "None exposed",
+            "autoTitlingOrSubjectSuggestions": "Claude creates topic entries itself. Users can view, edit or delete them",
+            "recallViews": "Used implicitly in replies. Separate memory per project",
+            "privacyModel": "Anthropic cloud. Incognito chats excluded. Sensitive topics excluded by default",
+            "pricing": "On by default for Free, Pro and Max",
+            "platforms": "Web, desktop, mobile",
+            "overlap": "medium",
+            "gapRTOFills": "Memory is for personalizing Claude. RTO is an explicit, user-owned, encrypted thought store with structured recall and review. It should present itself as working with memory, not competing with it",
+            "verified": true
+          },
+          {
+            "name": "Memory MCP server (reference implementation)",
+            "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+            "category": "Reference knowledge-graph memory for MCP",
+            "captureModel": "The model creates entities, relations and observations through tools",
+            "autoLinking": "The model creates relations (in active voice, such as works_at)",
+            "autoTitlingOrSubjectSuggestions": "The model assigns entity names and types. No review step",
+            "recallViews": "read_graph, search_nodes, open_nodes",
+            "privacyModel": "Local plain JSONL file (MEMORY_FILE_PATH)",
+            "pricing": "Free, MIT (npm @modelcontextprotocol/server-memory)",
+            "platforms": "Any MCP client",
+            "overlap": "medium",
+            "gapRTOFills": "Bare building blocks with no user interface, approval, encryption, digest or recall views. RTO is the product layer this lacks",
+            "verified": true
+          }
+        ],
+        "whitespace": "No product combines all six of RTO's pieces: (1) a one-line 'subject: detail' capture grammar with an AI-guessed subject, (2) AI cross-references labelled as AI-made, (3) a single approval queue for renames, merges and splits, (4) action-oriented recall views (open-items checklist, decision tree, talk-time checklist with outcome capture), (5) an encrypted local store, (6) delivery inside Claude. Neighbors each cover a slice. obsidian-second-brain has person, decision and project notes, scheduled digests and dry-run merges, but it is a 45-command power tool that needs Obsidian, a CLI agent and unencrypted files. Lightnote has dump, auto-tag and daily insights, but it is cloud-only, tags without review and has no structure. The new Tana has merge proposals and approve-before-write MCP, but it is a team meeting platform. Capacities has typed objects and an official MCP server, but typing is manual and data lives in the cloud. Smart Dedupe Pro has review-first merges, but only inside an Obsidian plugin. Reflect has end-to-end encryption with only a selected slice sent to AI, but no automatic organizing. No surveyed product offered a decision-tree or talk-time checklist view. Market signals point to the defensible position: generic 'chat with your notes' is losing to the big labs (Khoj Cloud shut down Apr 15 2026 citing lab competition; Reor archived Mar 7 2026), and Claude memory, Google Keep Live and Apple Notes AI are absorbing basic capture and summarizing. The open space is trusted, reviewable structure over the owner's own thoughts, private by default and inside the assistant the owner already uses.",
+        "differentiationIdeas": [
+          "Make approval the product: one 'Proposals' inbox for every AI-made link, rename, merge, split and subject guess. Each shows its reason, the evidence thoughts and a confidence, with approve, reject or edit in one step. Remember rejections so the same suggestion is not made again.",
+          "Label provenance everywhere (owner-made or AI-made, and when) and make every AI change reversible through an undo log. Merged subjects leave redirects and aliases, never deletions.",
+          "Treat the capture grammar as the moat. 'Budget: ask Sam…' fuzzy-matches existing subjects and aliases. With no subject, RTO proposes one inline. The kind (person, talk, decision, project) is inferred from cues such as names, 'decide', 'meet' or 'call', and the owner confirms it once per subject.",
+          "Action-first recall, which no note app surveyed offers: per-subject one-glance brief, open-items checklist, options and decision tree, and for talks a talk-time checklist that captures outcomes afterwards.",
+          "Precision over volume in linking: cap the number of AI cross-references per thought, show 'why linked' in one line, and let each digest report link acceptance rate so the thresholds tune themselves.",
+          "Privacy people can check: an encrypted local store (Obsidian/Anytype-grade) and send Claude only the slice of subjects a request needs (Reflect's highlight-only pattern). State plainly what leaves the device.",
+          "A digest built for hygiene, not just resurfacing: new connections, pending renames and merges, stale subjects, open questions, and decisions with no outcome yet.",
+          "Present RTO as working alongside Claude memory: memory personalizes Claude, RTO is the explicit, exportable record the owner controls. Offer to write a short pointer into Claude memory only with the owner's approval.",
+          "Zero lock-in: plain Markdown or JSON export at any time, importers from Drafts, Apple Notes and Twos, and an 'open in Obsidian' view.",
+          "Pricing matched to micro-capture: no per-note quotas (unlike Mem's 25-2000 notes a month). AI work runs on the owner's own Claude plan."
+        ],
+        "featureIdeasToBorrow": [
+          "Tana (new): compare new input against the existing graph and issue a 'merge proposal' instead of appending; MCP writes become proposals that need approval (https://tana.inc/).",
+          "Smart Dedupe Pro: review near-duplicates with four choices (keep separate, merge, archive, ignore); 'similar notes can be useful neighbors' (https://smartconnections.app/smart-dedupe/).",
+          "obsidian-second-brain: merges dry-run by default and leave redirects; a bounded background agent that can never delete or merge on its own; scheduled morning, nightly, weekly and health runs; a formal decision record option (https://github.com/eugeniughelbur/obsidian-second-brain).",
+          "claude-obsidian: an operation plan shown before any change is applied; a lint pass for orphans and dead links; contradictions stay visible instead of being overwritten (https://github.com/AgriciDaniel/claude-obsidian).",
+          "Lightnote: a swipeable Daily Insights briefing and a weekly reflection letter as the digest format (https://lightnote.ink/).",
+          "Evernote: suggest a title only when none was given, with accept, edit or dismiss (https://evernote.com/user-stories/how-auto-generated-titles-mean-a-user-never-has-to-name-a).",
+          "Mem: a 'Heads Up' side panel showing related subjects while one is open; organizing starts only when the user asks (https://help.mem.ai/features/collections).",
+          "Voicethoughts / Keep Live: split one ramble into several atomic thoughts, each with its own subject, before filing (https://apps.apple.com/us/app/voicethoughts-ai-brain-dump/id6745749081; https://blog.google/products-and-platforms/products/workspace/voice-features-gmail-docs-keep/).",
+          "Twos: capture from anywhere (email, WhatsApp, Raycast, watch) and auto-classify each entry as a to-do or a note, which maps onto RTO's open items (https://www.twosapp.com/).",
+          "Capacities: typed objects with a 'Related Content' view of unlinked mentions, mapping to RTO's subject kinds (https://capacities.io/).",
+          "Basic Memory: plain Markdown plus a local SQLite index, and categorized observations like [question] or [decision] that could tag open items and options (https://github.com/basicmachines-co/basic-memory).",
+          "Dex / Granola: build a pre-talk brief from the calendar that feeds the 'talk' kind (https://getdex.com/pricing; https://www.granola.ai/).",
+          "Reflect: end-to-end encryption with an independent audit, sending AI only the text the owner selected (https://reflect.academy/artificial-intelligence).",
+          "Recall / Napkin: spaced resurfacing, used here to bring stale subjects back in the digest (https://www.recall.it/pricing; https://www.napkin.one/)."
+        ],
+        "pitfallsSeenInMarket": [
+          "Users distrust auto-organization they cannot inspect. Mem reviews quote 'Tagged items don't always appear when you search for that tag' (compiled by competitor Saner.ai, so vendor-biased: https://www.saner.ai/blogs/mem-ai-reviews). A mymind review says search misses obvious things and Spaces cannot be steered by hand (https://www.marqly.com/blog/mymind-review-2026).",
+          "Link noise: a Smart Connections issue reports irrelevant related notes and was closed as not planned (https://github.com/brianpetro/obsidian-smart-connections/issues/907). Smart Dedupe's own copy warns that similarity is not duplication.",
+          "AI rewrites with no review. Mem Chat carries out collection merges and cleanup on command with no staged review (https://get.mem.ai/blog/ai-knowledge-base-refactoring). Notion Autofill can re-run on every page edit (https://www.notion.com/help/autofill). My inference: this risks silently overwriting the owner's structure.",
+          "Products dying or pivoting leave users stranded. Khoj Cloud shut down on Apr 15 2026 (https://app.khoj.dev/). Reor was archived on Mar 7 2026 (https://github.com/reorproject/reor). Tana pivoted to meetings and renamed its original app 'Tana Outliner' (https://tana.inc/). Voicenotes now sells itself as a meeting notetaker (https://voicenotes.com/). Small apps go stale: Brain Dump last updated Aug 2024, Voicethoughts July 2025.",
+          "Quota and credit pricing punishes frequent small captures: Mem Free allows 25 new notes a month and Plus 50 (https://get.mem.ai/pricing), and Tana, Heptabase and Capacities all meter AI credits.",
+          "'Private' claims that only mean cloud encryption at rest. mymind does not claim end-to-end encryption (https://mymind.com/data-security). Heptabase is not end-to-end and indexes content with third parties (https://support.heptabase.com/en/articles/10448141-is-my-data-safe-in-heptabase).",
+          "Complexity creep: supertag schemas (Tana Outliner) and 45-command skill surfaces (obsidian-second-brain) put off anyone who is not a power user, the opposite of one-line capture.",
+          "Big platforms absorbing the basics: Claude memory is free and shared across chat and Cowork (https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/), and Google Keep Live turns rambles into lists (https://blog.google/products-and-platforms/products/workspace/voice-features-gmail-docs-keep/). Plain capture and summaries are not defensible on their own.",
+          "Gaps in platform coverage: Napkin is iPhone-only with no Android planned (https://www.napkin.one/), and Obsidian-bound tools need a desktop. RTO's phone path via a hosted connector matters.",
+          "Lock-in through proprietary formats and weak export. A review says moving into mymind 'is clumsy' (https://www.marqly.com/blog/mymind-review-2026). Capacities and Basic Memory advertise open formats as the answer."
+        ]
+      },
+      "verification": {
+        "checkedClaims": [
+          {
+            "claim": "obsidian-second-brain: about 4.6k stars, MIT, v0.15 released September 2026, 45 commands, runs on 'Claude Code plus six other CLI agents'",
+            "verdict": "refuted",
+            "correction": "Stars (4.6k), MIT license and v0.15 'The Port' (Sept 2026, which added Windows support) are confirmed. But the README lists 47 slash commands, not 45 (46 cross-platform plus one calendar command that is Claude Code only), and eight builds: Claude Code, Codex CLI, Gemini CLI, OpenCode, Grok Bot, Hermes, Pi and Agent Skills. That is seven others, not six.",
+            "sourceUrl": "https://github.com/eugeniughelbur/obsidian-second-brain"
+          },
+          {
+            "claim": "obsidian-second-brain 'has no phone path' (gapRTOFills)",
+            "verdict": "refuted",
+            "correction": "Its own capture model includes a Telegram bot inbox. Voice, text, image, PDF and link captures sent from the phone are processed into the vault by /obsidian-catchup ('Telegram itself becomes your capture inbox'). What it lacks is phone-side recall, not phone capture. RTO's phone story should not be pitched as unique against it.",
+            "sourceUrl": "https://github.com/eugeniughelbur/obsidian-second-brain"
+          },
+          {
+            "claim": "obsidian-second-brain: /obsidian-merge is dry-run by default; the background agent may read, write and edit but never delete or merge; scheduled morning 8 AM, nightly, weekly Friday and Sunday health agents; /obsidian-person, /obsidian-decide --formal (ADR), /obsidian-project",
+            "verdict": "confirmed",
+            "correction": "",
+            "sourceUrl": "https://github.com/eugeniughelbur/obsidian-second-brain"
+          },
+          {
+            "claim": "claude-obsidian: about 15.2k stars, MIT, 15 skills, changes gated by reviewing a JSON plan and its approved_plan_sha256, visible inbox with immutable content-addressed copies, BM25 plus optional cosine reranking, no encryption mentioned",
+            "verdict": "confirmed",
+            "correction": "Detail: the cosine reranking is 'gated by explicit egress consent'.",
+            "sourceUrl": "https://github.com/AgriciDaniel/claude-obsidian"
+          },
+          {
+            "claim": "Basic Memory: AGPL-3.0, local files plus a SQLite index with no server needed, Cloud from $15 per seat per month with the price locked during beta, no encryption at rest described, docs do not say whether Claude creates relations on its own",
+            "verdict": "confirmed",
+            "correction": "The README gives the detail: '$15/month locked for life' during beta, normally $19, with a 20% OSS discount code. The homepage says 'from $15/seat/mo'. About 4.0k GitHub stars.",
+            "sourceUrl": "https://github.com/basicmachines-co/basic-memory"
+          },
+          {
+            "claim": "Lightnote: free with all features, iPhone plus web; AI 'identifies relationships with existing ideas'; auto-generated tags; Daily Insights and a Weekly Reflection letter; no-training policy; no end-to-end encryption claim",
+            "verdict": "confirmed",
+            "correction": "",
+            "sourceUrl": "https://lightnote.ink/"
+          },
+          {
+            "claim": "Mem pricing: Free 25 notes and 25 messages; Plus $9/mo with 50 notes; Pro $29/mo with 100 notes; Pro tiers up to $199/mo",
+            "verdict": "confirmed",
+            "correction": "Full ladder: Pro 2x $49, 5x $99, 10x $149, 20x $199 (2,000 notes a month). Extra usage units cost $50/mo each.",
+            "sourceUrl": "https://get.mem.ai/pricing"
+          },
+          {
+            "claim": "Mem auto-organize runs only when the user clicks Organize; Mem Chat merges collections on command with no staged review (blog, Nov 19 2025)",
+            "verdict": "confirmed",
+            "correction": "Auto-organize is user-triggered ('Click Organize and choose Auto-organize') and can create new collections. The blog post (Nov 19 2025) describes command-driven merges and does not mention any preview or confirmation. That is absence of evidence, not proof that no confirmation exists.",
+            "sourceUrl": "https://help.mem.ai/features/collections"
+          },
+          {
+            "claim": "Capacities: official hosted MCP server at api.capacities.io/mcp with 17 read and write tools",
+            "verdict": "refuted",
+            "correction": "The server and its URL are confirmed. But the docs page lists 19 distinct tool names (search, getObjectContent, createObjectLink, saveToDailyNote, createPage, createTask, appendMdToObject, createObjectViaMd, deleteObject, updateObjectViaMD, getObjectTypeShape, uploadFile, listObjectsByObjectType/ByTag/ByCollection, uploadMedia, addBlock, deleteBlock, updateBlock), including delete tools. The page carries a 'Capacities Pro' label, which suggests a paid plan is required.",
+            "sourceUrl": "https://docs.capacities.io/developer/model-context-protocol"
+          },
+          {
+            "claim": "Capacities pricing: Basic free, Pro $9.99/mo, Believer from $12.49/mo, Pro+ AI add-on $8.33/mo; AI autofill on Pro",
+            "verdict": "confirmed",
+            "correction": "Basic includes no AI features. The $8.33 add-on price is billed annually.",
+            "sourceUrl": "https://capacities.io/pricing"
+          },
+          {
+            "claim": "Tana (new) is a meeting platform that proposes merges rather than duplicating; MCP writes 'create proposals' needing approval; SOC 2 Type 2 (Mar-Jun 2026); native mobile apps 'coming'; Pro $20 early-bird ($30 normal), Max $80 ($120)",
+            "verdict": "confirmed",
+            "correction": "Prices are per user per month. Free allows 5 hosted meetings a month and 50 AI queries.",
+            "sourceUrl": "https://tana.inc/"
+          },
+          {
+            "claim": "Tana Outliner: Free (500 AI credits), Plus $8/mo, Pro $14/mo; the $5/$9 figures in a search snippet were wrong; local and hosted MCP servers",
+            "verdict": "confirmed",
+            "correction": "The $5 and $9 figures are the 50% student, academic and NGO prices, not an error. The local MCP server is free and runs only while the desktop app is open. The hosted MCP (app.tana.inc/mcp) is in beta and needs a paid plan.",
+            "sourceUrl": "https://outliner.tana.inc/learn/features/local-api-mcp"
+          },
+          {
+            "claim": "Smart Dedupe Pro never merges automatically and offers keep separate, merge manually, archive or ignore; Smart Connections says 'Suggestions do not edit your notes' and uses local embeddings with no API key",
+            "verdict": "confirmed",
+            "correction": "The Pro price is not shown on either page (still unverified).",
+            "sourceUrl": "https://smartconnections.app/smart-dedupe/"
+          },
+          {
+            "claim": "Smart Connections GitHub issue #907 reports 'highly irrelevant results' and was closed as not planned",
+            "verdict": "confirmed",
+            "correction": "The issue was opened on Dec 4, 2024, so it is nearly two years old and weak evidence of how relevant the plugin's links are today.",
+            "sourceUrl": "https://github.com/brianpetro/obsidian-smart-connections/issues/907"
+          },
+          {
+            "claim": "Khoj Cloud shut down on April 15, 2026, citing the long tail of data integrations and competition from the big AI labs; self-hosting continues",
+            "verdict": "confirmed",
+            "correction": "",
+            "sourceUrl": "https://app.khoj.dev/"
+          },
+          {
+            "claim": "Reor was archived (read-only) on March 7, 2026, AGPL-3.0, with vector-similarity auto-linking and local models; this leaves the 'local AI auto-link' niche without an active product",
+            "verdict": "refuted",
+            "correction": "The archive date, license and features are confirmed. But the 'no active product' conclusion is wrong: Smart Connections, in this same research, is maintained and does local-embedding related-note suggestions in Obsidian with no API key.",
+            "sourceUrl": "https://github.com/reorproject/reor"
+          },
+          {
+            "claim": "Reflect: end-to-end encrypted and independently audited; AI receives only highlighted text or filtered search results; 'no logs are kept'; $10/mo billed annually",
+            "verdict": "refuted",
+            "correction": "End-to-end encryption (XChaCha20-Poly1305) and the independent audit (by Doyensec) are confirmed, as are the highlight-only AI and the $10/mo price. 'No logs are kept' overstates it. Reflect keeps no request data, but its own docs say OpenAI deletes API request logs after 30 days. Audio sent to Whisper and text sent to AI features are not end-to-end encrypted, and Reflect scans notes for Clearbit enrichment. Copy the pattern with those caveats.",
+            "sourceUrl": "https://reflect.academy/security-and-encryption"
+          },
+          {
+            "claim": "Heptabase is not end-to-end encrypted (AES-256 at rest on AWS; content indexed by Elastic Cloud and Turbopuffer); a CLI lets Claude Code and other agents read and edit; the agent adding tags and properties was only announced",
+            "verdict": "confirmed",
+            "correction": "The May 29 2026 newsletter says tags and properties are coming 'in the coming weeks'. Whether they have shipped since is unverified.",
+            "sourceUrl": "https://support.heptabase.com/en/articles/10448141-is-my-data-safe-in-heptabase"
+          },
+          {
+            "claim": "Google Keep Live was announced Sept 3, 2026 and turns stream-of-consciousness speech into structured lists; Keep is free and the Gemini tier needed was not verified",
+            "verdict": "refuted",
+            "correction": "The date and description are confirmed. The tier is now verified and it is not free: Keep Live is rolling out to Google AI Plus, Pro and Ultra subscribers, with Workspace business customers 'coming soon'. Basic Gemini-Keep actions (create, add, retrieve) have no paid-plan requirement, and Gemini cannot modify or delete Keep notes.",
+            "sourceUrl": "https://blog.google/products-and-platforms/products/workspace/voice-features-gmail-docs-keep/"
+          },
+          {
+            "claim": "Claude memory is on by default for Free, Pro and Max, with separate per-project memory and incognito excluded; since Aug 25, 2026 it is shared between chat and Cowork and users can view, edit and delete it",
+            "verdict": "confirmed",
+            "correction": "Memory is off by default on Team and Enterprise. Memory now adds topics during the chat rather than after it ends.",
+            "sourceUrl": "https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/"
+          },
+          {
+            "claim": "Evernote: third-party reports put Starter at $14.99/mo and Advanced at $24.99/mo (citing eesel.ai); Evernote suggests titles with accept, edit or dismiss",
+            "verdict": "refuted",
+            "correction": "The cited eesel article (edited June 24 2026) gives Starter $8.25/mo ($99/yr) and Advanced $20.83/mo ($249.99/yr). The $14.99 and $24.99 figures are month-to-month rates from other third-party snippets, and evernote.com's compare page shows no prices, so this remains unverified officially. Evernote's own page describes auto-titles as generated automatically, which the user can rename later. It does not describe an accept/edit/dismiss suggestion flow.",
+            "sourceUrl": "https://www.eesel.ai/blog/evernote-pricing"
+          },
+          {
+            "claim": "Twos: Free (20 AI chats a month), Plus $4.99/mo, $39.99/yr or $199 lifetime; the homepage mentions ChatGPT and MCP integrations",
+            "verdict": "confirmed",
+            "correction": "",
+            "sourceUrl": "https://www.twosapp.com/"
+          },
+          {
+            "claim": "Recall: Free tier (10 summaries a month) includes API/MCP access; Plus $10 and Max $38 billed yearly; auto knowledge-graph connections and smart tags on Plus",
+            "verdict": "confirmed",
+            "correction": "The research's privacy claim ('stored mainly on device, backups on Google Cloud in the EU') could not be verified.",
+            "sourceUrl": "https://www.recall.it/pricing"
+          },
+          {
+            "claim": "Saner.ai: Free (100 notes), Starter $8/mo, Standard $16/mo; 'We do not train, sell, or share your data'; AI suggests tags from content and previous tags",
+            "verdict": "confirmed",
+            "correction": "Free also caps AI at 30 messages a month.",
+            "sourceUrl": "https://www.saner.ai/pricing"
+          },
+          {
+            "claim": "Napkin is iPhone-only and Android is not in development; Swiss company with servers in Europe that shares no data with AI companies",
+            "verdict": "confirmed",
+            "correction": "Napkin also has no web app. A desktop prototype was discontinued on June 30, 2026.",
+            "sourceUrl": "https://www.napkin.one/"
+          },
+          {
+            "claim": "AnyNotes+: indie iPhone app whose AI Inbox gives clearer titles, summaries and next steps, with Topics synthesis, briefs and task lists; requires the user's own OpenAI key or a Codex sign-in; Pro $14.99; no data collected",
+            "verdict": "confirmed",
+            "correction": "Latest version 1.9 (July 31), iOS 17+. Too few ratings to show a score.",
+            "sourceUrl": "https://apps.apple.com/lb/app/anynotes/id6745427912"
+          },
+          {
+            "claim": "Brain Dump: AI Notes & Writing was last updated Aug 31 2024; Voicethoughts v1.0.4 was released July 31 2025, has 2 ratings, and one review says 'possible scam'",
+            "verdict": "confirmed",
+            "correction": "Voicethoughts sorts into categories 'like Ideas, Todos, Rants, Journal entries, etc.', so they are not strictly fixed.",
+            "sourceUrl": "https://apps.apple.com/us/app/voicethoughts-ai-brain-dump/id6745749081"
+          },
+          {
+            "claim": "Anytype: Any Source Available License 1.0, local-first, end-to-end encrypted (any-sync), no AI organization; mobile unverified",
+            "verdict": "confirmed",
+            "correction": "The license and encryption claims are confirmed from the anytype-ts repo. Also relevant: there is an official, MIT-licensed Anytype MCP server (anyproto/anytype-mcp, about 524 stars) that lets Claude search and edit objects, types and tags. Paid tier prices remain unverified on anytype.io.",
+            "sourceUrl": "https://github.com/anyproto/anytype-mcp"
+          },
+          {
+            "claim": "Granola: Basic free (30-day history), Business $14/user/mo (includes MCP), Enterprise $35",
+            "verdict": "confirmed",
+            "correction": "MCP is available on all plans, including free Basic (limited to personal notes from the last 30 days), not only on Business.",
+            "sourceUrl": "https://www.granola.ai/pricing"
+          },
+          {
+            "claim": "Whitespace: no product combines RTO's six pieces, including '(6) delivery inside Claude', so the open space is structure inside the assistant the owner already uses",
+            "verdict": "refuted",
+            "correction": "The six-piece combination may still be unique (unverifiable), but 'inside Claude' is not a differentiator. Mem has had an official Claude connector since March 2026 (15 tools: capture and recall ideas, save chats into notes, organize collections). The Mem0 connector is in Anthropic's official Connectors Directory. Capacities, Tana, Twos, Recall, Voicenotes, Granola, AudioPen and Letterly all expose MCP, and Evernote's MCP is in beta.",
+            "sourceUrl": "https://claude.com/connectors/mem"
+          }
+        ],
+        "omissions": [
+          "Anthropic's own first-party Productivity plugin (anthropics/knowledge-work-plugins) runs in Cowork and Claude Code. It learns people, projects and workplace shorthand into CLAUDE.md plus a memory/ directory, tracks tasks in TASKS.md, has /start and /update to triage stale items, and a local HTML dashboard. The platform owner is shipping free, as a Claude plugin, part of what RTO does (person and project memory, open items, staleness triage). https://github.com/anthropics/knowledge-work-plugins/tree/main/productivity",
+          "Mem's official Claude connector (added to Claude's directory March 2026, hosted at mcp.mem.ai) lets users capture, recall and organize ideas from inside Claude, including mobile. It is missing from Mem's entry and directly undercuts RTO's planned phase 2 (a hosted connector usable from the phone). https://claude.com/connectors/mem",
+          "The Mem0 Claude connector is listed in Anthropic's official Connectors Directory: hosted MCP at mcp.mem0.ai, 11 memory tools, works in claude.ai, Desktop and Cowork. It is another in-Claude memory layer. https://mem0.ai/blog/mem0-claude-connector-persistent-memory-across-every-chat",
+          "ChatGPT memory 'Dreaming' (June 4, 2026, US Plus and Pro first) is missing from the platform-risk list. It synthesizes memory in the background across chat history and shows a topic-organized summary where the user can correct, suppress or delete items. That is a more autonomous and reviewable platform rival than Claude memory. https://tech-insider.org/chatgpt-dreaming-v3-memory-update-2026/",
+          "Hjarni is a hosted Markdown knowledge base built for Claude and ChatGPT over MCP. It has iOS, iPadOS and Android apps plus web, wiki-links, and per-folder AI instructions. Free up to 25 notes, Pro $12/mo, Teams $20/seat, EU-hosted, encrypted in transit and at rest (not end-to-end), never trains on notes, Markdown export. It is very close to RTO's hosted-connector phase. https://hjarni.com/pricing",
+          "Supermemory: a managed MCP memory server plus a Claude Code plugin. Memories are 'extracted, linked to what the graph already knew, updated when facts change, and forgotten when they expire', which means automatic linking with no approval step. https://supermemory.ai/mcp/",
+          "Evernote has an MCP server in beta at mcp.evernote.com that lets Claude, ChatGPT and Cursor read, search and create notes. Evernote's entry misses its Claude path. https://evernote.com/mcp",
+          "Anytype's official MCP server (anyproto/anytype-mcp) means an end-to-end encrypted, local-first typed-object store can already be driven by Claude. That do-it-yourself combination is the nearest substitute for RTO's 'encrypted store plus Claude' pitch. https://github.com/anyproto/anytype-mcp",
+          "WizNote: Brain Dump AI (iOS, 4.9 stars from 52 ratings, $6.99/mo, $29.99/yr, $49.99 lifetime) auto-categorizes voice, photo and text captures into category-specific smart cards. It is an actively updated indie consumer analog that is missing from the list. https://apps.apple.com/us/app/wiznote-brain-dump-ai/id6757632086",
+          "Plan-gating detail that affects the 'phone path' comparison: Capacities MCP is labeled Capacities Pro, Tana Outliner's hosted MCP needs a paid plan (the local one is free), and Keep Live needs Google AI Plus, Pro or Ultra."
+        ],
+        "summary": "I checked 30 claims by opening the vendor, GitHub, App Store and support pages cited below. Most product facts hold up: existence, pricing, the Khoj and Reor shutdown dates, the approval features of Tana, Smart Dedupe and claude-obsidian, Claude memory, and Heptabase's privacy model. Nine claims are wrong or overstated:\n\n- **obsidian-second-brain** (the closest rival) has 47 commands and 8 builds, not 45 and 6.\n- **It also has phone capture.** A Telegram bot collects captures and /obsidian-catchup files them, so 'no phone path' is wrong.\n- **Capacities' MCP server** lists 19 tools, not 17, and is labeled as a Pro feature.\n- **Evernote prices** cited from eesel are wrong. The article says $8.25/mo and $20.83/mo, not $14.99 and $24.99.\n- **Evernote titles** are applied automatically. They are not offered as accept, edit or dismiss suggestions.\n- **Reflect's 'no logs are kept'** overstates it. OpenAI keeps API logs for 30 days, and audio and AI text are not end-to-end encrypted. The Doyensec audit itself is confirmed.\n- **Keep Live** needs a paid Google AI plan (Plus, Pro or Ultra).\n- **'Reor's archiving leaves no active local auto-link product'** is wrong. Smart Connections is still maintained.\n- **The whitespace claim '(6) delivery inside Claude'** is the biggest problem for decisions. Mem has had an official Claude connector for capture, recall and organizing since March 2026. The Mem0 connector is in Anthropic's official directory. Anthropic's own Productivity plugin already tracks people, projects and tasks in Cowork and Claude Code. Hjarni offers a hosted MCP notes store with phone apps. Evernote (beta), Capacities, Tana, Twos, Recall, Voicenotes and Granola all expose MCP.\n\nWhat still looks defensible is the combination of four things together: approval-gated restructuring, action-oriented recall views (open items, decision tree, talk checklist), true end-to-end or local encryption, and one-line 'subject: detail' capture. Being Claude-native alone is not an advantage.\n\nTwo more omissions: ChatGPT's 'Dreaming' memory (June 2026, reorganizes memory by topic in the background) is missing from the platform-risk list, and Supermemory, an auto-linking managed MCP memory service, is not covered.\n\nI could not verify from official pages: Smart Connections Pro and Anytype prices, Recall's storage model, and whether Heptabase has shipped agent tagging since May."
+      }
+    }
+  ]
+}
