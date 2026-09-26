@@ -1,0 +1,9 @@
+{
+  "name": "@rto-spikes/s2-keyring",
+  "private": true,
+  "description": "Spike S2 (issue #7): OS keychain via @napi-rs/keyring from processes with stripped environments.",
+  "type": "module",
+  "dependencies": {
+    "@napi-rs/keyring": "2.1.0"
+  }
+}

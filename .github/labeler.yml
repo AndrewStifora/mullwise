@@ -20,5 +20,6 @@ security-review:
           - biome.json
           - lefthook.yml
           - scripts/hooks/**
+          - spikes/**
           - SECURITY.md
           - docs/security/**
