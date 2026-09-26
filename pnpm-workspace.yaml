@@ -1,5 +1,6 @@
 packages:
   - packages/*
+  - spikes/*
 
 # --- Supply-chain hardening (docs/research/platform-and-engineering-facts.md §E) ---
 

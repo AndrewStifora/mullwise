@@ -1,0 +1,12 @@
+{
+  "name": "rto-spike-market",
+  "description": "Local marketplace for spike S1 (issue #7). Remove after the spike.",
+  "owner": { "name": "Mullwise spikes" },
+  "plugins": [
+    {
+      "name": "rto-spike",
+      "source": "./rto-spike",
+      "description": "Spike S1 probe plugin"
+    }
+  ]
+}

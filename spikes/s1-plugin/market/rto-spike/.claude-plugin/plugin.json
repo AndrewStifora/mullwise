@@ -1,0 +1,6 @@
+{
+  "name": "rto-spike",
+  "version": "0.0.1",
+  "description": "Spike S1 (issue #7): probe plugin for enablement, env, tool naming and result channels. Not for real use.",
+  "defaultEnabled": false
+}
