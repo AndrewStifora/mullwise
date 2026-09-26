@@ -1,0 +1,1142 @@
+{
+ "plan": {
+  "title": "RTO delivery plan (corrected): encrypted, workspace-scoped local plugin in daily use in about 2-3 weeks, organizing loop and periodic digest by about week 4-5, phone capture in phase 2",
+  "summary": "RTO ships as one Claude Code plugin:\n- a skill that holds the organizing method\n- a stdio MCP server that does deterministic retrieval, validation, provenance and rendering\n- a TTY-gated `rto` CLI for human-only admin work\n\nAll three share one encrypted local vault. Claude, on Andrew's subscription, makes every judgment. The server calls no model, holds no API key and makes no network calls in phase 1.\n\nThe plugin is enabled only in the RTO workspace: `defaultEnabled: false`, enabled per project, with a server-side workspace flag as a backstop.\n\nTool results are one text block: framed `<rto:data>` markdown plus a trailing, free-text-free `rto-refs` JSON. There is no outputSchema or structuredContent. The workspace denies shell, write, web, terminal-panel and outbound connector tools, turns off auto memory, and disables auto and bypass permission modes.\n\nThe repo already exists (public AndrewStifora/mullwise, with its bootstrap ruleset). P0 therefore only adds CI, required checks, three critical spikes and the ADRs that P1a needs.\n\nPhases:\n- **P0** (2-3 days): rails and spikes S1-S3.\n- **P1a** (5-7 focused days, about week 2-3): the minimal encrypted capture / search / recall / tick loop, then the first-real-data gate.\n- **P1b** (6-9 days, about weeks 4-5): links, subject proposals, expansion, approvals, undo, views, a counts-only scheduled digest, and evals with red-team cases.\n- **P1.5**: Desktop Chat, rekey/forget, Remote Control hygiene, deep scheduled tests.\n- **P2a**: skill-orchestrated connectors.\n- **P2b**: write-only sealed-inbox connector (independent of P2a).\n- **P3**: on measured need, including release pipeline, printing and a disclosure ledger.",
+  "phases": [
+   {
+    "id": "P0",
+    "name": "Finish rails, critical spikes, ADRs (optional gated method lab)",
+    "goal": "Add CI and required checks to the existing public repo. Settle the three critical-path platform unknowns in about a day. Write the ADRs that P1a depends on.",
+    "surfaces": "Developer only: GitHub, Claude Code terminal and Code tab, PowerShell 7.\n\nOptional lab: a personal skill writing to %USERPROFILE%\\rto-lab, used from a dedicated lab folder.",
+    "deliverables": [
+     "Repo governance, already done and verified by gh api on 2026-09-25:\n- public AndrewStifora/mullwise, bootstrap commit f4aead8\n- 'main protection' ruleset: PR with 0 approvals, squash only, linear history, no deletion or force-push, admin bypass via PR only\n- 'release tags' ruleset\n- labels (type:*, security-review, phase:0-3, epic, good first issue)\n- secret scanning and push protection, private vulnerability reporting, Dependabot security updates\n- SHA-pinning required\n\nRemaining: add required checks ci-ok and CodeQL to 'main protection'.",
+     "Toolchain:\n- Node 24.21 LTS in .node-version; engines '>=24.15' with no upper bound\n- pnpm 11.9 hardened: minimumReleaseAge 4320 with an exclude for @modelcontextprotocol/*, strictDepBuilds, allowBuilds for esbuild and lefthook only, blockExoticSubdeps, trustPolicy no-downgrade\n- TypeScript strict\n- Biome 2.5 with noRestrictedImports (per-file override for dpapi.ts) and noRestrictedGlobals for fetch, WebSocket and EventSource\n- Vitest 4.1.11, fast-check 4.10\n- lefthook and commitlint",
+     "CI:\n- ci.yml: static, test (ubuntu and windows), e2e-mcp, gitleaks, osv-scanner\n- ci-ok with `if: always()` via a SHA-pinned re-actors/alls-green (allowed-skips: dependency-review)\n- codeql.yml, labeler.yml, pr-title.yml\n- dependabot.yml for github-actions only\n- permissions {}, persist-credentials false, Harden-Runner in audit mode",
+     "Spikes S1-S3, about 1 day, recorded in ADRs:\n- **S1:** hello plugin in the terminal and the Code tab. Record:\n  - the exact env the server receives on Windows\n  - the tool prefix\n  - whether explicit allow rules suppress prompts\n  - requiresUserInteraction prompting in the Code tab\n  - that a text-only result reaches the model\n  - whether settings env RTO_WORKSPACE reaches .mcp.json `${RTO_WORKSPACE:-0}`\n  - defaultEnabled:false plus project enabledPlugins\n  - that a Read(~/AppData/Local/rto/**) deny matches\n- **S2:** DPAPI through the hard-coded powershell.exe from a Code-tab process with a stripped env; timing.\n- **S3:** node:sqlite on 24.21 with 2 processes plus the CLI; busy timeout; temp_store=MEMORY.\n\nS4 (lockfile parsing) and S5 (transcript-cleanup semantics) are deferred to P1b.",
+     "Docs:\n- roadmap.md\n- ADRs 0001-0005, 0007 and 0009. ADR-0006 is written at P1b start and ADR-0008 at P2b start.\n- threat-model.md skeleton: assets, data flows, unverified-facts register. v1 comes at the P1a gate.\n- a short per-PR review-checklist.md\n- host-hygiene.md\n- testing/strategy.md\n\nCONTRIBUTING edits:\n- required checks are ci-ok plus CodeQL\n- §7: no releases or .mcpb until install docs for others exist; versions bumped by `pnpm bump`",
+     "Optional method lab (phase0/rto-lab/SKILL.md), producing method.md and at least 20 fictionalized eval scenarios that pass a re-identification check"
+    ],
+    "exitCriteria": [
+     "The first issue-branch PR merges through the ruleset with ci-ok green on both OSes",
+     "A deliberately failing PR shows ci-ok red and cannot merge",
+     "zizmor and actionlint are clean",
+     "S1-S3 each have an outcome, a chosen path and a fallback in an ADR",
+     "Andrew has confirmed his Device Encryption status"
+    ],
+    "securityGate": "Repo baseline:\n- required checks active\n- workflows least-privilege, no pull_request_target\n\nLab gate:\n- The lab folder is outside OneDrive, git and sync; the lab session folder has autoMemoryEnabled false.\n- If Device Encryption is off, only non-sensitive thoughts go in.\n- Hard stop on day 10 or at P1a go-live.\n- At the stop, Andrew confirms deletion of: the lab folder; that folder's ~/.claude/projects transcripts, memory and tool-results; and its Desktop sessions.",
+    "estimate": "2-3 working days; the lab takes 1-2 hours to set up"
+   },
+   {
+    "id": "P1a",
+    "name": "Minimal encrypted walking skeleton in daily use",
+    "goal": "Real thoughts go into an encrypted vault from the first capture. Andrew can:\n- capture 'subject: detail' or free text; subject-less captures go to the Inbox and are organized in bulk by the first P1b digest\n- recall a brief, checklist or overview in one call\n- tick items\n\nRecovery is proven.",
+    "surfaces": "Plugin 'rto', enabled only in C:\\Users\\astif\\RTO.\n\nTools: capture, search, recall (brief, checklist, overview), mark (set_item_state, add_item), status.\n\n`rto` CLI in an external Windows Terminal (pwsh).",
+    "deliverables": [
+     "@rto/core:\n- zod v4 schemas and events with upcasters; reducers\n- parser; ULIDs; ownerId 'me'; origin fixed per tool, with origin and trust derived server-side from sourceRef\n- sanitizer: Unicode tag, bidi and zero-width characters flagged and stripped; fake closers and backtick fences inside data escaped\n- renderers emitting framed markdown plus a trailing `rto-refs` JSON (ids, numbers, enums, candidate token; no free text)",
+     "@rto/crypto: envelope v1 (AES-256-GCM, AAD, 256-byte padding), DEK wrap, recovery-key derivation via HKDF-SHA256 over the 130-bit code, known-answer vectors",
+     "@rto/store:\n- keyring: DPAPI via C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe (existence-checked; SystemRoot from env or C:\\Windows); recovery; env-test\n- NodeSqliteEventStore: WAL, 5 s busy timeout, secure_delete, temp_store=MEMORY, BEGIN IMMEDIATE with seq contiguity\n- meta.epoch (a random token) and keyId re-checked inside every append\n- formatVersion forward-compatibility refusal\n- vault dir from userConfig vaultDir, else os.homedir()\\AppData\\Local\\rto\n- no snapshots",
+     "@rto/mcp-server:\n- SDK v2 serveStdio (default serves both eras), text-only results, static descriptions, caps and pagination (each page under 8k tokens, so no spill)\n- stderr allow-list logger, tools/list snapshot\n- locked mode, including locked unless RTO_WORKSPACE=1",
+     "@rto/cli: init, add, status, backup --to, verify, and recover [--from backup].\n- init shows the recovery code on the alternate screen, clears it including scrollback, and requires a re-type\n- recover reads the code with echo off; TTY plus typed confirmation\n- restore replaces rows in one BEGIN IMMEDIATE transaction and sets a fresh epoch; never a file swap\n- `rto add` with no argument prompts or reads stdin\n- installed via a documented pwsh profile function",
+     "Plugin and workspace:\n- plugin.json: defaultEnabled false, userConfig vaultDir; .mcp.json passes vaultDir and RTO_WORKSPACE\n- skill v0\n- local marketplace; `pnpm bump` for plugin versions\n- workspace template (see components)\n- host-hygiene.md, including a PSReadLine AddToHistoryHandler that returns MemoryOnly for 'rto *' and otherwise chains to GetDefaultAddToHistoryOption",
+     "Tests:\n- unit, property\n- 2-process integration\n- real DPAPI on the windows runner, including a stripped env\n- MCP in-process on the 2025 era; stdio E2E\n- canary scans; one net-guard preload on both OSes\n- TTY gating; HKDF cross-OS; CLI/server version-skew; contract snapshots"
+    ],
+    "exitCriteria": [
+     "At least 20 real captures over 3 days; one-call recall; ticks without prompts",
+     "RTO's own files contain no plaintext. Canary scans also cover ~/.claude/projects/<RTO>/memory and tool-results after a scripted session.",
+     "Recovery drill: backup, wipe, `rto recover --from`, equal projection hash",
+     "ci-ok and CodeQL green",
+     "The effective tool list in the RTO workspace (/mcp, /permissions) shows only rto plus the allowed built-ins"
+    ],
+    "securityGate": "First-real-data gate:\n- Threat model v1 (STRIDE + LINDDUN), including host residuals: transcripts; Desktop sessions kept at any age; auto memory; tool-results spill; the Terminal panel readable by Claude; PSReadLine history; Remote Control transcripts; Anthropic retention; the DEK passing through PowerShell stdout (assumes no module logging or transcription)\n- crypto checklist\n- canary and no-network checks required\n- TTY gating plus workspace denies\n- child_process only in dpapi.ts (Biome)\n- SECURITY.md updated: CLI-only export and purge; DPAPI plus recovery code; Anthropic sees tool I/O; residuals",
+    "estimate": "5-7 focused days (about 1.5-2 part-time weeks), landing in weeks 2-3"
+   },
+   {
+    "id": "P1b",
+    "name": "Organizing loop and periodic digest",
+    "goal": "Deliver:\n- automatic labelled links\n- AI subject proposals\n- expansion\n- approval-gated rename, merge and split\n- undo\n- tree, talk and person views\n- decision choice\n- a digest, on demand and weekly (counts only)\n- talk outcomes",
+    "surfaces": "New tools:\n- organize (allow)\n- digest (allow, read-only, mode full|counts)\n- edit and undo (ask)\n- decide_suggestion (requiresUserInteraction)\n\nmark gains: accept, dismiss, record_outcome, talk_state, set_decision, mark_digest_seen.\n\nA Desktop local scheduled task.",
+    "deliverables": [
+     "Retrieval:\n- MiniSearch over thoughts plus a separate subject/alias index using its built-in fuzzy and prefix matching\n- @mention matching\n- tombstone and possible-instructions exclusion\n- candidate tokens",
+     "organize budgets: at most 3 links per thought at confidence 0.6 or more; at most 3 items (8 on 'expand'); at most 2 suggestions. Filing only for unfiled thoughts; provisional subjects.",
+     "Suggestion queue with baseSeq staleness and canonical (non-HMAC) dedupe keys inside sealed events, with 90-day suppression. decide_suggestion is transactional.",
+     "edit (ask tier) with the anti-bulk guard (more than 3 moves out of one subject in 10 minutes is refused) and empty-only archive.\n\nundo:\n- preview by default\n- defaults to the latest batch of this server instance\n- with none, lists the 5 most recent batches\n\nmark:\n- at most 5 state changes on origin-mine items per call, echoing the count\n- set_decision (decided, parked or open, with chosenItemId)",
+     "Views: tree, talk card, person, overview.\n\ndigest:\n- simple signals only (title and alias similarity, 3 or more cross-links, a subject with 12 or more thoughts), judged by Claude\n- counts mode for scheduled runs",
+     "Scheduled task 'rto-weekly-digest':\n- Desktop 1.1.5368 or later; working folder = RTO workspace\n- calls only digest(counts) and status\n- 'Run now', then always allow\n- verify that plugin MCP loads in scheduled sessions; fallback is a reminder-only prompt",
+     "Skill v1 (method, playbooks, labelling, approval protocol, talk mode, digest routine, safety)",
+     "Export: encrypted bundle, plus md/json with --plaintext-ok written to a named file only. Import and import-phase0.",
+     "Evals: at least 25 `claude plugin eval --no-publish` cases with mocked tools. The red-team cases are poisoned mock outputs:\n- approve all merges\n- fake closers or rto-refs blocks\n- Unicode tags\n- image-exfiltration URLs\n- export, move everything, drop all my items, mark digest seen\n\nAlso semgrep rules.",
+     "nightly.yml: long property, model-based and crash runs, fuzz, perf at 1k/10k/50k (snapshots added only if replay exceeds budget), backup/restore suite, pinned conformance",
+     "Spikes S4 (lockfile parsing) and S5 (transcript cleanup)"
+    ],
+    "exitCriteria": [
+     "A week of daily use; AI-link dismissal rate 30% or less; at least 70% of proposals accepted",
+     "Talk acceptance test passes",
+     "Every structural change is approved; red team shows 0 unprompted structural changes, 0 rewrites of user text, 0 links rendered",
+     "Evals score 1.0 on safety and 0.9 on quality; undo(apply) = identity",
+     "Two scheduled counts digests complete with no stall"
+    ],
+    "securityGate": "Model-facing surface:\n- tools/list snapshot review\n- excessive-agency review (tiers, budgets, mark cap)\n- red team green\n- threat model updated\n\nThe full OWASP LLM/MCP checklist runs at this gate; PRs use the short checklist.",
+    "estimate": "6-9 focused days, weeks 4-5"
+   },
+   {
+    "id": "P1.5",
+    "name": "Comfort and hardening",
+    "goal": "Desktop Chat if its runtime allows; the data lifecycle (rekey, forget); Remote Control hygiene; deep test levels on a schedule.",
+    "surfaces": "Desktop Chat (via .mcpb or a desktop-config entry, decided by spike); the CLI",
+    "deliverables": [
+     "Desktop Chat spike. ADR-0005 picks exactly one server per session:\n- a .mcpb, only if it does not load into Code-tab sessions and has node:sqlite; or\n- a desktop-config entry that replaces the plugin's .mcp.json, with allow rules rewritten for its prefix and the workspace lock guard\n\nRTO chats run in a memory-off Project or incognito. Add 2026-07-28 tests if Chat negotiates that version.",
+     "rekey, with an optional new recovery code.\n\nforget --compact:\n- tombstone, compaction and rekey in one maintenance run, bumping epoch and compactionBaseSeq\n- then VACUUM and wal_checkpoint(TRUNCATE)\n- verify checks contiguity from the base; no undo before the base\n- older backups still contain the thought (documented)",
+     "Remote Control runbook:\n- turn on Require trusted devices (Pro/Max, off by default)\n- remoteControlAtStartup false in the workspace\n- leave DISABLE_TELEMETRY unset\n- RC transcripts are a residual",
+     "mutation.yml (Stryker on Vitest 4.1), evals.yml (--trust-plugin, pinned --model and --judge-model, --max-cost-usd, --no-publish, protected environment), scorecard.yml; headless claude -p E2E if the API key is approved; Harden-Runner in block mode"
+    ],
+    "exitCriteria": [
+     "Desktop Chat decision recorded",
+     "Forget or rekey while a server runs neither resurrects nor loses data",
+     "Mutation score 70% or more",
+     "Red team: 0 high findings"
+    ],
+    "securityGate": "Review the Desktop runtime and config (no secrets, single server), the rekey/compaction crypto and the threat model.",
+    "estimate": "About 4 days, weeks 5-6"
+   },
+   {
+    "id": "P2a",
+    "name": "Integrations via Andrew's existing connectors",
+    "goal": "Calendar drives talk prep, the Trello Inbox provides capture, and Pocket feeds debriefs. All skill-only; RTO holds no tokens.",
+    "surfaces": "Sessions with the Calendar, Trello and Pocket connectors enabled beside rto",
+    "deliverables": [
+     "Recipes: /rto today, /rto week, /rto inbox, /rto push, /rto debrief, and a Dayhand handoff",
+     "Server-derived provenance: sourceRef systems trello, gcal and pocket get origin import and trust untrusted-external, with a possible-instructions scan. Pocket outcomes stay import until adopted.",
+     "Workspace permissions:\n- allow named read tools\n- ask on writes\n- deny the observed send/share/delete tools: Gmail send_message, forward, reply; Calendar respond_to_event, delete_event, create_event, update_event; Slack send; Drive share_file; Trello writes\n\nCover both the UUID naming and the mcp__claude_ai_* naming. Per-tool 'Blocked' under Customize > Connectors is documented for Team/Enterprise owners only; check whether Andrew's plan offers it.",
+     "Evals and red team with poisoned calendar and transcript text"
+    ],
+    "exitCriteria": [
+     "Talk prep from a real event",
+     "A Trello Inbox capture ingested later",
+     "One Pocket debrief with carry-forward",
+     "Connector-write evals score 1.0"
+    ],
+    "securityGate": "LINDDUN update per connector, a lethal-trifecta analysis, red-team extension",
+    "estimate": "3-4 working days"
+   },
+   {
+    "id": "P2b",
+    "name": "Write-only sealed-inbox connector",
+    "goal": "Phone capture while the PC is off. The server stores only ciphertext. Plaintext exists transiently in Worker memory and at Anthropic.",
+    "surfaces": "A custom connector with the single tool inbox_capture; `rto inbox pull`",
+    "deliverables": [
+     "apps/inbox on Cloudflare Workers:\n- createMcpHandler (default stateless legacy; serves both eras)\n- workers-oauth-provider with CIMD (verify)\n- allow-listed GitHub IdP; one Durable Object\n- never returns input_required; no MRTR or elicitation",
+     "Sealing with ECDH P-256, HKDF and AES-GCM (a sealed-box issue in @rto/crypto). inbox_capture's description demands the user's exact words. Captures are stored as import / untrusted-external.",
+     "`rto inbox pull` with a DPAPI-wrapped token",
+     "OAuth hardening, ZAP, incident runbook, SECURITY.md revision (outbound network, a new processor, residuals)"
+    ],
+    "exitCriteria": [
+     "A capture made with the PC off arrives after a pull",
+     "A compromise simulation yields no plaintext at rest",
+     "OAuth negative tests pass",
+     "Both protocol eras tested against real claude.ai (claude-ai-mcp#1027)"
+    ],
+    "securityGate": "The full internet-exposure gate (CONTRIBUTING §5): threat-model rewrite, recorded review, DAST, protected environment",
+    "estimate": "1-2 weeks part-time"
+   },
+   {
+    "id": "P3",
+    "name": "Larger tools and others (on measured need)",
+    "goal": "Grow only on triggers.",
+    "surfaces": "Remote vault or E2E sync, MCP Apps, embeddings, a hosted store, multi-user",
+    "deliverables": [
+     "Release pipeline before any install docs for others: release-please, plugin zip, SBOM, attestation, plus an optional .mcpb",
+     "On request: `rto print` cue card; a disclosure ledger in a separate non-event table",
+     "Store replay; CandidateRetriever v2 if recall@8 is below 0.8; MCP Apps after a Windows spike; tenancy, DPIA, rename"
+    ],
+    "exitCriteria": [
+     "Each item cites its trigger metric",
+     "External review before any multi-user release"
+    ],
+    "securityGate": "Pen test or structured review, DPIA, VDP",
+    "estimate": "Open"
+   }
+  ],
+  "components": [
+   {
+    "name": "rto-lab skill (P0, optional)",
+    "responsibility": "Method lab over markdown, gated and time-boxed",
+    "tech": "SKILL.md plus built-in file tools"
+   },
+   {
+    "name": "@rto/core",
+    "responsibility": "Pure domain logic:\n- schemas, events, reducers\n- parser and sanitizer\n- retrieval (MiniSearch)\n- suggestions, undo, digest signals\n- renderers producing framed markdown plus rto-refs",
+    "tech": "TypeScript, zod 4.6, minisearch 7.2; no node:* imports"
+   },
+   {
+    "name": "@rto/crypto",
+    "responsibility": "Envelope v1, DEK wrap, HKDF recovery derivation, KATs; the P2b sealed box later",
+    "tech": "WebCrypto only"
+   },
+   {
+    "name": "@rto/store",
+    "responsibility": "The only package touching the filesystem, keys or processes.\n- keyring providers\n- NodeSqliteEventStore with epoch and keyId checks\n- backup, recover, verify, export, import\n\nThe JSONL store is a documented option only.",
+    "tech": "node:sqlite (RC), node:crypto, child_process in dpapi.ts only"
+   },
+   {
+    "name": "@rto/mcp-server",
+    "responsibility": "The stdio server for 10 tools:\n- text-only results with rto-refs\n- requiresUserInteraction on decide_suggestion\n- caps and pagination; no maxResultSizeChars\n- workspace lock; stderr allow-list logging",
+    "tech": "@modelcontextprotocol/server 2.1.x serveStdio; esbuild single file"
+   },
+   {
+    "name": "@rto/cli (`rto`)",
+    "responsibility": "Human-only commands:\n- init, add, status, backup, verify, recover [--from]\n- later: export, import, rekey, forget, inbox pull\n\nTTY-gated. Secrets use the alternate screen and echo off. Plaintext goes to named files only.",
+    "tech": "Node 24.21, parseArgs; pwsh profile function"
+   },
+   {
+    "name": "rto plugin",
+    "responsibility": "Skill, .mcp.json, evals and mocks.\n- defaultEnabled false\n- userConfig vaultDir (non-sensitive)\n- installed with `claude plugin install --scope project` from the RTO workspace\n- versions bumped by `pnpm bump`",
+    "tech": "Claude Code plugin format"
+   },
+   {
+    "name": "RTO workspace folder",
+    "responsibility": "C:\\Users\\astif\\RTO, holding no data.\n\nCLAUDE.md for inbox mode.\n\n.claude/settings.json:\n- enabledPlugins rto: true\n- allow: explicit mcp__plugin_rto_rto__ tool names\n- ask: edit, undo\n- deny: Bash, PowerShell, Write, Edit, NotebookEdit, WebFetch, WebSearch, Artifact, mcp__terminal, mcp__claude_ai_*, Read(~/AppData/Local/rto/**)\n- permissions.disableAutoMode and disableBypassPermissionsMode 'disable'\n- autoMemoryEnabled false; remoteControlAtStartup false; cleanupPeriodDays\n- env: CLAUDE_CODE_DISABLE_AUTO_MEMORY=1, DISABLE_FEEDBACK_COMMAND=1, CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1, DISABLE_ERROR_REPORTING=1, RTO_WORKSPACE=1\n\nsettings.local.json (environment-specific):\n- deniedMcpServers for Andrew's other user-scope servers (Windows-MCP, Gemini-MCP, firecrawl, playwright and others)\n- enabledPlugins false for his other plugins\n- permission denies for Desktop in-process servers (computer-use, claude-in-chrome, Claude_Browser) and observed UUID connectors, which deniedMcpServers does not cover\n\nRunbook: per-session connector toggle off.",
+    "tech": "Claude Code settings"
+   },
+   {
+    "name": "CI & security pipeline",
+    "responsibility": "ci-ok aggregate with `if: always()`; CodeQL; nightly (P1b); mutation, evals and Scorecard (P1.5)",
+    "tech": "Actions pinned by SHA, alls-green, Harden-Runner, gitleaks, OSV, zizmor, actionlint, semgrep (P1b)"
+   },
+   {
+    "name": "apps/inbox (P2b)",
+    "responsibility": "Write-only sealed inbox",
+    "tech": "Workers, Durable Object, createMcpHandler, workers-oauth-provider"
+   }
+  ],
+  "storage": {
+   "engine": "Sealed event log stored as BLOB rows in node:sqlite at <vaultDir>\\vault\\rto.db.\n\nTables:\n- meta: vaultId, formatVersion, epoch token, compactionBaseSeq, wrapped DEKs\n- events\n- snapshots (added only when the bench needs them)\n\nSettings: WAL, 5 s timeout, secure_delete, temp_store=MEMORY.\n\nAppends run in BEGIN IMMEDIATE and re-check seq, epoch and keyId, reloading on mismatch. Tail refresh before every call. In-memory projection.",
+   "encryption": "AES-256-GCM per record with a random IV. AAD = rto/v1|vaultId|table|seq|keyId. Records padded to 256 bytes. verify checks contiguity from compactionBaseSeq and fails closed. Plaintext in RAM or the pagefile, and same-user malware, are out of scope.",
+   "keyManagement": "A random DEK per vault with these wraps:\n1. DPAPI via the hard-coded, existence-checked Windows PowerShell 5.1 path, the blob on stdin, an explicit SystemRoot/windir, -NoProfile.\n2. Recovery code: 26-character base32 (130 bits), derived with HKDF-SHA256 (salt vaultId), shown once on the alternate screen and re-typed. scrypt was dropped: N=2^17 fails under Node's default maxmem (verified).\n3. env-test for test vaults only.\n\nNever in userConfig, desktop config, argv, logs or tool arguments. Without a key, the server starts locked.\n\nFallback: @napi-rs/keyring would add a native per-platform prebuilt outside the single-file bundle, an allowBuilds review and an ADR amendment.",
+   "backupExport": "Backup:\n- `rto backup --to` writes ciphertext with the recovery wrap only, verified by a decrypt\n- manual, prompted by the digest when older than 7 days; optionally from Windows Task Scheduler\n- no auto-backup in the server\n\n`rto recover --from`: TTY; replaces rows in a single transaction and sets a new epoch.\n\nExport: an encrypted bundle, or md/json with --plaintext-ok to a named file only.\n\nForget: P1.5, as in the phase.\n\nPurge checklist:\n- vault folder\n- ~/.claude/projects transcripts, memory and tool-results\n- Desktop sessions and RC transcripts\n- PSReadLine history\n- backups",
+   "rationale": "Zero native runtime dependencies, ACID multi-process writes, encrypted content and structure, portable ciphertext backups, and the event log serving as change log, undo, audit trail and migration contract.",
+   "alternativesRejected": "- JSONL with a lockfile: kept as a documented option only\n- field-level encryption\n- better-sqlite3-multiple-ciphers (native)\n- FTS5 over plaintext\n- a plain markdown vault (lab only)\n- claude.ai memory stores\n- embeddings now\n- a hosted DB in P1"
+  },
+  "dataModel": "Event-sourced. Entities carry prefixed ULIDs and ownerId 'me'.\n\nProvenance {origin mine|ai|import|system, batchId, at, client, serverInstanceId, confidence?, rationale?, sourceRef?, adoptedAt?, dismissedAt?}. Origin is fixed per tool. Origin and trust are derived server-side from sourceRef: trello, gcal, pocket and remote-inbox become import / untrusted-external.\n\nEntities:\n- **Subject:** kind topic|person|talk|decision|project; aliases; searchTerms; gist; status; expand; talk{withSubjectIds, when, state, goal}; decision{state open|decided|parked, chosenItemId, decideBy}\n- **Thought:** verbatim text; subjectId|null; filing; source; trust; flags; status (active|archived|superseded|tombstoned)\n- **Item:** type, text, state, order, carriedFrom\n- **CrossRef:** relation, status\n- **Tombstone:** canonical key\n- **Suggestion:** kind, payload, baseSeq, dedupeKey, status\n- **Outcome**\n- **DigestState**\n- **Event:** seq, v, type, payload, actor, batchId\n- **VaultMeta:** vaultId, formatVersion, epoch, compactionBaseSeq, wrappedDeks\n\nEvent types include decision.set and vault.rekeyed|compacted|restored. A batch is the undo unit.",
+  "mcpTools": [
+   {
+    "name": "capture",
+    "purpose": "Stores thoughts verbatim and parses 'Subject: detail'. Returns candidates and a token. Allow tier.",
+    "readOnly": false,
+    "destructive": false,
+    "inputs": "{text, subject?, kind?, when?, source?, sourceRef?}; 120 s dedupe",
+    "outputs": "Text: framed markdown plus rto-refs {batchId, thoughts[{id, subjectId, filing, flags}], candidates{token, subjectIds, thoughtIds}}"
+   },
+   {
+    "name": "organize",
+    "purpose": "Links, filing of unfiled thoughts, provisional subjects, expansion items, gist patches, suggestions. Server-enforced token and budgets. Allow tier.",
+    "readOnly": false,
+    "destructive": false,
+    "inputs": "{candidateToken, thoughtIds, fileUnder?, links?, items?, subjectPatch?, suggestions?}",
+    "outputs": "Markdown plus rto-refs {batchId, applied ids, rejected[{path, reason}]}"
+   },
+   {
+    "name": "search",
+    "purpose": "Ranked lexical and fuzzy search; returns a token. Allow tier.",
+    "readOnly": true,
+    "destructive": false,
+    "inputs": "{query, types?, kind?, limit<=20, cursor?}",
+    "outputs": "Framed markdown plus rto-refs {results[{type, id, score}], candidateToken, nextCursor}"
+   },
+   {
+    "name": "recall",
+    "purpose": "Brief, checklist, tree, talk, person or full view, or an overview. Paginated under 8k tokens per page. Allow tier.",
+    "readOnly": true,
+    "destructive": false,
+    "inputs": "{subject?, view?, includeAi?, cursor?}",
+    "outputs": "Framed markdown plus rto-refs {subjectId, item numbers to ids, pending, nextCursor}"
+   },
+   {
+    "name": "digest",
+    "purpose": "Periodic review, strictly read-only. 'counts' mode returns numbers only, for scheduled runs. Allow tier.",
+    "readOnly": true,
+    "destructive": false,
+    "inputs": "{mode: full|counts, since?, staleDays?, limit?}",
+    "outputs": "Markdown plus rto-refs {window, section ids, candidateToken} or counts only"
+   },
+   {
+    "name": "status",
+    "purpose": "Health and runtime information, no content. Allow tier.",
+    "readOnly": true,
+    "destructive": false,
+    "inputs": "{}",
+    "outputs": "rto-refs {locked, keyProvider, counts, formatVersion, runtime, lastBackupAt}"
+   },
+   {
+    "name": "mark",
+    "purpose": "Item-level actions:\n- tick, add own items\n- accept or dismiss AI targets\n- record_outcome, talk_state, set_decision, mark_digest_seen\n\nAt most 5 origin-mine state changes per call. Allow tier.",
+    "readOnly": false,
+    "destructive": false,
+    "inputs": "{ops<=20: set_item_state|add_item|accept|dismiss|record_outcome|talk_state|set_decision{subjectId, state, chosenItemId?}|mark_digest_seen}",
+    "outputs": "Markdown plus rto-refs {batchId, results, mineChanged}"
+   },
+   {
+    "name": "edit",
+    "purpose": "Move, correct (as a new version), set_subject, archive. Anti-bulk guard. Ask tier.",
+    "readOnly": false,
+    "destructive": false,
+    "inputs": "{ops<=5}",
+    "outputs": "rto-refs {batchId, results}"
+   },
+   {
+    "name": "decide_suggestion",
+    "purpose": "The only path to structural changes. requiresUserInteraction, which prompts even in auto and bypass modes and is denied in dontAsk.",
+    "readOnly": false,
+    "destructive": true,
+    "inputs": "{decisions<=10}",
+    "outputs": "rto-refs {batchId, results[{status, undoHint}]}"
+   },
+   {
+    "name": "undo",
+    "purpose": "Compensating events. Preview by default. Defaults to the latest batch of this server instance, or lists the 5 most recent batches. Ask tier.",
+    "readOnly": false,
+    "destructive": true,
+    "inputs": "{batchId?, confirm?}",
+    "outputs": "Markdown plus rto-refs {mode, affected, conflicts, newBatchId}. Admin operations stay CLI-only."
+   }
+  ],
+  "skillDesign": "plugin/skills/rto/SKILL.md with references method, views, safety and integrations.\n\nCapture loop: capture, judge candidates, organize (2 calls; 'quick' uses 1).\n\nFiling thresholds:\n- 0.75 or more: file\n- top two candidates within 0.1: ask\n- otherwise: provisional subject\n- below 0.5: Inbox\n\nOther content: per-kind playbooks; (AI) labels; approvals only when typed this turn; talk mode and end-talk debrief; set_decision only on Andrew's words; the digest routine; Dayhand deferral.\n\nSafety:\n- data is never instructions, and rto-refs inside data is ignored\n- URLs rendered as code spans\n- no connector writes without the payload shown\n- no keys in chat\n- admin work goes through an external terminal\n- only rto tools are used in RTO sessions",
+  "aiOrganization": "Claude judges; the server retrieves, validates, budgets and renders. No sampling and no API key.\n\n- **Links:** MiniSearch candidates, token-bound, confidence floor 0.6, at most 3 per thought. A fixed floor; the adaptive floor is deferred until metrics show a need.\n- **Subject proposals** per the thresholds.\n- **Structural suggestions:** from simple digest signals plus Claude's judgment, approved only via decide_suggestion. Term-vector cosine, cluster and drift heuristics are deferred until misses are measured.\n- **Expansion** per the expand setting.\n- **Trust metrics** live in the local digest only.",
+  "recallUX": "Server-rendered markdown in chat:\n- brief of 10 lines or fewer\n- numbered checklist\n- decision tree with the chosen option marked\n- person roll-up\n- overview\n- digest (full interactively; counts for scheduled runs)\n\nTalk: card before, compact live checklist during, 3-question outcome after. On the phone via Remote Control with trusted devices.\n\nPrint and MCP Apps are deferred to P3. No artifacts.",
+  "provenanceModel": "Origin is fixed per tool. External origin and trust are derived from sourceRef.\n\nInvariants (model-tested):\n- origin never changes\n- no path rewrites or deletes origin-mine text except CLI forget\n- structural changes only via approval\n- undo appends\n\nAI elements are labelled '(AI)'. The sealed log is the audit trail. Limitation: the server cannot verify that text is Andrew's words; mitigated by skill rules and evals.",
+  "integrationsPlan": "P1: none. sourceRef exists from day 1. The lethal trifecta is isolated in the workspace: deniedMcpServers, permission denies and connector toggles.\n\nP2a: skill-only Calendar, Trello and Pocket recipes, with derived untrusted provenance, explicit denies on observed write/send tools, and payload shown before any write.\n\nP2b: the sealed inbox.\n\nP3: first-party integrations behind an IntegrationPort.",
+  "repoLayout": "AndrewStifora/mullwise (public; pnpm 11 workspace):\n- packages/{core, crypto, store, mcp-server, cli}\n- plugin/{.claude-plugin/plugin.json, .mcp.json, skills/rto, workspace-template, evals/{cases, mocks}}\n- .claude-plugin/marketplace.json\n- phase0/rto-lab\n- apps/inbox (P2b)\n- tests/{e2e, fixtures (JSON bundles, never *.db), perf}\n- docs/{product, research, architecture/{roadmap, adr}, security/{threat-model, review-checklist, host-hygiene}, testing, user}\n- .github/{workflows, labeler.yml, dependabot.yml}\n\nThe store package is named 'store' because of the vault/ ignore rule.",
+  "testingMatrix": [
+   {
+    "level": "Static",
+    "tool": "tsc, Biome (noRestrictedImports, noRestrictedGlobals), claude plugin validate, actionlint, zizmor",
+    "what": "Types, boundaries, no network globals, workflow security",
+    "when": "Every PR (ci-ok)"
+   },
+   {
+    "level": "Unit / property",
+    "tool": "Vitest 4.1.11, fast-check",
+    "what": "Parser, sanitizer, envelope/AAD, HKDF, reducers, budgets, guards, mark cap, undo inverses, renderers, rto-refs schema",
+    "when": "Every PR; long runs nightly from P1b"
+   },
+   {
+    "level": "Integration",
+    "tool": "Vitest with real node:sqlite and DPAPI",
+    "what": "2-process writes, epoch/keyId reload, restore while a server runs, TTY gating, locked mode, stripped env, version skew",
+    "when": "Every PR, both OSes"
+   },
+   {
+    "level": "Model-based / crash",
+    "tool": "fast-check commands",
+    "what": "Concurrent writers, kill during a write, forget/rekey while running",
+    "when": "Nightly from P1b"
+   },
+   {
+    "level": "MCP in-process / stdio E2E / no-network",
+    "tool": "SDK v2 client (2025 era), StdioClientTransport, Inspector CLI, net-guard preload",
+    "what": "Full flows, text-only contract, stdout hygiene, no sockets",
+    "when": "Every PR; 2026-07-28 era added in P1.5 or P2b"
+   },
+   {
+    "level": "Forensic canary",
+    "tool": "testkit scanner",
+    "what": "Vault files, backups, temp and stderr, plus the RTO project's memory and tool-results after a scripted session",
+    "when": "Every PR (the scripted-session scan at gates)"
+   },
+   {
+    "level": "Contract",
+    "tool": "Vitest snapshots",
+    "what": "tools/list, golden views, rto-refs, format fixtures",
+    "when": "Every PR"
+   },
+   {
+    "level": "Evals + red team",
+    "tool": "claude plugin eval (mocks, tool_order, regex, llm graders)",
+    "what": "Verbatim capture, labelling, no unrequested decide/edit/undo, poisoned-mock injection cases",
+    "when": "Locally per skill PR from P1b; weekly in CI from P1.5"
+   },
+   {
+    "level": "Headless E2E",
+    "tool": "claude --bare -p",
+    "what": "Multi-turn scenarios",
+    "when": "P1.5 if the API key is approved"
+   },
+   {
+    "level": "Mutation",
+    "tool": "Stryker 10",
+    "what": "core, crypto, store",
+    "when": "Weekly from P1.5"
+   },
+   {
+    "level": "Perf / conformance / fuzz",
+    "tool": "Vitest bench, pinned conformance, fast-check",
+    "what": "Budgets at 10k; protocol; decoder and importers",
+    "when": "Nightly from P1b"
+   },
+   {
+    "level": "Supply chain",
+    "tool": "CodeQL, gitleaks, OSV, dependency-review (if S4 passes), Scorecard",
+    "what": "Vulnerabilities, secrets, dependencies",
+    "when": "PR and weekly"
+   },
+   {
+    "level": "Dogfood",
+    "tool": "Local digest metrics",
+    "what": "Trust metrics kept locally; retro issues hold only friction categories",
+    "when": "Weekly"
+   }
+  ],
+  "securityPlan": [
+   "Threat model: skeleton in P0, v1 before real data, re-run at every phase, full rewrite before P2b.",
+   "Zero network in P1: Biome import and global bans plus one net-guard preload on both OSes. The node permission model is not relied on: Node 24 has no --allow-net (it was added in 25.0.0), and node:sqlite bypasses fs scoping.",
+   "Encryption at rest; vault outside OneDrive and git; epoch-checked maintenance.",
+   "Key custody: DPAPI plus an HKDF-derived recovery code; locked mode. The DEK passes PowerShell stdout, which assumes no module logging or transcription (documented).",
+   "Admin boundary:\n- TTY gating\n- run in an external Windows Terminal, because Claude can read the Desktop Terminal panel\n- secrets on the alternate screen, echo off\n- plaintext only to files\n- the workspace denies Bash, PowerShell and mcp__terminal outright",
+   "Workspace isolation:\n- plugin enabled only there, with the RTO_WORKSPACE lock\n- deniedMcpServers for other servers\n- permission denies for in-process Desktop servers and UUID connectors\n- auto and bypass modes disabled\n- auto memory off",
+   "Prompt injection: text-only framed results, sanitizer, possible-instructions flag, URLs as code spans, static descriptions, red team.",
+   "Excessive agency: three tiers, budgets, the mark cap, the edit anti-bulk guard, staleness checks, undo.",
+   "Host residuals documented:\n- transcripts, Desktop sessions of any age, scheduled-run sessions (counts only)\n- auto memory, tool-results spill\n- Terminal panel, PSReadLine\n- RC transcripts, Anthropic retention",
+   "Supply chain: hardened pnpm, SHA pins, OSV, CodeQL, ci-ok with always()",
+   "Repo: the existing ruleset plus required checks; never commit user data; eval fixtures get a re-identification check",
+   "P2b: full internet-exposure gate, plus a SECURITY.md revision"
+  ],
+  "ciWorkflows": [
+   "ci.yml: static, test (ubuntu, windows), e2e-mcp, gitleaks, osv, dependency-review (if S4 passes), and ci-ok with if: always() via alls-green (required)",
+   "codeql.yml (required), labeler.yml, pr-title.yml",
+   "nightly.yml (P1b): long property, model-based and crash runs, fuzz, perf, backup suite, conformance",
+   "mutation.yml, evals.yml (protected environment, --trust-plugin, pinned models, cost cap) and scorecard.yml (P1.5)",
+   "dependabot.yml for github-actions only",
+   "release.yml (P3, before install docs for others)",
+   "inbox-ci.yml and deploy-inbox.yml (P2b)"
+  ],
+  "migrationPath": "- The lab moves in via import-phase0.\n- Versioned events with upcasters; replay into any future store.\n- formatVersion forward-compatibility refusal.\n- Surfaces: Code plugin, then Desktop Chat (one server), then the sealed inbox, then remote vault, MCP Apps and a standalone app.\n- Keys: per-device wraps later.\n- Exit ramps: Obsidian markdown and the JSON bundle.\n- The rename is one search-and-replace; GitHub redirects the repo.",
+  "risks": [
+   {
+    "risk": "Key loss",
+    "mitigation": "Re-typed recovery code, monthly verify prompt, backup reminders, restore test"
+   },
+   {
+    "risk": "Device Encryption off",
+    "mitigation": "Andrew confirms and enables it; the lab is limited meanwhile; documented"
+   },
+   {
+    "risk": "Host plaintext copies (transcripts, memory, spill files, Terminal panel, history)",
+    "mitigation": "Workspace settings, counts-only scheduled digest, pagination, external terminal, PSReadLine handler, purge checklist"
+   },
+   {
+    "risk": "Plugin or other servers active in the wrong context (lethal trifecta)",
+    "mitigation": "defaultEnabled false, project enablement, workspace lock, deniedMcpServers and denies, gate check of the tool list"
+   },
+   {
+    "risk": "Stale servers during restore, rekey or forget",
+    "mitigation": "Epoch and keyId re-check per append; transactional restore; tests"
+   },
+   {
+    "risk": "node:sqlite RC or runtime differences",
+    "mitigation": "EventStore port, spikes S3 and Desktop, engines >=24.15 with Node 26 added after LTS"
+   },
+   {
+    "risk": "DPAPI shell-out fails in a stripped env",
+    "mitigation": "S2, hard-coded path, locked mode, a documented native fallback with its cost"
+   },
+   {
+    "risk": "Injection via stored or external text",
+    "mitigation": "Framing, sanitizer, derived provenance, tiers, red team"
+   },
+   {
+    "risk": "Link noise",
+    "mitigation": "Budgets, floors, tombstones, metrics"
+   },
+   {
+    "risk": "Schedule slip",
+    "mitigation": "P1a re-baselined to a real minimum; the release no longer gates value"
+   },
+   {
+    "risk": "Scheduled sessions may not load plugin MCP",
+    "mitigation": "Verified in P1b; reminder-only fallback"
+   },
+   {
+    "risk": "Tooling friction (pnpm 11 and Dependabot, Stryker)",
+    "mitigation": "S4 in P1b, Vitest 4.1"
+   },
+   {
+    "risk": "Privacy expectations",
+    "mitigation": "Honest docs; only slices are sent"
+   }
+  ],
+  "verifiedExtraFacts": [
+   {
+    "claim": "A required-check job skipped by a conditional reports 'Success', so a plain needs: aggregate passes when a dependency fails.",
+    "sourceUrl": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks"
+   },
+   {
+    "claim": "anthropic/maxResultSizeChars is set per tool in tools/list (ceiling 500,000). Oversized results are saved to the session's tool-results directory under ~/.claude/projects. MAX_MCP_OUTPUT_TOKENS defaults to 25k with a warning at 10k. .mcp.json supports ${VAR:-default}.",
+    "sourceUrl": "https://code.claude.com/docs/en/mcp"
+   },
+   {
+    "claim": "Servers in claude_desktop_config.json are available in both Desktop chat and local Code-tab sessions.",
+    "sourceUrl": "https://code.claude.com/docs/en/desktop"
+   },
+   {
+    "claim": "Auto memory is on by default in ~/.claude/projects/<project>/memory/ and excluded from the cleanupPeriodDays sweep. autoMemoryEnabled can be set per project; CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 also disables it.",
+    "sourceUrl": "https://code.claude.com/docs/en/memory"
+   },
+   {
+    "claim": "disableAutoMode, autoMemoryEnabled, enabledPlugins, remoteControlAtStartup and deniedMcpServers can be set in any settings file. desktopSessionCleanupPeriodDays and pluginConfigs are user or managed only.",
+    "sourceUrl": "https://code.claude.com/docs/en/settings-reference"
+   },
+   {
+    "claim": "Windows paths in permission rules normalize to //c/...; the ~/ form is supported; argument-pattern Bash rules are fragile. requiresUserInteraction prompts even in acceptEdits, auto and bypass modes, and dontAsk denies the call.",
+    "sourceUrl": "https://code.claude.com/docs/en/permissions"
+   },
+   {
+    "claim": "plugin.json defaultEnabled defaults to true. claude plugin install --scope project writes to the project settings.",
+    "sourceUrl": "https://code.claude.com/docs/en/plugins-reference"
+   },
+   {
+    "claim": "deniedMcpServers applies to every server except in-process ones. Connectors that the desktop app delivers to Code-tab sessions are in-process and not covered.",
+    "sourceUrl": "https://code.claude.com/docs/en/managed-mcp"
+   },
+   {
+    "claim": "Local scheduled tasks need Desktop 1.1.5368 or later. Each run opens a new session. requiresUserInteraction tools stall runs.",
+    "sourceUrl": "https://code.claude.com/docs/en/desktop-scheduled-tasks"
+   },
+   {
+    "claim": "Remote Control Trusted Devices (beta) is on Pro/Max and off by default. RC transcripts are stored on Anthropic servers.",
+    "sourceUrl": "https://code.claude.com/docs/en/remote-control"
+   },
+   {
+    "claim": "claude plugin eval supports --trust-plugin, --model, --judge-model, --max-cost-usd and --no-publish. Mock files return arbitrary text.",
+    "sourceUrl": "https://code.claude.com/docs/en/plugin-evals"
+   },
+   {
+    "claim": "--allow-net was added in Node v25.0.0. The permission model does not cover node:sqlite.",
+    "sourceUrl": "https://nodejs.org/api/cli.html"
+   },
+   {
+    "claim": "Node v24 enters maintenance on 2026-10-20; v26 becomes LTS on 2026-10-28. node:sqlite has been RC since 25.7.0.",
+    "sourceUrl": "https://raw.githubusercontent.com/nodejs/Release/main/schedule.json"
+   },
+   {
+    "claim": "SDK v2 serveStdio serves both eras by default; the only documented option is legacy:'reject'. createMcpHandler defaults to legacy 'stateless'.",
+    "sourceUrl": "https://ts.sdk.modelcontextprotocol.io/v2/migration/support-2026-07-28"
+   },
+   {
+    "claim": "REPORTED (open issue): the claude.ai connector advertises 2026-07-28 and fails on a state-only InputRequiredResult.",
+    "sourceUrl": "https://github.com/anthropics/claude-ai-mcp/issues/1027"
+   },
+   {
+    "claim": "REPORTED, closed as not planned: Claude Code forwards only structuredContent when both result channels are present.",
+    "sourceUrl": "https://github.com/anthropics/claude-code/issues/55677"
+   },
+   {
+    "claim": "Per-tool connector permissions (Always allow / Needs approval / Blocked) are documented for Team/Enterprise owners.",
+    "sourceUrl": "https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities"
+   },
+   {
+    "claim": "Local checks: scrypt N=2^17, r=8 fails under the default maxmem on Node 24.14 and passes at 256 MiB. PSReadLine 2.4.5 uses SaveIncrementally to %APPDATA%\\...\\ConsoleHost_history.txt and supports MemoryOnly. The repo AndrewStifora/mullwise is public with active rulesets and no required checks yet.",
+    "sourceUrl": "https://github.com/AndrewStifora/mullwise"
+   }
+  ],
+  "openQuestionsForUser": [
+   "Device Encryption status; will you enable it?",
+   "Run the P0 lab, or skip it?",
+   "May AI auto-file into existing subjects when confident?",
+   "Expansion default: light, on-demand, or rich for talks and decisions?",
+   "DPAPI plus recovery code acceptable?",
+   "desktopSessionCleanupPeriodDays value; is training opt-out off?",
+   "Backup destination and cadence (manual reminder or Task Scheduler)?",
+   "pnpm 11 with manual refresh, Renovate, or a pnpm 10 pin?",
+   "API key for CI evals in a protected environment, or local only?",
+   "Trello Inbox bridge acceptable before P2b?",
+   "Digest day and time, and the stale threshold?",
+   "Hosting for P2b: Cloudflare or Vercel+Supabase?",
+   "Languages you write in?",
+   "Want the printable cue card or disclosure ledger earlier than P3?"
+  ]
+ },
+ "decisionRationale": "The base is unchanged (Proposal 1 with the node:sqlite sealed log). The critique's fixes were verified against primary docs and applied. The three largest shifts:\n\n1. **Correctness and safety holes closed.** ci-ok now runs with always(). Tool results are text-only with an rto-refs block. The plugin is scoped to the RTO workspace. Maintenance operations are epoch-checked. The recovery KDF is HKDF (scrypt fails under Node's default maxmem). Host residuals are fully listed.\n2. **P1a cut to a credible minimum and value unblocked.** P1a drops snapshots, the JSONL store, auto-backup, the 2026-07-28 tests and the release gate. The periodic digest moves into P1b.\n3. **P0 reflects reality.** The repo already exists, public with its ruleset, so P0 only adds CI and the required checks.\n\nI diverged from the critique where verification showed a better option; each case is listed in changesFromCritique.",
+ "adrs": [
+  {
+   "number": "0001",
+   "title": "Sealed event log in node:sqlite with epoch-checked maintenance",
+   "decision": "Per-event AES-GCM records stored as BLOB rows. Settings: WAL, 5 s timeout, secure_delete, temp_store=MEMORY.\n\nAppends run in BEGIN IMMEDIATE and re-check seq, a random epoch token and keyId. Restore, rekey and compaction run transactionally and set a new epoch. No snapshots until the bench requires them. The JSONL store is a documented option only.",
+   "context": "Many writers; restore, rekey and forget can run while servers are live. node:sqlite is RC.",
+   "consequences": "Positive: ACID writes and no native modules.\n\nNegative: metadata visible on disk; Node 24.15 or later required; no undo before a compaction base."
+  },
+  {
+   "number": "0002",
+   "title": "Key custody: DPAPI plus an HKDF recovery code",
+   "decision": "DEK wraps:\n- DPAPI via the hard-coded, existence-checked powershell.exe\n- a 130-bit recovery code through HKDF-SHA256\n- env-test for test vaults only\n\nLocked mode when no key is available. Fallback @napi-rs/keyring costs a native prebuilt outside the bundle, an allowBuilds review and an ADR amendment.",
+   "context": "Windows credentials sit in a plaintext .credentials.json. scrypt N=2^17 fails under the default maxmem (verified). The Code-tab env may be stripped.",
+   "consequences": "Silent unlock and WebCrypto portability. Same-user malware is out of scope. The DEK passes PowerShell stdout (logging assumption documented)."
+  },
+  {
+   "number": "0003",
+   "title": "MCP SDK v2 stdio with text-only framed results",
+   "decision": "serveStdio with its default, which serves both eras. Transport-agnostic registerTools.\n\nNo outputSchema or structuredContent. Each result is one text block: <rto:data>-framed markdown plus a trailing rto-refs JSON (ids, numbers, enums, token). No maxResultSizeChars; pages stay under 8k tokens. 2026-07-28 tests are added when a surface negotiates it.",
+   "context": "Claude Code reportedly forwards only structuredContent (#55677, closed as not planned). Oversized results spill to tool-results files (verified).",
+   "consequences": "Identical across hosts, half the tokens, no spill. Contract tests parse rto-refs."
+  },
+  {
+   "number": "0004",
+   "title": "AI split, permission tiers and agency guards",
+   "decision": "Claude judges; the server validates.\n\nTiers:\n- allow: capture, organize, search, recall, digest, status, mark\n- ask: edit, undo\n- requiresUserInteraction: decide_suggestion\n\nGuards: tokens, budgets, the mark cap of 5 origin-mine changes, the edit anti-bulk rule, undo scoped to the server instance, provenance derived from sourceRef.",
+   "context": "Binding approval rule; requiresUserInteraction verified in docs.",
+   "consequences": "Prompt-free ticks and human-gated structure."
+  },
+  {
+   "number": "0005",
+   "title": "Packaging: workspace-scoped Claude Code plugin; one server per surface",
+   "decision": "defaultEnabled false, installed with --scope project in the RTO workspace, plus the RTO_WORKSPACE lock.\n\nDesktop Chat (P1.5), with exactly one server per session:\n- a .mcpb that does not load into the Code tab, or\n- a desktop-config entry that replaces the plugin's .mcp.json, with rewritten allow rules\n\nRTO chats use a memory-off Project or incognito. The earlier claim about the MCPB directory was dropped.",
+   "context": "Desktop-config servers load in both Chat and the Code tab (verified). Chat memory is on by default.",
+   "consequences": "No RTO tools in coding sessions. Chat waits for its spike."
+  },
+  {
+   "number": "0006",
+   "title": "Talk UX (written at P1b start)",
+   "decision": "Server-rendered talk card, prompt-free ticks and a 3-question debrief. Printing is deferred to P3.",
+   "context": "Claude Code has no ui:// rendering.",
+   "consequences": "In-person use needs Remote Control with trusted devices."
+  },
+  {
+   "number": "0007",
+   "title": "Branching, CI gate and dependencies",
+   "decision": "Existing ruleset plus required checks ci-ok (if: always(), alls-green) and CodeQL. Squash only. Dependabot for actions only.\n\nNo releases until install docs for others exist; `pnpm bump` for plugin versions until then. The CI Node matrix adds 26 after LTS.",
+   "context": "Skipped required checks report success (verified). The repo was already bootstrapped.",
+   "consequences": "A reliable gate and less release overhead."
+  },
+  {
+   "number": "0008",
+   "title": "P2b sealed inbox on Workers (written at P2b start)",
+   "decision": "A single inbox_capture tool that demands verbatim text; sealed to the vault key; import / untrusted-external; never input_required. Tested on both eras against claude.ai.",
+   "context": "claude.ai reportedly speaks 2026-07-28 (#1027).",
+   "consequences": "No plaintext at rest remotely; transient plaintext in the Worker."
+  },
+  {
+   "number": "0009",
+   "title": "Admin boundary, workspace isolation and host residuals",
+   "decision": "Workspace settings:\n- deny Bash, PowerShell, Write, Edit, NotebookEdit, WebFetch, WebSearch, Artifact, mcp__terminal, mcp__claude_ai_* and a Read of the vault\n- disable auto and bypass modes; auto memory off; remoteControlAtStartup false\n- deniedMcpServers plus UUID-connector denies in settings.local.json\n\nAdmin work only in an external terminal. Residuals documented.",
+   "context": "Argument-pattern denies are fragile. read_terminal exists. PSReadLine history persists. deniedMcpServers misses Desktop in-process connectors.",
+   "consequences": "A real boundary against the agent; environment-specific local settings."
+  }
+ ],
+ "backlog": [
+  {
+   "title": "Finish repo governance: required checks and CONTRIBUTING updates",
+   "type": "chore",
+   "phase": "P0",
+   "labels": [
+    "type:chore",
+    "phase:0",
+    "security-review"
+   ],
+   "body": "The repo already exists, public, with rulesets, labels, push protection, private vulnerability reporting and SHA pinning.\n\nTo do:\n- add ci-ok and CodeQL as required checks to 'main protection'\n- update CONTRIBUTING's required-check table and §7",
+   "acceptanceCriteria": [
+    "Required checks are active",
+    "A failing PR cannot merge",
+    "CONTRIBUTING is updated"
+   ],
+   "dependsOn": [
+    "Toolchain and CI skeleton with an always()-evaluated ci-ok"
+   ]
+  },
+  {
+   "title": "Toolchain and CI skeleton with an always()-evaluated ci-ok",
+   "type": "chore",
+   "phase": "P0",
+   "labels": [
+    "type:chore",
+    "phase:0",
+    "security-review"
+   ],
+   "body": "- Node 24.21 and hardened pnpm\n- Biome import and global bans\n- ci.yml with alls-green\n- codeql.yml, labeler.yml, pr-title.yml, dependabot.yml",
+   "acceptanceCriteria": [
+    "ci-ok is green on both OSes and red on a deliberate failure",
+    "zizmor is clean"
+   ],
+   "dependsOn": []
+  },
+  {
+   "title": "Critical spikes S1-S3",
+   "type": "chore",
+   "phase": "P0",
+   "labels": [
+    "type:chore",
+    "phase:0"
+   ],
+   "body": "S1: runtime, env, prefix, text-only channel, requiresUserInteraction, enablement, RTO_WORKSPACE, deny path.\nS2: DPAPI.\nS3: node:sqlite with multiple processes.",
+   "acceptanceCriteria": [
+    "Each spike has an outcome and a fallback in its ADR"
+   ],
+   "dependsOn": []
+  },
+  {
+   "title": "P1a ADRs, threat-model skeleton, checklists, host-hygiene doc",
+   "type": "docs",
+   "phase": "P0",
+   "labels": [
+    "type:docs",
+    "phase:0",
+    "security-review"
+   ],
+   "body": "ADRs 0001-0005, 0007 and 0009; the threat-model skeleton; a short PR checklist; host-hygiene.md including the PSReadLine handler.",
+   "acceptanceCriteria": [
+    "Every doc linked from CONTRIBUTING and SECURITY exists"
+   ],
+   "dependsOn": [
+    "Critical spikes S1-S3"
+   ]
+  },
+  {
+   "title": "Optional method lab (gated, 10-day stop)",
+   "type": "feat",
+   "phase": "P0",
+   "labels": [
+    "type:feat",
+    "phase:0",
+    "security-review"
+   ],
+   "body": "Gated on Device Encryption. autoMemoryEnabled false. The purge covers transcripts, memory and tool-results.",
+   "acceptanceCriteria": [
+    "Purge confirmed",
+    "Scenarios pass the re-identification check"
+   ],
+   "dependsOn": []
+  },
+  {
+   "title": "Core domain with text-only renderers and rto-refs",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Schemas, parser, sanitizer (closers and fences), reducers, provenance derived from sourceRef, renderers.",
+   "acceptanceCriteria": [
+    "Property tests pass",
+    "rto-refs contains no free text"
+   ],
+   "dependsOn": [
+    "Toolchain and CI skeleton with an always()-evaluated ci-ok"
+   ]
+  },
+  {
+   "title": "Crypto envelope v1 and HKDF recovery derivation",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "WebCrypto envelope, DEK wrap, HKDF, KATs.",
+   "acceptanceCriteria": [
+    "Tampering fails closed",
+    "Cross-OS vectors pass"
+   ],
+   "dependsOn": [
+    "Toolchain and CI skeleton with an always()-evaluated ci-ok"
+   ]
+  },
+  {
+   "title": "Keyring: DPAPI, recovery code, test env, locked mode",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:security",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Hard-coded powershell path, stripped-env test, workspace lock.",
+   "acceptanceCriteria": [
+    "DPAPI round-trip on the windows runner",
+    "No secrets in logs or argv"
+   ],
+   "dependsOn": [
+    "Crypto envelope v1 and HKDF recovery derivation"
+   ]
+  },
+  {
+   "title": "node:sqlite event store with epoch/keyId checks",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "WAL, temp_store=MEMORY, contiguity, epoch token, formatVersion refusal, vault path from vaultDir or os.homedir().",
+   "acceptanceCriteria": [
+    "2-process test passes",
+    "Restore while a server runs is safe",
+    "Canary absent"
+   ],
+   "dependsOn": [
+    "Keyring: DPAPI, recovery code, test env, locked mode",
+    "Core domain with text-only renderers and rto-refs"
+   ]
+  },
+  {
+   "title": "MCP server v0 (capture, search, recall, mark, status)",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "serveStdio default, text-only results, pagination, snapshot.",
+   "acceptanceCriteria": [
+    "Stdio E2E and no-network pass on both OSes"
+   ],
+   "dependsOn": [
+    "node:sqlite event store with epoch/keyId checks"
+   ]
+  },
+  {
+   "title": "CLI v0: init, add, status, backup, verify, recover",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "TTY gating, alternate screen, echo off, stdin add, transactional restore.",
+   "acceptanceCriteria": [
+    "Non-TTY runs refused",
+    "Recovery drill passes"
+   ],
+   "dependsOn": [
+    "node:sqlite event store with epoch/keyId checks"
+   ]
+  },
+  {
+   "title": "Workspace-scoped plugin, skill v0 and workspace template",
+   "type": "feat",
+   "phase": "P1a",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "defaultEnabled false, project install, deny set, deniedMcpServers local file, pnpm bump.",
+   "acceptanceCriteria": [
+    "No rto tools outside the workspace",
+    "The tool list shows only rto plus allowed built-ins"
+   ],
+   "dependsOn": [
+    "MCP server v0 (capture, search, recall, mark, status)",
+    "CLI v0: init, add, status, backup, verify, recover"
+   ]
+  },
+  {
+   "title": "First-real-data gate",
+   "type": "security",
+   "phase": "P1a",
+   "labels": [
+    "type:security",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Threat model v1, full residual list, canary scan of memory and tool-results, SECURITY.md update, recovery drill.",
+   "acceptanceCriteria": [
+    "All checks green",
+    "Go-live recorded"
+   ],
+   "dependsOn": [
+    "Workspace-scoped plugin, skill v0 and workspace template",
+    "P1a ADRs, threat-model skeleton, checklists, host-hygiene doc"
+   ]
+  },
+  {
+   "title": "Retrieval and organize",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "MiniSearch indexes, tokens, budgets, provisional subjects.",
+   "acceptanceCriteria": [
+    "All rejection reasons tested"
+   ],
+   "dependsOn": [
+    "First-real-data gate"
+   ]
+  },
+  {
+   "title": "Suggestions and decide_suggestion",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Canonical dedupe keys, staleness, simple digest signals.",
+   "acceptanceCriteria": [
+    "undo(apply) = identity"
+   ],
+   "dependsOn": [
+    "Retrieval and organize"
+   ]
+  },
+  {
+   "title": "edit, undo, mark extensions (cap, set_decision)",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Anti-bulk guard, instance-scoped undo, mark cap, set_decision.",
+   "acceptanceCriteria": [
+    "Invariants hold nightly"
+   ],
+   "dependsOn": [
+    "Suggestions and decide_suggestion"
+   ]
+  },
+  {
+   "title": "Views, digest (full and counts), scheduled weekly digest",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1"
+   ],
+   "body": "Tree, talk, person views; digest; scheduled task (Desktop 1.1.5368+), with a reminder-only fallback.",
+   "acceptanceCriteria": [
+    "Two runs without a stall",
+    "Counts transcripts contain no text"
+   ],
+   "dependsOn": [
+    "edit, undo, mark extensions (cap, set_decision)"
+   ]
+  },
+  {
+   "title": "Skill v1",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Method, playbooks, approvals, talk mode, safety.",
+   "acceptanceCriteria": [
+    "Safety evals score 1.0"
+   ],
+   "dependsOn": [
+    "Views, digest (full and counts), scheduled weekly digest"
+   ]
+  },
+  {
+   "title": "Export, import, import-phase0",
+   "type": "feat",
+   "phase": "P1b",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Plaintext export to a named file only.",
+   "acceptanceCriteria": [
+    "Round-trip identity"
+   ],
+   "dependsOn": [
+    "First-real-data gate"
+   ]
+  },
+  {
+   "title": "Evals with poisoned-mock red team, semgrep, nightly.yml, spikes S4/S5",
+   "type": "test",
+   "phase": "P1b",
+   "labels": [
+    "type:test",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Plugin evals and mocks; nightly run.",
+   "acceptanceCriteria": [
+    "Red-team baseline green"
+   ],
+   "dependsOn": [
+    "Skill v1"
+   ]
+  },
+  {
+   "title": "Desktop Chat spike and single-server path",
+   "type": "feat",
+   "phase": "P1.5",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Per ADR-0005.",
+   "acceptanceCriteria": [
+    "No double-loading",
+    "Memory-off chats"
+   ],
+   "dependsOn": [
+    "Skill v1"
+   ]
+  },
+  {
+   "title": "Rekey and forget with epoch-safe compaction",
+   "type": "feat",
+   "phase": "P1.5",
+   "labels": [
+    "type:feat",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Transactional maintenance, VACUUM and checkpoint.",
+   "acceptanceCriteria": [
+    "No resurrection or loss while servers run"
+   ],
+   "dependsOn": [
+    "node:sqlite event store with epoch/keyId checks"
+   ]
+  },
+  {
+   "title": "Remote Control runbook",
+   "type": "docs",
+   "phase": "P1.5",
+   "labels": [
+    "type:docs",
+    "phase:1",
+    "security-review"
+   ],
+   "body": "Trusted devices, startup off.",
+   "acceptanceCriteria": [
+    "Runbook tested"
+   ],
+   "dependsOn": [
+    "First-real-data gate"
+   ]
+  },
+  {
+   "title": "Deep scheduled tests (mutation, evals CI, Scorecard)",
+   "type": "test",
+   "phase": "P1.5",
+   "labels": [
+    "type:test",
+    "phase:1"
+   ],
+   "body": "Flags verified in the plugin-evals docs.",
+   "acceptanceCriteria": [
+    "Mutation score 70% or more"
+   ],
+   "dependsOn": [
+    "Evals with poisoned-mock red team, semgrep, nightly.yml, spikes S4/S5"
+   ]
+  },
+  {
+   "title": "Epic: P2a connector integrations",
+   "type": "epic",
+   "phase": "P2a",
+   "labels": [
+    "type:feat",
+    "phase:2",
+    "security-review"
+   ],
+   "body": "Recipes, derived provenance, explicit denies.",
+   "acceptanceCriteria": [
+    "Exit criteria met"
+   ],
+   "dependsOn": [
+    "Skill v1"
+   ]
+  },
+  {
+   "title": "Sealed-box primitive in @rto/crypto",
+   "type": "feat",
+   "phase": "P2b",
+   "labels": [
+    "type:security",
+    "phase:2",
+    "security-review"
+   ],
+   "body": "ECDH P-256, HKDF, AES-GCM.",
+   "acceptanceCriteria": [
+    "KATs pass"
+   ],
+   "dependsOn": [
+    "Crypto envelope v1 and HKDF recovery derivation"
+   ]
+  },
+  {
+   "title": "Epic: P2b sealed-inbox connector",
+   "type": "epic",
+   "phase": "P2b",
+   "labels": [
+    "type:feat",
+    "phase:2",
+    "security-review"
+   ],
+   "body": "Per the phase description.",
+   "acceptanceCriteria": [
+    "Exit criteria met"
+   ],
+   "dependsOn": [
+    "Sealed-box primitive in @rto/crypto",
+    "Skill v1"
+   ]
+  },
+  {
+   "title": "Epic: P3 (release pipeline, print, ledger, scale, multi-user)",
+   "type": "epic",
+   "phase": "P3",
+   "labels": [
+    "type:feat",
+    "phase:3",
+    "security-review"
+   ],
+   "body": "Triggered items only.",
+   "acceptanceCriteria": [
+    "Each item cites its trigger"
+   ],
+   "dependsOn": [
+    "Epic: P2b sealed-inbox connector"
+   ]
+  }
+ ],
+ "changesFromCritique": [
+  "ci-ok now runs with if: always() via alls-green (allowed-skips: dependency-review), and P0 exits only after a deliberately failing PR shows it red. Verified in GitHub docs.",
+  "Removed outputSchema and structuredContent. Every result is one text block: framed markdown plus an rto-refs JSON. Added my own step: the sanitizer also escapes fake rto-refs blocks and backtick fences inside data.",
+  "DIVERGED on recall size: instead of declaring maxResultSizeChars or adding recall_full, all views paginate under 8k tokens, so spill files never occur. Spill files are still listed as a residual.",
+  "Plugin scoped to the workspace: defaultEnabled false (verified field), `--scope project` install (verified), and the RTO_WORKSPACE lock (propagation checked in S1).",
+  "Applied the critic's workspace template: outright denies, disableAutoMode and disableBypassPermissionsMode, autoMemoryEnabled false, remoteControlAtStartup false, and the env flags. Changes of my own:\n- the vault deny uses the ~/ form so the public template holds no username\n- Artifact is denied too\n- my own addition: a settings.local.json with deniedMcpServers for Andrew's other user-scope servers (Windows-MCP, Gemini-MCP, firecrawl and others observed), plus permission denies for in-process Desktop servers and UUID connectors, which deniedMcpServers does not cover (verified)",
+  "CLI hygiene applied: alternate screen, echo off, plaintext to files only, external terminal, stdin `rto add`. The PSReadLine handler returns MemoryOnly and chains to GetDefaultAddToHistoryOption (verified locally on PSReadLine 2.4.5).",
+  "Recovery KDF replaced by HKDF-SHA256. The scrypt failure under the default maxmem was reproduced locally.",
+  "Runtime env handling: vaultDir passed via user_config, default from os.homedir(), hard-coded and existence-checked powershell path, temp_store=MEMORY, env recorded in S1.",
+  "Live-vault safety: random epoch token plus compactionBaseSeq, appends re-check epoch and keyId, restore/rekey/compaction are transactional, and VACUUM plus wal_checkpoint(TRUNCATE) run. Epoch checks start in P1a, because recover --from already exists there.",
+  "Read tools are truly read-only: auto-backup removed from the server; the disclosure ledger deferred to P3 and kept in a non-event table if built.",
+  "Provenance derived from sourceRef (import / untrusted-external); Pocket outcomes stay import until adopted.",
+  "Agency guards: a cap of 5 origin-mine state changes per mark call, undo scoped to the server instance (plus a recent-batch list when empty), and red-team cases for 'drop all' and 'mark digest seen'.",
+  "Desktop Chat: exactly one server per session with memory-off chats. The desktop-config double-load was verified in the docs.",
+  "Digest: added counts mode for scheduled runs and moved the scheduled task into P1b. Added the Desktop 1.1.5368+ requirement (verified) and a reminder-only fallback if plugin MCP servers don't load in scheduled sessions.",
+  "Remote Control: Require trusted devices, auto-connect off, RC transcripts listed as a residual, and DISABLE_TELEMETRY left unset (all verified).",
+  "P1a re-baselined: no snapshots, no JSONL store, no auto-backup, no 2026-07-28 tests; restore merged into `recover --from`; model-based crash and perf runs moved to nightly in P1b. The estimate honestly rises to 5-7 days.",
+  "Release, SBOM and attestation moved to P3 (before install docs for others). P1.5 and P2a items now depend on features, not on a release. P2b depends on the new sealed-box issue, not on P2a.",
+  "Consistency fixes: spike references use issue titles; semgrep introduced in P1b; nightly in P1b including conformance; the 10k cold-start criterion dropped from P1a; CONTRIBUTING §7 edited in P0; SECURITY.md revised in the P2b gate.",
+  "Fact corrections (all verified): '--allow-net added in 25.0.0'; engines '>=24.15' with Node 26 added after its 2026-10-28 LTS; the serveStdio default wording; the MCPB-directory claim dropped; claude.ai speaking 2026-07-28 marked REPORTED with P2b testing both eras and never returning input_required.",
+  "Lab gate: autoMemoryEnabled false, and the purge covers transcripts, memory, tool-results and Desktop sessions.",
+  "P2b wording changed to transient plaintext in the Worker; verbatim-capture contract; captures stored as import.",
+  "P2a denies now name the observed tools. PARTIAL: the account-wide 'Blocked' option is documented only for Team/Enterprise owners, so it became a 'check your plan' note.",
+  "CI evals add --trust-plugin, pinned --model and --judge-model, and --max-cost-usd (verified).",
+  "Public-repo privacy: metrics stay in the local digest, retro issues hold categories only, and fixtures get a re-identification check.",
+  "Added set_decision (the critic's choose_option, extended to cover park and reopen).",
+  "ADR-0002 records the packaging cost of the native keyring fallback.",
+  "Accepted over-engineering cuts: HMAC keys replaced by canonical keys; heuristics and the adaptive floor deferred; the separate fuzzy matcher dropped; one net-guard preload; eval systems consolidated so red team runs as poisoned-mock plugin evals, while headless E2E is kept in P1.5 to preserve test levels; print deferred to P3; the full OWASP checklist only at phase gates; spikes S4 and S5 deferred.",
+  "PARTIAL on threat model v0: a P0 skeleton exists only so the links in CONTRIBUTING and SECURITY resolve. The reviewed analysis starts at v1. ADR-0006 and ADR-0008 are written later.",
+  "Beyond the critique:\n- P0 rewritten after verifying with gh that AndrewStifora/mullwise already exists, public with active rulesets, labels, push protection, private vulnerability reporting and SHA pinning; only the required checks remain\n- removed the stale 'add phase:0 to CONTRIBUTING' step (it is already listed)\n- the label name aligned to 'good first issue'",
+  "Kept, and why: AI subject proposals stay in P1b. P1a Inbox items are organized by the first P1b digest, so P1a stays minimal."
+ ]
+}
