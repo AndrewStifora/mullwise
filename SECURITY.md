@@ -14,9 +14,15 @@ Please include affected version/commit, reproduction steps, and impact.
 
 ## Supported versions
 
-Pre-1.0: only the latest release on `main` receives fixes.
+There are no releases yet (see `CONTRIBUTING.md` §7). Until there are, only the
+latest commit on `main` receives fixes.
 
 ## Data-handling commitments
+
+These are the design commitments for v1. Each enforcement lands with the code it
+covers. The threat model (`docs/security/threat-model.md`) is a P0 deliverable that
+hasn't been written yet. Until it exists, the draft security plan is `plan.securityPlan`
+in [`docs/architecture/design-plan.json`](docs/architecture/design-plan.json).
 
 | Commitment | How it is enforced |
 |---|---|
