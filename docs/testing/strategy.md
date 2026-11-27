@@ -11,7 +11,7 @@ tool, job or config in the repository yet.
 
 | Level | Tool | What it covers | When it runs | Status today |
 |---|---|---|---|---|
-| Static | `tsc`, Biome, actionlint, zizmor | Types, import and global boundaries, workflow security | Every PR (`static` job) | **Running.** Biome's `noRestrictedImports` / `noRestrictedGlobals` rules and `claude plugin validate` are planned, phase 1. |
+| Static | `tsc`, Biome, actionlint, zizmor | Types, import and global boundaries, workflow security | Every PR (`static` job) | **Running.** Biome enforces `noRestrictedImports` and `noRestrictedGlobals` (the offline boundary). `claude plugin validate` is planned, phase 1. |
 | Unit | Vitest | Parser, sanitizer, crypto, reducers, budgets, renderers | Every PR | **Running** for the toolchain only (`tests/toolchain`). Product units are planned, phase 1. |
 | Property | fast-check (`@fast-check/vitest`) | The same units, over generated input | Every PR; long runs nightly | Installed. No property tests yet. Nightly runs planned, P1b. |
 | Integration | Vitest with real `node:sqlite` and DPAPI | Two-process writes, key reload, restore, locked mode | Every PR, both OSes | Planned, phase 1. The `test` job already runs on Ubuntu and Windows. |
