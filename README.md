@@ -25,7 +25,8 @@ path and question you worked out, and afterwards you capture the outcome.
 
 ## Status
 
-🧭 **Design phase.** No code yet. The research and product decisions are in `docs/`:
+🧭 **Phase 0 (P0).** The toolchain and CI are in place, but there is no product code
+yet. The research, product decisions and design are in `docs/`:
 
 | Doc | What's in it |
 |---|---|
@@ -33,8 +34,11 @@ path and question you worked out, and afterwards you capture the outcome.
 | [Name review](docs/product/naming.md) | Why *Mullwise*, and why not "RTO" |
 | [Competitive landscape](docs/research/competitive-landscape.md) | ~40 products, what's defensible, pitfalls to avoid |
 | [Verified platform & engineering facts](docs/research/platform-and-engineering-facts.md) | Fact-checked Claude, MCP, GitHub and tooling facts that the design relies on |
+| [Roadmap](docs/architecture/roadmap.md) | Architecture summary, phases, and decisions that override the design plan |
+| [Design plan](docs/architecture/design-plan.json) | The full design: plan, ADR drafts, backlog |
 
-The architecture, roadmap, threat model and testing strategy land next.
+The ADRs, threat model, security review checklist and testing strategy are P0
+deliverables that are still to come.
 
 ## Principles
 

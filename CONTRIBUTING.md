@@ -18,7 +18,8 @@ security finding or chore. Use the templates under `.github/ISSUE_TEMPLATE/`.
 |---|---|
 | `type:feat` `type:fix` `type:test` `type:docs` `type:chore` `type:refactor` `type:security` | Kind of change |
 | `security-review` | Touches private data, crypto, auth, or anything network-facing. Triggers the security gate (§5). |
-| `phase:0` `phase:1` `phase:2` `phase:3` | Roadmap phase (see `docs/architecture/roadmap.md`) |
+| `phase:0` `phase:1` `phase:2` `phase:3` | Roadmap phase (see [`docs/architecture/roadmap.md`](docs/architecture/roadmap.md)) |
+| `epic` | Groups the issues of a larger piece of work |
 | `good first issue` | Small, well-scoped |
 
 The only exception to "no direct pushes to `main`" was the one-time bootstrap commit
@@ -27,7 +28,8 @@ that created the repository. Branch protection was turned on right after it.
 ## 2. Create the branch from the issue
 
 Branch name: `<type>/<issue-number>-<short-slug>`, e.g. `feat/12-capture-tool`,
-`fix/34-brief-ordering`, `sec/40-key-rotation`, `test/51-mcp-contract`.
+`fix/34-brief-ordering`, `sec/40-key-rotation`, `test/51-mcp-contract`. `<type>` is
+any commit type from §3 except `revert`.
 
 Let GitHub link the branch to the issue:
 
@@ -113,15 +115,24 @@ These paths are auto-labelled by `.github/labeler.yml`. **Any phase that exposes
 Mullwise to the internet requires a full threat-model update**
 (`docs/security/threat-model.md`) and a recorded review before deploy.
 
+The review checklist and the threat model are P0 deliverables that haven't been
+written yet. Until they exist, complete the *Security & privacy* section of the PR
+template, and use `plan.securityPlan` in
+[`docs/architecture/design-plan.json`](docs/architecture/design-plan.json) as the
+draft threat model.
+
 ## 6. Testing levels
 
-See [`docs/testing/strategy.md`](docs/testing/strategy.md). In short: static →
-unit → property-based → integration → contract → E2E → skill evals → mutation →
-security. A bug fix lands with a test that failed before the fix.
+The testing strategy (`docs/testing/strategy.md`) hasn't been written yet. Until it
+exists, the testing matrix is `plan.testingMatrix` in
+[`docs/architecture/design-plan.json`](docs/architecture/design-plan.json). In short:
+static → unit → property-based → integration → contract → E2E → skill evals →
+mutation → security. A bug fix lands with a test that failed before the fix.
 
 ## 7. Releases
 
-**No releases yet** (ADR-0007). Nothing is published until install docs for other
+**No releases yet** (ADR-0007, drafted in
+[`docs/architecture/design-plan.json`](docs/architecture/design-plan.json)). Nothing is published until install docs for other
 people exist: no tags, no GitHub Releases, no plugin bundle and no `.mcpb`. Until
 then the plugin's version is bumped by hand with `pnpm bump`. That script arrives
 with the plugin in #16.
